@@ -34,3 +34,6 @@ cp $SNAKEWARE/config/grub.cfg $MNT/boot/grub/grub.cfg
 # unmount everything
 umount $MNT
 kpartx -d $SNAKEWARE/$IMG
+
+# don't require root to access the img file
+chmod a+rwX snakeware.img
