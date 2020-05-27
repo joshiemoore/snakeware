@@ -61,9 +61,12 @@ class SnakeWM:
 
         while running:
             delta = clock.tick(60) / 1000.0
+
+            pressed = pygame.key.get_pressed()
+
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                     if event.key == pygame.K_ESCAPE:
+                     if event.key == pygame.K_ESCAPE and pressed[pygame.K_LALT]:
                          running = False
 
                 self.MANAGER.process_events(event)
