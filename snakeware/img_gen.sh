@@ -1,5 +1,5 @@
-# Generate snakeware img file
-# Must be run as root, and the generated img file will belong to root.
+# Generate snakeware img file.
+# This script must be run as root.
 
 # snakeware image path
 SNAKEWARE=$PWD
