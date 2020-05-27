@@ -1,0 +1,7 @@
+build/
+src/
+
+run.sh
+clean.sh
+
+*.img
