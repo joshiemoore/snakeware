@@ -4,6 +4,7 @@ Snake Window Manager
 
 import os
 import sys
+import importlib
 
 import pygame, pygame_gui
 
@@ -44,20 +45,24 @@ class SnakeWM:
         pygame.mouse.set_visible(True)
         pygame.display.update()
 
-    def alert(self, title, msg, pos):
-        pygame_gui.windows.UIMessageWindow(
-            rect=pygame.Rect(pos, (300, 160)),
-            window_title=title,
-            html_message=msg,
-            manager=self.MANAGER
-        )
+    def loadapp(self, app, params=None):
+        """
+        Load and run an app based on its location (ie app="apps.test.HelloWorld").
+        Apps are basically just Python packages. The loaded app directory must contain an __init__.py
+        with a load() function that accepts a UIManager parameter and a params list parameter.
+
+        The load() function should create an instance of the app to load and add the app UI to
+        the passed UIManager object. See existing apps for examples.
+        """
+        if __name__ != '__main__':
+            app = 'snakewm.' + app
+
+        _app = importlib.import_module(app)
+        _app.load(self.MANAGER, params)
 
     def run(self):
         clock = pygame.time.Clock()
         running = True
-
-        self.alert('Test', 'Hello World!', (100, 100))
-        self.alert('lol', 'It just werks', (500, 500))
 
         while running:
             delta = clock.tick(60) / 1000.0
@@ -66,8 +71,11 @@ class SnakeWM:
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                     if event.key == pygame.K_ESCAPE and pressed[pygame.K_LALT]:
-                         running = False
+                     if pressed[pygame.K_LALT]:
+                         if event.key == pygame.K_ESCAPE:
+                             running = False
+                         elif event.key == pygame.K_h:
+                             self.loadapp("apps.test.HelloWorld")
 
                 self.MANAGER.process_events(event)
 

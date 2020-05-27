@@ -20,7 +20,7 @@ Then, burn the image file to a flash drive and boot it, or launch it in QEMU wit
 
 Once you are booted into the Python environment, launch snakewm with these commands:
 ```
->>> from snakewm import SnakeWM
+>>> from snakewm.wm import SnakeWM
 >>> SnakeWM().run()
 ```
 
@@ -34,7 +34,7 @@ The build scripts currently steal shared object files from the host system to pa
 we will likely build these libraries from source instead of copying them from the host.
 
 **NOTE:** If you are only contributing apps or other code to snakewm, you don't need to build a whole snakeware distro 
-image to test your changes. Simply make your changes to snakewm then run `sudo python snakewm.py` in the `snakewm/` 
+image to test your changes. Simply make your changes to snakewm then run `sudo python wm.py` in the `snakewm/` 
 directory. snakewm will then start drawing itself directly to the framebuffer and you can test out your changes. 
 Press `ALT+ESC` to return to your normal desktop.
 
