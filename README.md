@@ -24,6 +24,11 @@ Once you are booted into the Python environment, launch snakewm with these comma
 >>> SnakeWM().run()
 ```
 
+We are working on an app menu, but in the meantime you can load existing apps with these hotkeys:
+
+* `ALT+H` - very basic "Hello World" app
+* `ALT+P` - Pong game
+
 ## Building
 If you want to generate your own snakeware image, clone this repository and run `./build_all.sh` in the `snakeware/`
 directory. This will take a long time, because Linux, Python, and Busybox are all built from source. Take a look
@@ -54,6 +59,7 @@ the Python environment, so ideas about that are welcome.
 This is an abridged list of future plans:
 
 * Many more snakewm apps
+* App menu for choosing apps to run
 * Improved/streamlined build system
 * Improved kernel config
 * Take advantage of pygame_gui's theme functionality
