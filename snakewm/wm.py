@@ -18,7 +18,16 @@ class SnakeWM:
     BG = None
     MANAGER = None
 
+    # dict that will contain the apps directory structure
+    APPS = {}
+    # reference to the root app menu object
+    APPMENU = None
+
     def __init__(self):
+        # populate the apps tree
+        apps_path = os.path.dirname(os.path.abspath(__file__)) + '/apps'
+        SnakeWM.iter_dir(self.APPS, apps_path)
+
         pygame.init()
 
         # initialize pygame to framebuffer
@@ -44,30 +53,21 @@ class SnakeWM:
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
 
-        ## REMOVE ME
-        AppMenuPanel(
-            self.MANAGER,
-            (0, 0),
-            'apps',
-            {
-              'test': {
-                'HelloWorld': None,
-                'asdf': {
-                  'cool': None,
-                  'wow': None
-                },
-                'a': None,
-                'b': None
-              },
-              'games': {
-                'pong': None
-              }
-            }
-        )
-        ##
-
         pygame.mouse.set_visible(True)
         pygame.display.update()
+
+
+    def iter_dir(tree, path):
+        """
+        Static function that recursively populates dict 'tree' with the
+        app directory structure starting at 'path'.
+        """
+        for f in os.listdir(path):
+            if os.path.isfile(path + '/' + f + '/__init__.py'):
+                tree[f] = None
+            elif os.path.isdir(path + '/' + f):
+                tree[f] = {}
+                SnakeWM.iter_dir(tree[f], path + '/' + f)
 
     def loadapp(self, app, params=None):
         """
@@ -97,6 +97,20 @@ class SnakeWM:
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
+                     if event.key == pygame.K_LSUPER:
+                         if self.APPMENU is None:
+                             # open app menu
+                             self.APPMENU = AppMenuPanel(
+                                 self.MANAGER,
+                                 (0, 0),
+                                 'apps',
+                                 self.APPS
+                             )
+                         else:
+                             # close app menu
+                             self.APPMENU.destroy()
+                             self.APPMENU = None
+
                      if pressed[pygame.K_LALT]:
                          if event.key == pygame.K_ESCAPE:
                              running = False
