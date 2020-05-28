@@ -48,11 +48,13 @@ class SnakeWM:
     def loadapp(self, app, params=None):
         """
         Load and run a Python module as an app (ie "apps.test.HelloWorld").
-        Apps are basically just Python packages. The loaded app package must contain an __init__.py
-        with a load() function that accepts a UIManager parameter and a params list parameter.
+        Apps are basically just Python packages. The loaded app package must
+        contain an __init__.py with a load() function that accepts a UIManager
+        parameter and a params list parameter.
 
-        The load() function should create an instance of the app to load and add the app UI to
-        the passed UIManager object. See existing apps for examples.
+        The load() function should create an instance of the app to load and
+        add the app UI to the passed UIManager object. See existing apps for 
+        examples.
         """
         if __name__ != '__main__':
             app = 'snakewm.' + app
