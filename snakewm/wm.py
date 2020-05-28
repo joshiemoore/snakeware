@@ -8,6 +8,8 @@ import importlib
 
 import pygame, pygame_gui
 
+from appmenu.appmenupanel import AppMenuPanel
+
 BG_COLOR = (0, 128, 128)
 
 class SnakeWM:
@@ -41,6 +43,21 @@ class SnakeWM:
 
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
+
+        ## REMOVE ME
+        AppMenuPanel(
+            self.MANAGER,
+            (0, 0),
+            'apps',
+            [('test', None), ('games', None), ('aaa', None)]
+        )
+        AppMenuPanel(
+            self.MANAGER,
+            (1, 2),
+            'apps.games',
+            [('HelloWorld', None), ('asdf', None)]
+        )
+        ##
 
         pygame.mouse.set_visible(True)
         pygame.display.update()
