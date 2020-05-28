@@ -61,6 +61,7 @@ This is an abridged list of future plans:
 * ~~App menu for choosing apps to run~~
 * Improved/streamlined build system
 * Improved kernel config
+* Modify partition scheme for faster boot - /usr on its own partition?
 * Take advantage of pygame_gui's theme functionality
 * Dynamic/interactive desktop backgrounds
 * Sound support
