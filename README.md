@@ -26,10 +26,7 @@ Once you are booted into the Python environment, launch snakewm with these comma
 >>> SnakeWM().run()
 ```
 
-We are working on an app menu, but in the meantime you can load existing apps with these hotkeys:
-
-* `ALT+H` - very basic "Hello World" app
-* `ALT+P` - Pong game
+Press the Left WinKey to open the App Menu!
 
 ## Building
 If you want to generate your own snakeware image, clone this repository and run `./build_all.sh` in the `snakeware/`
