@@ -11,7 +11,7 @@ from .pong import PongGame
 class PongWindow(UIWindow):
     def __init__(self, position, ui_manager):
         super().__init__(pygame.Rect(position, (320, 240)), ui_manager,
-                         window_display_title='Super Awesome Pong!',
+                         window_display_title='pong',
                          object_id='#pong_window')
 
         game_surface_size = self.get_container().get_size()
@@ -24,8 +24,13 @@ class PongWindow(UIWindow):
 
         self.pong_game = PongGame(game_surface_size)
 
-        #self.is_active = False
+        self.is_active = False
+
+    def focus(self):
         self.is_active = True
+
+    def unfocus(self):
+        self.is_active = False
 
     def process_event(self, event):
         handled = super().process_event(event)
@@ -34,14 +39,14 @@ class PongWindow(UIWindow):
                 event.ui_object_id == "#pong_window.#title_bar" and
                 event.ui_element == self.title_bar):
             handled = True
-            event_data = {'user_type': 'pong_window_selected',
+            event_data = {'user_type': 'window_selected',
                           'ui_element': self,
                           'ui_object_id': self.most_specific_combined_id}
             window_selected_event = pygame.event.Event(pygame.USEREVENT,
                                                        event_data)
             pygame.event.post(window_selected_event)
-        #if self.is_active:
-        handled = self.pong_game.process_event(event)
+        if self.is_active:
+            handled = self.pong_game.process_event(event)
         return handled
 
     def update(self, time_delta):

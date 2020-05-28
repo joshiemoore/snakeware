@@ -18,6 +18,9 @@ class SnakeWM:
     BG = None
     MANAGER = None
 
+    # currently focused window
+    FOCUS = None
+
     # dict that will contain the apps directory structure
     APPS = {}
     # reference to the root app menu object
@@ -128,6 +131,13 @@ class SnakeWM:
                          if event.key == pygame.K_ESCAPE:
                              running = False
                              return pygame.quit()
+
+                elif event.type == pygame.USEREVENT:
+                    if event.user_type == 'window_selected':
+                        if self.FOCUS is not None:
+                            self.FOCUS.unfocus()
+                        self.FOCUS = event.ui_element
+                        self.FOCUS.focus()
 
                 self.MANAGER.process_events(event)
 
