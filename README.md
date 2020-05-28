@@ -47,8 +47,8 @@ Press `ALT+ESC` to return to your normal desktop.
 
 ## Contributing
 Developers of all experience levels are welcome and encouraged to contribute to snakeware. Python enthusiasts that are
-familiar with pygame and pygame_gui will be able to write their own snakeware apps very easily. See existing apps for
-examples of how to get started, and feel free to ask questions if you need help.
+familiar with pygame and pygame_gui will be able to write their own snakeware apps very easily. See existing apps
+in `snakewm/apps/` for examples of how to get started, and feel free to ask questions if you need help.
 
 Those with experience building Linux systems are encouraged to contribute to the underlying aspects of the distro,
 such as the build/package scripts and configuration for the kernel, GRUB, etc. The build system is currently not
