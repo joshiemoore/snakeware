@@ -47,8 +47,8 @@ class SnakeWM:
 
     def loadapp(self, app, params=None):
         """
-        Load and run an app based on its location (ie app="apps.test.HelloWorld").
-        Apps are basically just Python packages. The loaded app directory must contain an __init__.py
+        Load and run a Python module as an app (ie "apps.test.HelloWorld").
+        Apps are basically just Python packages. The loaded app package must contain an __init__.py
         with a load() function that accepts a UIManager parameter and a params list parameter.
 
         The load() function should create an instance of the app to load and add the app UI to
@@ -76,6 +76,8 @@ class SnakeWM:
                              running = False
                          elif event.key == pygame.K_h:
                              self.loadapp("apps.test.HelloWorld")
+                         elif event.key == pygame.K_p:
+                             self.loadapp("apps.games.pong")
 
                 self.MANAGER.process_events(event)
 
