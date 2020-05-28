@@ -6,7 +6,7 @@ SNAKEWARE=$PWD
 IMG=snakeware.img
 
 # image size (MiB)
-IMG_SIZE=1024
+IMG_SIZE=400
 
 MNT=/mnt
 
