@@ -10,13 +10,13 @@ import pygame, pygame_gui
 
 from appmenu.appmenupanel import AppMenuPanel
 
-BG_COLOR = (0, 128, 128)
-
 class SnakeWM:
     SCREEN = None
     DIMS = None
     BG = None
     MANAGER = None
+
+    BG_COLOR = (0, 128, 128)
 
     # currently focused window
     FOCUS = None
@@ -51,7 +51,7 @@ class SnakeWM:
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
-        self.BG.fill(BG_COLOR)
+        self.BG.fill(self.BG_COLOR)
 
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
@@ -101,6 +101,13 @@ class SnakeWM:
 
         self.loadapp(app)
 
+    def set_bg_color(self, color):
+        """
+        Set the desktop background to 'color', where color is an RGB tuple.
+        """
+        self.BG_COLOR = color
+        self.BG.fill(self.BG_COLOR)
+
     def run(self):
         clock = pygame.time.Clock()
         running = True
@@ -134,10 +141,15 @@ class SnakeWM:
 
                 elif event.type == pygame.USEREVENT:
                     if event.user_type == 'window_selected':
+                        # focus selected window
                         if self.FOCUS is not None:
                             self.FOCUS.unfocus()
                         self.FOCUS = event.ui_element
                         self.FOCUS.focus()
+                    elif event.user_type == pygame_gui.UI_COLOUR_PICKER_COLOUR_PICKED:
+                        if event.ui_object_id == '#desktop_colour_picker':
+                            # set desktop background color - no alpha channel
+                            self.set_bg_color(event.colour[:-1])
 
                 self.MANAGER.process_events(event)
 
