@@ -61,7 +61,7 @@ the Python environment, so ideas about that are welcome.
 This is an abridged list of future plans:
 
 * Many more snakewm apps
-* App menu for choosing apps to run
+* ~~App menu for choosing apps to run~~
 * Improved/streamlined build system
 * Improved kernel config
 * Take advantage of pygame_gui's theme functionality

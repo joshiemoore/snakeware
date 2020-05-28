@@ -127,10 +127,7 @@ class SnakeWM:
                      if pressed[pygame.K_LALT]:
                          if event.key == pygame.K_ESCAPE:
                              running = False
-                         elif event.key == pygame.K_h:
-                             self.loadapp("apps.test.HelloWorld")
-                         elif event.key == pygame.K_p:
-                             self.loadapp("apps.games.pong")
+                             return pygame.quit()
 
                 self.MANAGER.process_events(event)
 
