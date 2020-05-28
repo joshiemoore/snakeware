@@ -2,13 +2,18 @@
 Snake Window Manager
 """
 
+TESTMODE = __name__ == '__main__'
+
 import os
 import sys
 import importlib
 
 import pygame, pygame_gui
 
-from appmenu.appmenupanel import AppMenuPanel
+if TESTMODE:
+    from appmenu.appmenupanel import AppMenuPanel
+else:
+    from snakewm.appmenu.appmenupanel import AppMenuPanel
 
 class SnakeWM:
     SCREEN = None
@@ -83,7 +88,7 @@ class SnakeWM:
         add the app UI to the passed UIManager object. See existing apps for 
         examples.
         """
-        if __name__ != '__main__':
+        if not TESTMODE:
             app = 'snakewm.' + app
 
         _app = importlib.import_module(app)
@@ -159,6 +164,6 @@ class SnakeWM:
             self.MANAGER.draw_ui(self.SCREEN)
             pygame.display.update()
 
-if __name__ == '__main__':
+if TESTMODE:
     wm = SnakeWM()
     wm.run()
