@@ -13,7 +13,7 @@ def load(manager, params):
         pos = params[0]
 
     pygame_gui.windows.UIColourPickerDialog(
-        rect=pygame.Rect(pos, (420, 400)),
+        rect=pygame.Rect(pos, (600, 400)),
         manager=manager,
         window_title='Set Background Color',
         object_id='#desktop_colour_picker'
