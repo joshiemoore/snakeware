@@ -6,12 +6,10 @@ def load(manager, params):
     params[0] should be the desired position. A default
     position will be used if a pos is not provided.
     """
-    default_pos = (50, 50)
+    # default position
+    pos = (50, 50)
 
     if params is not None and len(params) > 0:
-        # create PongWindow of user-specified size
-        PongWindow(params[0], manager)
-    else:
-        # create PongWindow of default size
-        PongWindow(default_pos, manager)
-    
+        pos = params[0]
+
+    PongWindow(pos, manager)
