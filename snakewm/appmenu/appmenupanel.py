@@ -28,7 +28,7 @@ class AppMenuPanel(UIPanel):
     # child panel created when a directory button is hovered
     child = None
 
-    def __init__(self, manager, pos, path, elements):
+    def __init__(self, manager, pos, path, elements, loadfunc):
         """
         manager - UIManager to manage this panel
         pos - position indices to start drawing this panel at
@@ -52,6 +52,7 @@ class AppMenuPanel(UIPanel):
         self.pos = pos
         self.path = path
         self.elements = elements
+        self.loadfunc = loadfunc
 
         # generate buttons
         ekeys = list(elements.keys())
@@ -77,8 +78,7 @@ class AppMenuPanel(UIPanel):
             uitext = event.ui_element.text
 
             if self.elements[uitext] == None:
-                #\TODO open app
-                print("opening app: " + self.path + '.' + uitext)
+                self.loadfunc(self.path + '.' + uitext)
 
         if event.user_type == pygame_gui.UI_BUTTON_ON_HOVERED and\
             event.ui_object_id == ('panel.menu-' + self.path.replace('.', '-')):
@@ -97,7 +97,8 @@ class AppMenuPanel(UIPanel):
                         list(self.elements.keys()).index(uitext)
                     ),
                     self.path + '.' + uitext,
-                    self.elements[uitext]
+                    self.elements[uitext],
+                    self.loadfunc
                 )
 
     def destroy(self):

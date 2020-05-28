@@ -86,6 +86,18 @@ class SnakeWM:
         _app = importlib.import_module(app)
         _app.load(self.MANAGER, params)
 
+    def appmenu_load(self, app):
+        """
+        This function is passed to AppMenuPanel objects to be called when
+        an app is selected to be opened.
+        The root app menu is destroyed, and the app is loaded.
+        """
+        if self.APPMENU is not None:
+            self.APPMENU.destroy()
+            self.APPMENU = None
+
+        self.loadapp(app)
+
     def run(self):
         clock = pygame.time.Clock()
         running = True
@@ -104,7 +116,8 @@ class SnakeWM:
                                  self.MANAGER,
                                  (0, 0),
                                  'apps',
-                                 self.APPS
+                                 self.APPS,
+                                 self.appmenu_load
                              )
                          else:
                              # close app menu
