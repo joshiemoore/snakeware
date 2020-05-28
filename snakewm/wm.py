@@ -49,13 +49,20 @@ class SnakeWM:
             self.MANAGER,
             (0, 0),
             'apps',
-            [('test', None), ('games', None), ('aaa', None)]
-        )
-        AppMenuPanel(
-            self.MANAGER,
-            (1, 2),
-            'apps.games',
-            [('HelloWorld', None), ('asdf', None)]
+            {
+              'test': {
+                'HelloWorld': None,
+                'asdf': {
+                  'cool': None,
+                  'wow': None
+                },
+                'a': None,
+                'b': None
+              },
+              'games': {
+                'pong': None
+              }
+            }
         )
         ##
 
