@@ -14,7 +14,7 @@ We also are not going to be using any other huge and opaque software such as sys
 have a usable set of userspace apps and utilities written entirely in Python, because Python is fun and it Just Werks™.
 
 ## Running
-Download the latest release image (when one comes out).
+[Download the latest release image.](https://github.com/joshiemoore/snakeware/releases)
 
 Then, burn the image file to a flash drive and boot it, or launch it in QEMU with this command:
 
