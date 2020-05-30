@@ -1,138 +1,65 @@
-# This script downloads and builds linux and python sources, and outputs
-# the snakeware structure in the build/ directory.
+# This script builds a snakeware image using buildroot.
+# The first and only argument should be the platform (ie x86-64)
 
-# linux kernel version
-KERNEL_MAJ=v5.x
-KERNEL_MIN=5.6.14
+if [ $# != 1 ]; then
+  echo "Invalid number of parameters."
+  echo "Usage: ./build.sh <platform>"
+  exit
+fi
 
-# python version
-PYTHON_VER=3.8.3
+IMG_SIZE=400M
 
-# snakeware dirs
 SNAKEWARE=$PWD
-SRC=$PWD/src
-BLD=$PWD/build
+IMG=snakeware.img
 
-mkdir -p $SRC
-
-mkdir -p $BLD
-mkdir -p $BLD/etc/init.d $BLD/proc $BLD/sys $BLD/dev $BLD/tmp $BLD/boot $BLD/bin
-
-chmod 1777 $BLD/tmp
-
-
-# copy libs
-#\TODO build these libs from source
-mkdir -p $BLD/usr/lib $BLD/usr/lib64
-
-# python dependencies
-cp /usr/lib/libcrypt.so.1 $BLD/usr/lib
-cp /usr/lib/libc.so.6 $BLD/usr/lib/
-cp /usr/lib/libpython3.8.so.1.0 $BLD/usr/lib/
-cp /usr/lib64/ld-linux-x86-64.so.2 $BLD/usr/lib64/
-cp /usr/lib/libpthread.so.0 $BLD/usr/lib/
-cp /usr/lib/libdl.so.2 $BLD/usr/lib/
-cp /usr/lib/libutil.so.1 $BLD/usr/lib/
-cp /usr/lib/libm.so.6 $BLD/usr/lib/
-cp /lib/libgcc_s.so.1 $BLD/usr/lib/
-
-# pygame dependencies
-cp /usr/lib/libSDL-1.2.so.0 $BLD/usr/lib/
-cp /usr/lib/libz.so.1 $BLD/usr/lib/
-cp /lib/libSDL_ttf-2.0.so.0 $BLD/usr/lib/
-cp /lib/libfreetype.so.6 $BLD/usr/lib/
-cp /lib/libbz2.so.1.0 $BLD/usr/lib/
-cp /lib/libpng16.so.16 $BLD/usr/lib/
-cp /lib/libharfbuzz.so.0 $BLD/usr/lib/
-cp /lib/libglib-2.0.so.0 $BLD/usr/lib/
-cp /lib/libgraphite2.so.3 $BLD/usr/lib/
-cp /lib/libpcre.so.1 $BLD/usr/lib/
-
-mkdir -p $BLD/lib $BLD/lib64
-cp $BLD/usr/lib/* $BLD/lib/
-cp $BLD/usr/lib64/* $BLD/lib64/
-
-
-# GET SOURCES
-cd $SRC
-
-if [ ! -d "linux-$KERNEL_MIN" ]; then
-  echo "Downloading kernel source..."
-  wget https://cdn.kernel.org/pub/linux/kernel/$KERNEL_MAJ/linux-$KERNEL_MIN.tar.xz
-  tar xf linux-$KERNEL_MIN.tar.xz
-  rm linux-$KERNEL_MIN.tar.xz
+if [ ! -d buildroot ]; then
+  git clone https://github.com/buildroot/buildroot.git buildroot --depth 1
 fi
 
-if [ ! -d "Python-$PYTHON_VER" ]; then
-  echo "Downloading python source..."
-  wget https://www.python.org/ftp/python/3.8.3/Python-$PYTHON_VER.tar.xz
-  tar xf Python-$PYTHON_VER.tar.xz
-  rm Python-$PYTHON_VER.tar.xz
+if [ ! -f $SNAKEWARE/config/$1-buildroot-config ]; then
+  echo "Unsupported platform: $1"
+  exit
 fi
 
-if [ ! -d "busybox" ]; then
-  echo "Downloading busybox source..."
-  git clone https://git.busybox.net/busybox
+# copy buildroot config and kernel config
+cp $SNAKEWARE/config/$1-buildroot-config $SNAKEWARE/buildroot/.config
+cp $SNAKEWARE/config/$1-kernel-config $SNAKEWARE/buildroot/configs/snakeware-kernel
+
+# copy rootfs overlay
+rm -rf $SNAKEWARE/buildroot/overlay
+cp -r $SNAKEWARE/overlay $SNAKEWARE/buildroot/
+
+# run build
+cd buildroot
+make
+
+cd $SNAKEWARE
+
+if [ ! -f buildroot/output/images/rootfs.tar ]; then
+  echo "Failed to generate rootfs.tar, not creating bootable image."
+  exit
 fi
 
-# BUILD SOURCES
+# create blank image
+rm -f $IMG
+dd if=/dev/zero of=$IMG bs=$IMG_SIZE count=0 seek=1
 
-# build kernel with default config
-#\TODO better config?
-cp $SNAKEWARE/config/kernel-config $SRC/linux-$KERNEL_MIN/.config
-cd $SRC/linux-$KERNEL_MIN
-make -j4
-make modules
-make modules_install INSTALL_MOD_PATH=$BLD/
-cp arch/x86/boot/bzImage $BLD/boot/vmlinuz
+ create primary DOS partition, make it bootable, write
+(
+    echo o
+    echo n
+    echo p
+    echo
+    echo
+    echo
+    echo a
+    echo w
+) | fdisk $SNAKEWARE/$IMG
 
-# build python
-cd $SRC/Python-$PYTHON_VER
-./configure --prefix=$BLD/usr/
-make -j4
-make install
+# create virtual block device
+sudo kpartx -a $SNAKEWARE/$IMG
 
-# build busybox
-cd $SRC/busybox
-make defconfig
-export LDFLAGS="--static"
-make -j4
-make install
-
-#sudo chmod 4755 _install/bin/busybox
-sudo chown root _install/bin/busybox
-cp -a _install/* $BLD/
-
-rm $BLD/linuxrc
-cd $BLD
-ln -s bin/busybox init
-
-
-# create /etc/init.d/rcS
-cat << EOF > $BLD/etc/init.d/rcS
-#!/bin/sh
-mount -a
-mdev -s
-/bin/hostname -F /etc/hostname
-/sbin/ifconfig lo 127.0.0.1 up
-
-while [ 1 ]
-do
-  clear
-  /usr/bin/python3
-done
-
-EOF
-
-chmod +x $BLD/etc/init.d/rcS
-
-# create /etc/fstab
-cat << EOF > $BLD/etc/fstab
-proc /proc proc defaults 0 0
-sysfs /sys sysfs defaults 0 0
-devpts /dev/pts devpts defaults 0 0
-tmpfs /dev/shm tmpfs defaults 0 0
-EOF
-
-# create /etc/hostname
-echo 'localhost' > $BLD/etc/hostname
+echo ""
+echo "A virtual block device has been created for $IMG."
+echo "Use lsblk to find the number of this device and run ./img_final.sh <num>"
+echo "Example: ./img_final.sh 0 for loop0"

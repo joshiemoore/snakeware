@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# PYTHON THREE FOREVER BABY!
+while [ 1 ]
+do
+  clear
+  /usr/bin/python3
+done
