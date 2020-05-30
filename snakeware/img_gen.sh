@@ -14,8 +14,16 @@ MNT=/mnt
 dd if=/dev/zero of=$SNAKEWARE/$IMG bs=1M count=$IMG_SIZE
 
 # create primary DOS partition, make it bootable, write
-#\TODO automate this
-cfdisk $SNAKEWARE/$IMG
+(
+    echo o
+    echo n
+    echo p
+    echo
+    echo
+    echo
+    echo a
+    echo w
+) | fdisk $SNAKEWARE/$IMG
 
 kpartx -a $SNAKEWARE/$IMG
 
