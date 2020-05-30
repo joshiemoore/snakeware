@@ -35,7 +35,8 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
 
         # generate calculator buttons
         for i in range(len(self.OPS)):
-            if self.OPS[i] == 'x':
+            op = self.OPS[i]
+            if op == 'x':
                 # skip placeholder ops
                 continue
 
@@ -45,10 +46,10 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
                      40 + int(i / 4) * self.BSIZE[1]),
                     self.BSIZE
                 ),
-                text='.' if self.OPS[i] == 'p' else self.OPS[i],
+                text='.' if op == 'p' else op,
                 manager=manager,
                 container=self,
-                object_id='#op-' + self.OPS[i]
+                object_id='#op-' + op
             )
 
     def process_event(self, event):
