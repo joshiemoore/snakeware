@@ -1,7 +1,4 @@
-build/
-src/
+buildroot/
+*.img
 
 run.sh
-clean.sh
-
-*.img
