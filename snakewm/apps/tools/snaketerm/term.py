@@ -43,13 +43,88 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             }
         )
 
+        self.input.focus()
+
+        # history attributes
+        self.histsize = 100
+        self.histindex = -1
+        self.history = list()
+        self.cached_command = str()
+
+        # jump attributes
+        self.jump_chars = (' ', '-', '_', '/')
+
+        # TODO: load this from a file so users can configure
+        self.hotkeys = {
+            'ctrl': {
+                'l': self.clear_text,
+                'left': self.jump_left,
+                'right': self.jump_right,
+                'backspace': self.jump_backspace
+            }
+        }
+
     def set_text(self, text):
         self.textbox.html_text = text.replace('\n', '<br>')
         self.textbox.rebuild()
+    
+    def clear_text(self):
+        self.set_text(str())
+    
+    def jump_left(self):
+        command = self.input.get_text()
+        ep = self.input.edit_position
+        while ep > 0 and command[ep-1] not in self.jump_chars:
+            ep -= 1
+        self.input.edit_position = ep
+
+    def jump_right(self):
+        command = self.input.get_text()
+        ep = self.input.edit_position
+        while ep < len(command) and command[ep] not in self.jump_chars:
+            ep += 1
+        self.input.edit_position = ep
+    
+    def jump_backspace(self):
+        command = self.input.get_text()
+        ep = to_pos = self.input.edit_position
+        while ep > 0 and command[ep-1] not in self.jump_chars:
+            ep -= 1
+        self.input.set_text(command[:ep] + command[to_pos:])
+        self.input.edit_position = ep
 
     def append_text(self, text):
         self.textbox.html_text = self.textbox.html_text + text.replace('\n', '<br>')
         self.textbox.rebuild()
+        if self.textbox.scroll_bar is not None:
+            self.textbox.scroll_bar.scroll_position = len(self.textbox.html_text.split('<br>')) * 5
+            self.textbox.scroll_bar.scroll_wheel_down = True
+    
+    def add_to_history(self, command):
+        self.history = [command] + self.history
+        if len(self.history) > self.histsize:
+            del self.history[-1]
+
+    def set_from_history(self):
+        if self.histindex > -1:    
+            self.input.set_text(self.history[self.histindex])
+        else:
+            self.input.set_text(self.cached_command)
+        self.input.edit_position = len(self.input.get_text())
+    
+    def set_histindex(self, increment):
+        try:
+            self.history[self.histindex + increment]
+            self.histindex += increment
+        except IndexError:
+            return self.histindex
+        return self.histindex
+    
+    def cache_command(self):
+        self.cached_command = self.input.get_text()
+    
+    def flush_command_cache(self):
+        self.cached_command = str()
 
     def process_event(self, event):
         super().process_event(event)
@@ -70,4 +145,25 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             sys.stdout = _stdout
             result = tout.getvalue()
             self.append_text(result)
-            self.input.set_text('')
+            self.add_to_history(self.input.get_text())
+            self.histindex = -1
+            self.flush_command_cache()
+            self.input.set_text(str())
+        
+        # ctrl hotkeys
+        elif pygame.key.get_mods() & pygame.KMOD_CTRL:
+            if event.type == pygame.KEYUP:
+                name = pygame.key.name(event.key)
+                callback = self.hotkeys['ctrl'].get(name)
+                if callback and callable(callback):
+                    self.hotkeys['ctrl'][name]()
+        
+        # other special keys (history, etc)
+        elif event.type == pygame.KEYUP:
+            if event.key in (pygame.K_UP, pygame.K_DOWN):
+                increment = 1 if event.key == pygame.K_UP else -1
+                if self.histindex == -1:
+                    self.cache_command()
+                self.set_histindex(increment)
+                self.set_from_history()
+                
