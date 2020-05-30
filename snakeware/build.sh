@@ -48,6 +48,9 @@ cp /lib/libglib-2.0.so.0 $BLD/usr/lib/
 cp /lib/libgraphite2.so.3 $BLD/usr/lib/
 cp /lib/libpcre.so.1 $BLD/usr/lib/
 
+# pyttsx3 dependencies
+cp /usr/lib/libespeak.so.1 $BLD/usr/lib/
+
 mkdir -p $BLD/lib $BLD/lib64
 cp $BLD/usr/lib/* $BLD/lib/
 cp $BLD/usr/lib64/* $BLD/lib64/
