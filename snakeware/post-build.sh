@@ -7,7 +7,7 @@ PYLIBVER=python3.8
 SNAKEWARE=$PWD/..
 
 # install pip modules
-$SNAKEWARE/buildroot/output/target/usr/bin/python3 -m pip install -r $SNAKEWARE/config/pip_modules.txt
+$SNAKEWARE/buildroot/output/target/usr/bin/python3 -m pip install --global-option=build_ext --global-option="-I/usr/include/" -r $SNAKEWARE/config/pip_modules.txt
 
 # copy snakewm
 rm -rf $SNAKEWARE/buildroot/output/target/usr/lib/$PYLIBVER/snakewm
