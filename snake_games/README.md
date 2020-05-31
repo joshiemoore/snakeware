@@ -1,6 +1,6 @@
 # snake_games
 
-This is the user-made games repository for snakeware. This games come shipped
+This is the user-made games repository for snakeware. These games come shipped
 standard with every snakeware release. We are only going to include fun free
 games made by amateurs here.
 
@@ -47,7 +47,7 @@ DIMS = (
     pygame.display.Info().current_h
 )
 ```
-and write your game such that it accounts for these varying screen dimensions
+You should write your game so that it handles these varying screen dimensions
 gracefully.
 
 * Your game must have a way for the user to immediately exit and return to
