@@ -2,7 +2,7 @@
 snakeware is a free Linux distro with a Python userspace inspired by the Commodore 64. You are booted directly into a
 Python interpreter, which you can use to do whatever you want with your computer.
 
-[Check out our demo video on YouTube!](https://www.youtube.com/watch?v=Zy8NXuzBPhA)
+[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=d7zD9zmZvbQ)
 
 ![snakeware/snakewm running in QEMU](screenshot.png)
 
