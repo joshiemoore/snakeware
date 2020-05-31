@@ -20,7 +20,7 @@ Once the script has successfully completed, use `lsblk` to make note of the driv
 block device the script created for the new image. For example, if the script created `loop0p1`, you will
 enter `0` as the argument for the next script.
 
-### 2. Run `sudo ./img_gen.sh <num>`
+### 2. Run `sudo ./img_final.sh <num>`
 This script must be run as root.
 
 `<num>` should be the drive number of the virtual block device from the previous step.
