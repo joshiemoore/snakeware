@@ -31,18 +31,14 @@ Once you are booted into the Python environment, launch snakewm with these comma
 Press the Left WinKey to open the App Menu!
 
 ## Building
-If you want to generate your own snakeware image, clone this repository and run `./build_all.sh` in the `snakeware/`
-directory. This will take a long time, because Linux, Python, and Busybox are all built from source. Take a look
-at the build scripts beforehand to verify that you have everything you need to build it. In general, if you have
-Python, pygame, pygame_gui, and all of the Linux kernel's build dependencies installed, you should be good to go.
-
-The build scripts currently steal shared object files from the host system to pack into the distro image. In the future,
-we will likely build these libraries from source instead of copying them from the host.
+The snakeware build system is based on buildroot. See the `snakeware/` directory in this repo for resources and
+documentation on how to build your own snakeware distro image.
 
 **NOTE:** If you are only contributing apps or other code to snakewm, you don't need to build a whole snakeware distro 
 image to test your changes. Simply make your changes to snakewm then run `sudo python wm.py` in the `snakewm/` 
 directory. snakewm will then start drawing itself directly to the framebuffer and you can test out your changes. 
-Press `ALT+ESC` to return to your normal desktop.
+Press `ALT+ESC` to return to your normal desktop. (It would still be good to test your changes in an actual
+snakeware environment though.)
 
 ## Contributing
 Developers of all experience levels are welcome and encouraged to contribute to snakeware. Python enthusiasts that are
@@ -61,9 +57,10 @@ This is an abridged list of future plans:
 
 * Many more snakewm apps
 * ~~App menu for choosing apps to run~~
-* Improved/streamlined build system
+* ~~Improved/streamlined build system~~
 * Improved kernel config
-* Modify partition scheme for faster boot - /usr on its own partition?
+* snake-games - full-screen user games separate from SnakeWM
+* ~~Modify partition scheme for faster boot - /usr on its own partition?~~
 * Take advantage of pygame_gui's theme functionality
 * Dynamic/interactive desktop backgrounds
 * Sound support
