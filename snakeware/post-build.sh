@@ -12,3 +12,7 @@ $SNAKEWARE/buildroot/output/target/usr/bin/python3 -m pip install -r $SNAKEWARE/
 # copy snakewm
 rm -rf $SNAKEWARE/buildroot/output/target/usr/lib/$PYLIBVER/snakewm
 cp -r $SNAKEWARE/../snakewm $SNAKEWARE/buildroot/output/target/usr/lib/$PYLIBVER/
+
+# copy snake-games
+rm -rf $SNAKEWARE/buildroot/output/target/usr/lib/$PYLIBVER/snake_games
+cp -r $SNAKEWARE/../snake_games $SNAKEWARE/buildroot/output/target/usr/lib/$PYLIBVER/
