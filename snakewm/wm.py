@@ -56,7 +56,7 @@ class SnakeWM:
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
-        self.BG.fill(self.BG_COLOR)
+        self.set_bg_image(os.path.dirname(os.path.realpath(__file__))+ "/apps/tools/Background Image/Flower Field (Lower Res).png")
 
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
@@ -85,7 +85,7 @@ class SnakeWM:
         parameter and a params list parameter.
 
         The load() function should create an instance of the app to load and
-        add the app UI to the passed UIManager object. See existing apps for 
+        add the app UI to the passed UIManager object. See existing apps for
         examples.
         """
         if not TESTMODE:
