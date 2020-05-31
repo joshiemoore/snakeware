@@ -56,7 +56,7 @@ class SnakeWM:
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
-        self.set_bg_image(os.path.dirname(os.path.realpath(__file__))+ "/apps/tools/Background Image/Flower Field (Lower Res).png")
+        self.set_bg_image(os.path.dirname(os.path.realpath(__file__))+ "/apps/tools/Background Image/Flower Field.jpg")
 
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
