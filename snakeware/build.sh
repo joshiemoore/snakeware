@@ -12,7 +12,9 @@ IMG_SIZE=400M
 SNAKEWARE=$PWD
 IMG=snakeware.img
 
-if [ ! -d buildroot ]; then
+# check for existence of .git to make sure empty directories can still
+# be cloned to
+if [ ! -d "buildroot/.git" ]; then
   git clone https://github.com/buildroot/buildroot.git buildroot --depth 1
 fi
 
@@ -44,7 +46,7 @@ fi
 rm -f $IMG
 dd if=/dev/zero of=$IMG bs=$IMG_SIZE count=0 seek=1
 
-#  create primary DOS partition, make it bootable, write
+# create primary DOS partition, make it bootable, write
 (
     echo o
     echo n

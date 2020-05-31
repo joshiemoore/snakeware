@@ -1,4 +1,5 @@
-buildroot/
-*.img
+buildroot
+work
 
+*.img
 run.sh

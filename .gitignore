@@ -1,5 +1,8 @@
 *.swp
 venv/
 .idea/
-
 __pycache__/
+
+# build chroot uses this directory as $HOME
+.bash_history
+.cache/
