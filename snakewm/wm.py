@@ -118,7 +118,9 @@ class SnakeWM:
         """
         Sets the desktop background to an image.
         """
-        self.BG = pygame.transform.scale(pygame.image.load(file), self.DIMS)
+        filename, file_extension = os.path.splitext(file)
+        if file_extension == ".jpg" or file_extension == ".png":
+            self.BG = pygame.transform.scale(pygame.image.load(file), self.DIMS)
 
     def run(self):
         clock = pygame.time.Clock()
