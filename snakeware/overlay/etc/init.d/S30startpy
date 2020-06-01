@@ -1,5 +1,11 @@
 #!/bin/sh
 
+amixer sset Master unmute
+amixer sset Headphones unmute
+amixer sset Speaker unmute
+
+amixer sset Master 100%
+
 # PYTHON THREE FOREVER BABY!
 while [ 1 ]
 do
