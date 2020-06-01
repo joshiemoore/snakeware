@@ -85,7 +85,7 @@ class SnakeWM:
         parameter and a params list parameter.
 
         The load() function should create an instance of the app to load and
-        add the app UI to the passed UIManager object. See existing apps for 
+        add the app UI to the passed UIManager object. See existing apps for
         examples.
         """
         if not TESTMODE:
@@ -110,8 +110,17 @@ class SnakeWM:
         """
         Set the desktop background to 'color', where color is an RGB tuple.
         """
+        self.BG = pygame.Surface((self.DIMS))
         self.BG_COLOR = color
         self.BG.fill(self.BG_COLOR)
+
+    def set_bg_image(self, file):
+        """
+        Sets the desktop background to an image.
+        """
+        filename, file_extension = os.path.splitext(file)
+        if file_extension == ".jpg" or file_extension == ".png":
+            self.BG = pygame.transform.scale(pygame.image.load(file), self.DIMS)
 
     def run(self):
         clock = pygame.time.Clock()
@@ -155,6 +164,9 @@ class SnakeWM:
                         if event.ui_object_id == '#desktop_colour_picker':
                             # set desktop background color - no alpha channel
                             self.set_bg_color(event.colour[:-1])
+                    elif event.user_type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED:
+                        if event.ui_object_id == '#background_picker':
+                            self.set_bg_image(event.text)
 
                 self.MANAGER.process_events(event)
 

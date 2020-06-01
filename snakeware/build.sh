@@ -44,7 +44,7 @@ fi
 rm -f $IMG
 dd if=/dev/zero of=$IMG bs=$IMG_SIZE count=0 seek=1
 
- create primary DOS partition, make it bootable, write
+#  create primary DOS partition, make it bootable, write
 (
     echo o
     echo n
