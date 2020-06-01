@@ -1,2 +1,0 @@
-pygame_gui
-pyttsx3

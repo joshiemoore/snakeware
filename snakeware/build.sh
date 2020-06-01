@@ -31,6 +31,10 @@ cp $SNAKEWARE/config/$1-kernel-config $SNAKEWARE/buildroot/configs/snakeware-ker
 rm -rf $SNAKEWARE/buildroot/overlay
 cp -r $SNAKEWARE/overlay $SNAKEWARE/buildroot/
 
+# copy custom packages
+# todo: edit Config.in instead of completely replacing it
+cp -r $SNAKEWARE/packages/* $SNAKEWARE/buildroot/packages
+
 # run build
 cd buildroot
 make
