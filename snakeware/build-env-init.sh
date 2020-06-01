@@ -43,15 +43,13 @@ if [ ! -f "/etc/sudoers.d/snakeware" ]; then
 fi
 
 # add extra repositories
-if [ -z "$(grep "^deb-src" "/etc/apt/sources.list")" ]; then 
+if [ -z "$(grep "universe$" "/etc/apt/sources.list")" ]; then 
 	cat >> /etc/apt/sources.list <<'EOF'
 deb http://archive.ubuntu.com/ubuntu focal universe
-deb-src http://archive.ubuntu.com/ubuntu focal main
-deb-src http://archive.ubuntu.com/ubuntu focal universe
 EOF
 
-	apt-get update -y
-	apt-get build-dep python3-pygame -y
+	apt-get -y update
+	apt-get -y install mercurial
 fi
 
 # start a login shell, let the user do what they want to do

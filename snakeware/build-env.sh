@@ -43,7 +43,7 @@ if [ ! -d "$BUILDDIR" ]; then
 	"$ROOT_COMMAND" env DEBOOTSTRAP_DIR="$WORKDIR/usr/share/debootstrap/" \
 		"$WORKDIR/usr/sbin/debootstrap" \
 		--variant buildd --arch amd64 \
-		--include "bc,ca-certificates,cpio,fakeroot,file,git,kpartx,libelf-dev,libglib2.0-0,libpython3.8,libssl-dev,libncurses-dev,mercurial,python3.8,rsync,sudo,unzip,wget" \
+		--include "bc,ca-certificates,cpio,fakeroot,file,git,grub2-common,grub-pc-bin,kpartx,libelf-dev,libglib2.0-0,libpython3.8,libssl-dev,libncurses-dev,python3.8,rsync,sudo,unzip,wget" \
 		"$CODENAME" "$BUILDDIR" "$MIRROR"
 
 	"$ROOT_COMMAND" cp "$SCRIPT_DIR/build-env-init.sh" "$BUILDDIR/init"
