@@ -31,10 +31,10 @@ To install PIP packages type command `python -m pip install <package name>`
 
 **Required PIP Packages**
 + For window manager
-    + pygame
-    + pygame-gui
+    + [pygame](https://pypi.org/project/pygame/)
+    + [pygame-gui](https://pypi.org/project/pygame-gui/)
 + For speaknspell
-    + pttsx3
-	+ pywin32 (if on Windows)
-	+ comtypes (if on Windows)
+    + [pyttsx3](https://pypi.org/project/pyttsx3/)
+	+ [pywin32](https://pypi.org/project/pywin32/) (if on Windows)
+	+ [comtypes](https://pypi.org/project/comtypes/) (if on Windows)
 + (list will likely increase as more apps use PIP packages)
