@@ -66,5 +66,7 @@ This is an abridged list of future plans:
 * Dynamic/interactive desktop backgrounds
 * ~~Sound support~~
 * Networking -> web browser
+    + snakechat - chat with everyone else who's using snakeware
+    + Gopher client?
 * Ditch busybox, init via Python somehow
 * ...
