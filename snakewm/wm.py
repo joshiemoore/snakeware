@@ -151,7 +151,8 @@ class SnakeWM:
                      if pressed[pygame.K_LALT]:
                          if event.key == pygame.K_ESCAPE:
                              running = False
-                             return pygame.quit()
+                             pygame.quit()
+                             exit()
 
                 elif event.type == pygame.USEREVENT:
                     if event.user_type == 'window_selected':

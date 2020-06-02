@@ -1,4 +1,5 @@
 import pygame
 
 def load(manager, params):
-    return pygame.quit()
+    pygame.quit()
+    exit()
