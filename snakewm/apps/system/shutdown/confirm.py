@@ -12,7 +12,7 @@ class ShutdownConfirmationDialog(pygame_gui.windows.UIConfirmationDialog):
             action_long_desc="Are you sure you want to shut down the system?",
             action_short_name="Shut down",
             blocking=False,
-            object_id="#shutdown"
+            object_id="#shutdown",
         )
 
     def process_event(self, event):

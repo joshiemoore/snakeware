@@ -15,6 +15,7 @@ PANEL_LAYER = 10
 # button dimensions
 BUTTON_DIMS = (200, 25)
 
+
 class AppMenuPanel(UIPanel):
     manager = None
     pos = None
@@ -37,17 +38,11 @@ class AppMenuPanel(UIPanel):
         """
         super().__init__(
             pygame.Rect(
-                (
-                    pos[0] * BUTTON_DIMS[0],
-                    pos[1] * BUTTON_DIMS[1]
-                ),
-                (
-                    BUTTON_DIMS[0] + 5,
-                    BUTTON_DIMS[1] * len(elements.keys()) + 5
-                )
+                (pos[0] * BUTTON_DIMS[0], pos[1] * BUTTON_DIMS[1]),
+                (BUTTON_DIMS[0] + 5, BUTTON_DIMS[1] * len(elements.keys()) + 5),
             ),
             starting_layer_height=PANEL_LAYER,
-            manager=manager
+            manager=manager,
         )
         self.pos = pos
         self.path = path
@@ -58,30 +53,30 @@ class AppMenuPanel(UIPanel):
         ekeys = list(elements.keys())
         for i in range(len(ekeys)):
             UIButton(
-                pygame.Rect(
-                    (0, i * BUTTON_DIMS[1]),
-                    BUTTON_DIMS
-                ),
+                pygame.Rect((0, i * BUTTON_DIMS[1]), BUTTON_DIMS),
                 text=ekeys[i],
                 manager=manager,
                 container=self,
-                object_id = 'menu-' + self.path.replace('.', '-')
+                object_id="menu-" + self.path.replace(".", "-"),
             )
 
     def process_event(self, event):
         if event.type != pygame.USEREVENT:
             return
 
-        if event.user_type == pygame_gui.UI_BUTTON_PRESSED and\
-            event.ui_object_id == ('panel.menu-' + self.path.replace('.', '-')):
+        if event.user_type == pygame_gui.UI_BUTTON_PRESSED and event.ui_object_id == (
+            "panel.menu-" + self.path.replace(".", "-")
+        ):
             # open clicked app
             uitext = event.ui_element.text
 
             if self.elements[uitext] == None:
-                self.loadfunc(self.path + '.' + uitext)
+                self.loadfunc(self.path + "." + uitext)
 
-        if event.user_type == pygame_gui.UI_BUTTON_ON_HOVERED and\
-            event.ui_object_id == ('panel.menu-' + self.path.replace('.', '-')):
+        if (
+            event.user_type == pygame_gui.UI_BUTTON_ON_HOVERED
+            and event.ui_object_id == ("panel.menu-" + self.path.replace(".", "-"))
+        ):
             uitext = event.ui_element.text
 
             if self.elements[uitext] != None:
@@ -92,13 +87,10 @@ class AppMenuPanel(UIPanel):
                 # next open a new child panel
                 self.child = AppMenuPanel(
                     self.ui_manager,
-                    (
-                        self.pos[0] + 1,
-                        list(self.elements.keys()).index(uitext)
-                    ),
-                    self.path + '.' + uitext,
+                    (self.pos[0] + 1, list(self.elements.keys()).index(uitext)),
+                    self.path + "." + uitext,
                     self.elements[uitext],
-                    self.loadfunc
+                    self.loadfunc,
                 )
 
     def destroy(self):

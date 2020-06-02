@@ -9,29 +9,24 @@ import pygame
 import random
 import os
 
+
 class CirclezApp:
     def __init__(self):
         pygame.init()
 
         # set pygame to fbdev mode
-        os.putenv('SDL_FBDEV', '/dev/fb0')
+        os.putenv("SDL_FBDEV", "/dev/fb0")
         pygame.display.init()
 
         # get screen dimensions
-        self.DIMS = (
-            pygame.display.Info().current_w,
-            pygame.display.Info().current_h
-        )
+        self.DIMS = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 
         # init screen
-        self.SCREEN = pygame.display.set_mode(
-            self.DIMS,
-            pygame.FULLSCREEN
-        )
+        self.SCREEN = pygame.display.set_mode(self.DIMS, pygame.FULLSCREEN)
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
-        self.BG.fill((0,0,0))
+        self.BG.fill((0, 0, 0))
 
         pygame.mouse.set_visible(False)
         pygame.display.update()
@@ -49,14 +44,11 @@ class CirclezApp:
                 (
                     random.randint(0, 255),
                     random.randint(0, 255),
-                    random.randint(0, 255)
+                    random.randint(0, 255),
                 ),
-                (
-                    random.randint(0, self.DIMS[0]),
-                    random.randint(0, self.DIMS[1])
-                ),
-                random.randint(10, 100)
+                (random.randint(0, self.DIMS[0]), random.randint(0, self.DIMS[1])),
+                random.randint(10, 100),
             )
-            self.SCREEN.blit(self.BG, (0,0))
+            self.SCREEN.blit(self.BG, (0, 0))
             pygame.display.flip()
             clock.tick(30)

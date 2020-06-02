@@ -1,5 +1,6 @@
 from .calc import SnakeCalc
 
+
 def load(manager, params):
     """
     Create and launch a new instance of SnakeCalc.

@@ -21,7 +21,7 @@ class Bat:
         self.width = 5.0
 
         self.position = [float(start_pos[0]), float(start_pos[1])]
-        
+
         self.rect = pygame.Rect((start_pos[0], start_pos[1]), (self.width, self.length))
         self.colour = pygame.Color("#FFFFFF")
 
@@ -46,7 +46,7 @@ class Bat:
                 self.position[1] = 10.0
 
             self.rect.y = self.position[1]
-                
+
         if self.move_down:
             self.position[1] += dt * self.move_speed
 

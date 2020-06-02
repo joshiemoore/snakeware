@@ -1,6 +1,7 @@
 import pygame
 import pygame_gui
 
+
 def load(manager, params):
     """
     Launch a Colour Picker dialog to change the desktop background color.
@@ -15,6 +16,6 @@ def load(manager, params):
     pygame_gui.windows.UIColourPickerDialog(
         rect=pygame.Rect(pos, (600, 400)),
         manager=manager,
-        window_title='Set Background Color',
-        object_id='#desktop_colour_picker'
+        window_title="Set Background Color",
+        object_id="#desktop_colour_picker",
     )

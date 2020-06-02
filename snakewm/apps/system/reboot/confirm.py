@@ -12,7 +12,7 @@ class RebootConfirmationDialog(pygame_gui.windows.UIConfirmationDialog):
             action_long_desc="Are you sure you want to reboot the system?",
             action_short_name="Reboot",
             blocking=False,
-            object_id="#reboot"
+            object_id="#reboot",
         )
 
     def process_event(self, event):

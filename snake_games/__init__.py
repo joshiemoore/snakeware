@@ -1,4 +1,3 @@
-
 def menu():
     from .gamemenu import SnakeGameMenu
 

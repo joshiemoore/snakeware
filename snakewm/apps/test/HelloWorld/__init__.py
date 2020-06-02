@@ -1,6 +1,7 @@
 import pygame
 import pygame_gui
 
+
 def load(manager, params):
     """
     An example implementation of the load() function called by the snakewm
@@ -17,5 +18,5 @@ def load(manager, params):
         rect=pygame.Rect(pos, (300, 160)),
         window_title="snakeware",
         html_message="Hello World!",
-        manager=manager
+        manager=manager,
     )
