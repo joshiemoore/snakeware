@@ -1,9 +1,14 @@
+import os
 import subprocess
 from shutil import which
 from suplemon.main import App
 
 
 THE_CODE_FILE = "/tmp/code.py"
+# Create an empty file to make sure that `list` and `run` do not crash. 
+if not os.path.isfile(THE_CODE_FILE):
+    with open(THE_CODE_FILE, "w") as fp:
+        fp.write("")
 THIS_PYTHON = "/usr/bin/python3"
 LESS_PRG = which("less")
 
