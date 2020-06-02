@@ -6,6 +6,8 @@ Python interpreter, which you can use to do whatever you want with your computer
 
 ![snakeware/snakewm running in QEMU](screenshot.png)
 
+Our designated IRC channel is `#snakeware` on `irc.rizon.net`.
+
 ## Motivation
 The idea is that a Python OS would be fun to use and very easy to contribute to. Even relative beginners might be able
 to find ways to meaningfully contribute apps and other code to this distro.
