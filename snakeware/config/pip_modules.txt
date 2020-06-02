@@ -1,3 +1,4 @@
 pygame_gui
 pyttsx3
 suplemon
+wcwidth
