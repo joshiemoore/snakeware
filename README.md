@@ -18,9 +18,10 @@ have a usable set of userspace apps and utilities written entirely in Python, be
 ## Running
 [Download the latest release image.](https://github.com/joshiemoore/snakeware/releases)
 
-Then, burn the image file to a flash drive and boot it, or launch it in QEMU with this command:
+Then, burn the image file to a flash drive and boot it, or launch it in QEMU. Here is how I start it in QEMU, it
+works pretty well for me:
 
-`qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048`
+`qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
 
 Once you are booted into the Python environment, launch snakewm with these commands:
 ```
@@ -63,7 +64,7 @@ This is an abridged list of future plans:
 * ~~Modify partition scheme for faster boot - /usr on its own partition?~~
 * Take advantage of pygame_gui's theme functionality
 * Dynamic/interactive desktop backgrounds
-* Sound support
+* ~~Sound support~~
 * Networking -> web browser
 * Ditch busybox, init via Python somehow
 * ...
