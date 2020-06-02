@@ -10,7 +10,7 @@ class Ball:
         self.position = [float(start_position[0]), float(start_position[1])]
         self.start_position = [self.position[0], self.position[1]]
         self.ball_speed = 120.0
-        self.max_bat_bounce_angle = 5.0 * math.pi/12.0
+        self.max_bat_bounce_angle = 5.0 * math.pi / 12.0
         self.collided = False
 
         self.velocity = [0.0, 0.0]
@@ -49,11 +49,17 @@ class Ball:
                 collided_this_frame = True
                 if not self.collided:
                     self.collided = True
-                    bat_y_centre = bat.position[1] + (bat.length/2)
+                    bat_y_centre = bat.position[1] + (bat.length / 2)
                     ball_y_centre = self.position[1] + 5
-                    relative_intersect_y = bat_y_centre - ball_y_centre  # should be in 'bat space' between -50 and +50
-                    normalized_relative_intersect_y = relative_intersect_y/(bat.length/2)
-                    bounce_angle = normalized_relative_intersect_y * self.max_bat_bounce_angle
+                    relative_intersect_y = (
+                        bat_y_centre - ball_y_centre
+                    )  # should be in 'bat space' between -50 and +50
+                    normalized_relative_intersect_y = relative_intersect_y / (
+                        bat.length / 2
+                    )
+                    bounce_angle = (
+                        normalized_relative_intersect_y * self.max_bat_bounce_angle
+                    )
 
                     self.velocity[0] = self.velocity[0] * -1
                     self.velocity[1] = self.ball_speed * -math.sin(bounce_angle)

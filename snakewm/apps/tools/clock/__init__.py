@@ -1,5 +1,6 @@
 from .clock import SnakeClock
 
+
 def load(manager, params):
     """
     Create and launch a new instance of SnakeClock.

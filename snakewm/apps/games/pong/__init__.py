@@ -1,5 +1,6 @@
 from .pongwindow import PongWindow
 
+
 def load(manager, params):
     """
     Create Pong game and add it to the UI manager.

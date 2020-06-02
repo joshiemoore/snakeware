@@ -18,8 +18,10 @@ class PongGame:
 
         self.score = Score(font)
 
-        self.walls = [Wall((5, 5), (size[0] - 10, 10)),
-                      Wall((5, size[1] - 10), (size[0] - 10, size[1] - 5))]
+        self.walls = [
+            Wall((5, 5), (size[0] - 10, 10)),
+            Wall((5, size[1] - 10), (size[0] - 10, size[1] - 5)),
+        ]
 
         self.bats = []
 
@@ -31,10 +33,12 @@ class PongGame:
         control_scheme_2.up = K_UP
         control_scheme_2.down = K_DOWN
 
-        self.bats.append(Bat((5, int(size[1]/2)), control_scheme_1, self.size))
-        self.bats.append(Bat((size[0] - 10, int(size[1]/2)), control_scheme_2, self.size))
+        self.bats.append(Bat((5, int(size[1] / 2)), control_scheme_1, self.size))
+        self.bats.append(
+            Bat((size[0] - 10, int(size[1] / 2)), control_scheme_2, self.size)
+        )
 
-        self.ball = Ball((int(size[0]/2), int(size[1]/2)))
+        self.ball = Ball((int(size[0] / 2), int(size[1] / 2)))
 
     def process_event(self, event):
         for bat in self.bats:

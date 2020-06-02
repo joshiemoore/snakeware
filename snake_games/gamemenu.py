@@ -1,8 +1,9 @@
 import os
 import importlib
 
-class SnakeGameMenu():
-    GAMENUMS = '0123456789'
+
+class SnakeGameMenu:
+    GAMENUMS = "0123456789"
 
     def __init__(self):
         self.GAMEPATH = os.path.dirname(os.path.abspath(__file__))
@@ -10,8 +11,9 @@ class SnakeGameMenu():
         self.cur_page = 0
 
         for file in os.listdir(self.GAMEPATH):
-            if os.path.isdir(self.GAMEPATH + '/' + file) and\
-                os.path.isfile(self.GAMEPATH + '/' + file + '/__init__.py'):
+            if os.path.isdir(self.GAMEPATH + "/" + file) and os.path.isfile(
+                self.GAMEPATH + "/" + file + "/__init__.py"
+            ):
                 self.LIST.append(file)
 
     def list_page(self):
@@ -23,39 +25,36 @@ class SnakeGameMenu():
         for i in range(10):
             if i + page_idx >= len(self.LIST):
                 break
-            print('    ' + str(i) + '. ' + self.LIST[i + page_idx])
-        print('')
+            print("    " + str(i) + ". " + self.LIST[i + page_idx])
+        print("")
 
     def list_games(self):
         """
         Render the full current page for the games list, including the
         header and prompt for user input.
         """
-        os.system('clear')
+        os.system("clear")
 
-        print('\n\n~~~~~ SNAKE GAMES ~~~~~\n')
-        print('  Page {0}/{1}:'.format(
-            self.cur_page + 1,
-            int(len(self.LIST) / 10 + 1)
-        ))
+        print("\n\n~~~~~ SNAKE GAMES ~~~~~\n")
+        print("  Page {0}/{1}:".format(self.cur_page + 1, int(len(self.LIST) / 10 + 1)))
 
         self.list_page()
 
-        print('  0-9: Select Game')
-        print('  +  : Next Page')
-        print('  -  : Prev Page')
-        print('  q  : Quit\n')
+        print("  0-9: Select Game")
+        print("  +  : Next Page")
+        print("  -  : Prev Page")
+        print("  q  : Quit\n")
 
-        resp = input('  >')
+        resp = input("  >")
 
-        if resp == 'q':
+        if resp == "q":
             # quit
             exit()
-        elif resp == '+':
+        elif resp == "+":
             # next page
             if self.cur_page < int(len(self.LIST) / 10):
                 self.cur_page = self.cur_page + 1
-        elif resp == '-':
+        elif resp == "-":
             # prev page
             if self.cur_page > 0:
                 self.cur_page = self.cur_page - 1
@@ -66,9 +65,9 @@ class SnakeGameMenu():
             if sidx >= len(self.LIST):
                 return
 
-            print('Loading ' + self.LIST[sidx] + '...')
+            print("Loading " + self.LIST[sidx] + "...")
 
-            game = 'snake_games.' + self.LIST[sidx]
+            game = "snake_games." + self.LIST[sidx]
             _game = importlib.import_module(game)
             _game.load()
 

@@ -2,7 +2,7 @@
 Snake Window Manager
 """
 
-TESTMODE = __name__ == '__main__'
+TESTMODE = __name__ == "__main__"
 
 import os
 import sys
@@ -14,6 +14,7 @@ if TESTMODE:
     from appmenu.appmenupanel import AppMenuPanel
 else:
     from snakewm.appmenu.appmenupanel import AppMenuPanel
+
 
 class SnakeWM:
     SCREEN = None
@@ -33,26 +34,20 @@ class SnakeWM:
 
     def __init__(self):
         # populate the apps tree
-        apps_path = os.path.dirname(os.path.abspath(__file__)) + '/apps'
+        apps_path = os.path.dirname(os.path.abspath(__file__)) + "/apps"
         SnakeWM.iter_dir(self.APPS, apps_path)
 
         pygame.init()
 
         # initialize pygame to framebuffer
-        os.putenv('SDL_FBDEV', '/dev/fb0')
+        os.putenv("SDL_FBDEV", "/dev/fb0")
         pygame.display.init()
 
         # get screen dimensions
-        self.DIMS = (
-            pygame.display.Info().current_w,
-            pygame.display.Info().current_h
-        )
+        self.DIMS = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 
         # init screen
-        self.SCREEN = pygame.display.set_mode(
-            self.DIMS,
-            pygame.FULLSCREEN
-        )
+        self.SCREEN = pygame.display.set_mode(self.DIMS, pygame.FULLSCREEN)
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
@@ -64,18 +59,17 @@ class SnakeWM:
         pygame.mouse.set_visible(True)
         pygame.display.update()
 
-
     def iter_dir(tree, path):
         """
         Static function that recursively populates dict 'tree' with the
         app directory structure starting at 'path'.
         """
         for f in os.listdir(path):
-            if os.path.isfile(path + '/' + f + '/__init__.py'):
+            if os.path.isfile(path + "/" + f + "/__init__.py"):
                 tree[f] = None
-            elif os.path.isdir(path + '/' + f):
+            elif os.path.isdir(path + "/" + f):
                 tree[f] = {}
-                SnakeWM.iter_dir(tree[f], path + '/' + f)
+                SnakeWM.iter_dir(tree[f], path + "/" + f)
 
     def loadapp(self, app, params=None):
         """
@@ -89,7 +83,7 @@ class SnakeWM:
         examples.
         """
         if not TESTMODE:
-            app = 'snakewm.' + app
+            app = "snakewm." + app
 
         _app = importlib.import_module(app)
         _app.load(self.MANAGER, params)
@@ -133,40 +127,40 @@ class SnakeWM:
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                     if event.key == pygame.K_LSUPER:
-                         if self.APPMENU is None:
-                             # open app menu
-                             self.APPMENU = AppMenuPanel(
-                                 self.MANAGER,
-                                 (0, 0),
-                                 'apps',
-                                 self.APPS,
-                                 self.appmenu_load
-                             )
-                         else:
-                             # close app menu
-                             self.APPMENU.destroy()
-                             self.APPMENU = None
+                    if event.key == pygame.K_LSUPER:
+                        if self.APPMENU is None:
+                            # open app menu
+                            self.APPMENU = AppMenuPanel(
+                                self.MANAGER,
+                                (0, 0),
+                                "apps",
+                                self.APPS,
+                                self.appmenu_load,
+                            )
+                        else:
+                            # close app menu
+                            self.APPMENU.destroy()
+                            self.APPMENU = None
 
-                     if pressed[pygame.K_LALT]:
-                         if event.key == pygame.K_ESCAPE:
-                             running = False
-                             pygame.quit()
-                             exit()
+                    if pressed[pygame.K_LALT]:
+                        if event.key == pygame.K_ESCAPE:
+                            running = False
+                            pygame.quit()
+                            exit()
 
                 elif event.type == pygame.USEREVENT:
-                    if event.user_type == 'window_selected':
+                    if event.user_type == "window_selected":
                         # focus selected window
                         if self.FOCUS is not None:
                             self.FOCUS.unfocus()
                         self.FOCUS = event.ui_element
                         self.FOCUS.focus()
                     elif event.user_type == pygame_gui.UI_COLOUR_PICKER_COLOUR_PICKED:
-                        if event.ui_object_id == '#desktop_colour_picker':
+                        if event.ui_object_id == "#desktop_colour_picker":
                             # set desktop background color - no alpha channel
                             self.set_bg_color(event.colour[:-1])
                     elif event.user_type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED:
-                        if event.ui_object_id == '#background_picker':
+                        if event.ui_object_id == "#background_picker":
                             self.set_bg_image(event.text)
 
                 self.MANAGER.process_events(event)
@@ -176,6 +170,7 @@ class SnakeWM:
             self.SCREEN.blit(self.BG, (0, 0))
             self.MANAGER.draw_ui(self.SCREEN)
             pygame.display.update()
+
 
 if TESTMODE:
     wm = SnakeWM()
