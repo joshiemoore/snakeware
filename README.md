@@ -67,7 +67,7 @@ This is an abridged list of future plans:
 * snake-games - full-screen user games separate from SnakeWM
 * ~~Modify partition scheme for faster boot - /usr on its own partition?~~
 * Take advantage of pygame_gui's theme functionality
-* Dynamic/interactive desktop backgrounds
+* ~~Dynamic/interactive desktop backgrounds~~
 * ~~Sound support~~
 * Networking -> web browser
     + snakechat - chat with everyone else who's using snakeware
