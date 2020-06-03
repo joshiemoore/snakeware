@@ -11,6 +11,34 @@ if not os.path.isfile(THE_CODE_FILE):
         fp.write("")
 THIS_PYTHON = "/usr/bin/python3"
 LESS_PRG = which("less")
+DEBUG_PRG = which("pudb3")
+# TODO: The puDB intro screen with config settings is not to beginner friendly 
+# and should be replaced by writing a configuration file to the appropriate 
+# location. But I can first properly test that when I can build a snakeware 
+# image
+OUR_PUDB_CONFIG = r"""
+[pudb]
+breakpoints_weight = 1
+current_stack_frame = top
+custom_shell =
+custom_stringifier =
+custom_theme =
+default_variables_access_level = all
+display = auto
+hide_cmdline_win = False
+line_numbers = True
+prompt_on_quit = True
+seen_welcome = e036
+shell = internal
+sidebar_width = 0.5
+stack_weight = 1
+stringifier = type
+theme = classic
+variables_weight = 1
+wrap_variables = True
+"""
+PUDB_CONFIG_FILE = f"{os.environ['HOME']}/.config/pudb/pudb.cfg"
+
 
 OUR_SUPLEMON_CONFIG = r"""{
     // Global settings
@@ -87,7 +115,8 @@ SUPLEMON_CONFIG_FILE = "/tmp/suplemon-config.json"
 if not os.path.isfile(SUPLEMON_CONFIG_FILE):
     with open(SUPLEMON_CONFIG_FILE, "w") as fp:
         fp.write(OUR_SUPLEMON_CONFIG)
-LIST_OF_COMMANDS = ("edit", "run", "show", "save", "new", "snakewm")
+
+LIST_OF_COMMANDS = ("edit", "run", "show", "save", "new", "debug", "snakewm")
 
 
 readline.clear_history()
@@ -163,6 +192,15 @@ class SaveCommand(Command):
         return ""
 
 
+class DebugCommand(Command):
+    """Use puDB as debugger of the only program in THE_CODE_FILE."""
+
+    def run(self):
+        _ = subprocess.run([DEBUG_PRG, THE_CODE_FILE])
+        return ""
+
+
+
 snakewm = SnakeWMCommand()
 
 edit = EditCommand()
@@ -170,3 +208,4 @@ run = RunCommand()
 show = ListCommand()
 save = SaveCommand()
 new = NewCommand()
+debug = DebugCommand()
