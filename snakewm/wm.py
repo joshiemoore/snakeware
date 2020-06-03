@@ -27,9 +27,9 @@ class SnakeWM:
     # background color paint properties
     PAINT = False
     PAINT_RADIUS = 10
-    PAINT_COLOR = 0
 
     # 16 color palette
+    PAINT_COLOR = 0
     PAINT_COLOR_LIST = [
         (255, 255, 255),
         (192, 192, 192),
@@ -48,6 +48,10 @@ class SnakeWM:
         (0, 255, 255),
         (255, 255, 0),
     ]
+
+    # paint shapes
+    PAINT_SHAPE = 0
+    NUM_SHAPES = 3
 
     # currently focused window
     FOCUS = None
@@ -188,6 +192,8 @@ class SnakeWM:
                                 self.PAINT_COLOR = (self.PAINT_COLOR + 1) % len(
                                     self.PAINT_COLOR_LIST
                                 )
+                            elif pressed[pygame.K_LCTRL]:
+                                self.PAINT_SHAPE = (self.PAINT_SHAPE + 1) % self.NUM_SHAPES
                             else:
                                 self.PAINT_RADIUS += 2
                         elif event.button == 5:
@@ -196,6 +202,8 @@ class SnakeWM:
                                 self.PAINT_COLOR = (self.PAINT_COLOR - 1) % len(
                                     self.PAINT_COLOR_LIST
                                 )
+                            elif pressed[pygame.K_LCTRL]:
+                                self.PAINT_SHAPE = (self.PAINT_SHAPE - 1) % self.NUM_SHAPES
                             else:
                                 self.PAINT_RADIUS -= 2
                             if self.PAINT_RADIUS < 2:
@@ -219,30 +227,54 @@ class SnakeWM:
 
             self.MANAGER.update(delta)
 
-            # blit background
-            self.SCREEN.blit(self.BG, (0, 0))
-
             # blit paintbrush layer
             if self.PAINT:
                 mpos = pygame.mouse.get_pos()
 
-                self.BRUSH_SURF.fill((0, 0, 0, 0))
-                pygame.draw.circle(
-                    self.BRUSH_SURF,
-                    self.PAINT_COLOR_LIST[self.PAINT_COLOR],
-                    mpos,
-                    self.PAINT_RADIUS,
-                )
+                # default drawing the brush to the temporary brush layer
+                draw_surf = self.BRUSH_SURF
 
                 if pygame.mouse.get_pressed()[0]:
+                    # paint to the actual background
+                    draw_surf = self.BG
+
+                if self.PAINT_SHAPE == 0:
+                    # circle
                     pygame.draw.circle(
-                        self.BG,
+                        draw_surf,
                         self.PAINT_COLOR_LIST[self.PAINT_COLOR],
                         mpos,
                         self.PAINT_RADIUS,
                     )
+                elif self.PAINT_SHAPE == 1:
+                    # square
+                    pygame.draw.rect(
+                        draw_surf,
+                        self.PAINT_COLOR_LIST[self.PAINT_COLOR],
+                        pygame.Rect(
+                            (mpos[0] - self.PAINT_RADIUS,
+                             mpos[1] - self.PAINT_RADIUS), 
+                            (self.PAINT_RADIUS * 2, self.PAINT_RADIUS * 2)
+                        )
+                    )
+                elif self.PAINT_SHAPE == 2:
+                    # triangle
+                    pygame.draw.polygon(
+                        draw_surf,
+                        self.PAINT_COLOR_LIST[self.PAINT_COLOR],
+                        (
+                            (mpos[0] - self.PAINT_RADIUS, mpos[1] + self.PAINT_RADIUS),
+                            (mpos[0] + self.PAINT_RADIUS, mpos[1] + self.PAINT_RADIUS),
+                            (mpos[0], mpos[1] - self.PAINT_RADIUS)
+                        )
+                    )
 
+                self.SCREEN.blit(self.BG, (0, 0))
                 self.SCREEN.blit(self.BRUSH_SURF, (0, 0))
+                self.BRUSH_SURF.fill((0, 0, 0, 0))
+            else:
+                # not in paint mode, just blit background
+                self.SCREEN.blit(self.BG, (0, 0))
 
             self.MANAGER.draw_ui(self.SCREEN)
             pygame.display.update()
