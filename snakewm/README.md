@@ -32,13 +32,11 @@ To run snakewm on Windows:
 
 To escape snakewm press `ALT-ESC`, or go to `system>exit snakewm` from the App Menu.
 
-**Note for running snakewm on macOS**
-
+**Note for running snakewm on macOS:**
 macOS comes with Python2.7 preinstalled, not Python3.  snakewm is required to be run on Python3.  Latest version of Python3 can be 
 downloaded [here.](https://www.python.org/downloads/mac-osx/)
 
 **Note for running snakewm on Windows:**
-
 The App Menu in snakewm is mapped to the `SUPER Key (Start/Win key)`.  When running snakewm over Windows, to open the 
 App Menu without triggering the Start Menu press `ALT+SUPER`.
 
