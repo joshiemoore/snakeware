@@ -20,18 +20,27 @@ have a usable set of userspace apps and utilities written entirely in Python, be
 ## Running
 [Download the latest release image.](https://github.com/joshiemoore/snakeware/releases)
 
-Then, burn the image file to a flash drive and boot it, or launch it in QEMU. Here is how I start it in QEMU, it
-works pretty well for me:
+You can burn the image file to a flash drive and boot it. Instructions to run it on QEMU are below.
 
-`qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
 
-Once you are booted into the Python environment, launch snakewm with these commands:
+### QEMU
+
+To run it snakeware on QEMU:
+
+1. [Download and Install QEMU](https://www.qemu.org/download/). Supports Linux, OSX, and Windows.
+2. Open your terminal/command prompt.
+3. Navigate to the directory/folder where the snakeware image image was downloaded.
+4. Run the command: `qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
+5. Wait for it to load.
+6. You will be be taken to a Python environment/shell.
+7. Launch snakewm with the following Python command:
+
 ```
 >>> from snakewm.wm import SnakeWM
 >>> SnakeWM().run()
 ```
+8. To open the app menu press the left WinKey (Left CMD key ⌘ on macOS).
 
-Press the Left WinKey to open the App Menu!
 
 ## Building
 The snakeware build system is based on buildroot. See the `snakeware/` directory in this repo for resources and
