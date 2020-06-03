@@ -87,6 +87,8 @@ SUPLEMON_CONFIG_FILE = "/tmp/suplemon-config.json"
 if not os.path.isfile(SUPLEMON_CONFIG_FILE):
     with open(SUPLEMON_CONFIG_FILE, "w") as fp:
         fp.write(OUR_SUPLEMON_CONFIG)
+LIST_OF_COMMANDS = ("edit", "run", "list", "save", "new", "snakewm")
+
 
 readline.clear_history()
 
@@ -156,14 +158,7 @@ class SaveCommand(Command):
         with open(THE_CODE_FILE, "w") as fp:
             for idx in range(1, previous_cmd_len):
                 line = readline.get_history_item(idx)
-                if line and not line in (
-                    "edit",
-                    "run",
-                    "list",
-                    "save",
-                    "new",
-                    "snakewm",
-                ):
+                if line and not line in LIST_OF_COMMANDS:
                     fp.write(readline.get_history_item(idx) + "\n")
         return ""
 
