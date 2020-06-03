@@ -4,7 +4,13 @@ import pygame_gui
 
 class SnakeCalc(pygame_gui.elements.UIWindow):
     # operations to be converted to buttons
-    OPS = "+-/*1234567890pxC="
+    OPS = (
+        "789+"
+        "456-"
+        "123*"
+        "p0=/"
+        "C"
+    )
 
     # button dimensions
     BSIZE = (67, 75)
