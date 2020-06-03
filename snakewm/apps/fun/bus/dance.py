@@ -29,7 +29,8 @@ class BusDance(pygame_gui.elements.UIWindow):
             parent_element=self,
         )
 
-        frames_path = os.path.dirname(os.path.abspath(__file__)) + "/frames/"
+        app_path = os.path.dirname(os.path.abspath(__file__))
+        frames_path = app_path + "/frames/"
 
         for x in range(180):
             # load each frame from the GIF into the frame list
@@ -42,7 +43,16 @@ class BusDance(pygame_gui.elements.UIWindow):
 
         self.FRAMES_LEN = len(self.FRAMES)
 
+        # load and play the song
+        pygame.mixer.init()
+        pygame.mixer.music.load(app_path + "/party.mp3")
+        pygame.mixer.music.play(loops=-1)
+
     def update(self, delta):
         super().update(delta)
         self.dsurf.image.blit(self.FRAMES[self.FRAME_INDEX], (0, 0))
         self.FRAME_INDEX = (self.FRAME_INDEX + 1) % self.FRAMES_LEN
+
+    def kill(self):
+        pygame.mixer.music.stop()
+        super().kill()
