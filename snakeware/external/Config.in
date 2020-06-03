@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_SNAKEWARE_PATH/package/python-pygame-gui/Config.in"

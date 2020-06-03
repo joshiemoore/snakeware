@@ -1,9 +1,7 @@
 *.swp
 venv/
-.idea/
 __pycache__/
 
 # build chroot uses this directory as $HOME
-.cache/
-.bash_history
-.wget-hsts
+.*
+!.git*
