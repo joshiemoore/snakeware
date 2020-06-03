@@ -3,7 +3,6 @@ import subprocess
 from shutil import which
 from suplemon.main import App
 
-
 THE_CODE_FILE = "/tmp/code.py"
 # Create an empty file to make sure that `list` and `run` do not crash. 
 if not os.path.isfile(THE_CODE_FILE):
@@ -12,6 +11,81 @@ if not os.path.isfile(THE_CODE_FILE):
 THIS_PYTHON = "/usr/bin/python3"
 LESS_PRG = which("less")
 
+OUR_SUPLEMON_CONFIG = r"""{
+    // Global settings
+    "app": {
+        "debug": true,
+        "debug_level": 20,
+        "escdelay": 50,
+        "use_unicode_symbols": false,
+        "imitate_256color": false
+    },
+    // Editor settings
+    "editor": {
+        "auto_indent_newline": true,
+        "end_of_line": "\n",
+        "backspace_unindent": true,
+        "cursor_style": "reverse",
+        "default_encoding": "utf-8",
+        "hard_tabs": 0,
+        "tab_width": 4,
+        "max_history": 50,
+        "punctuation": " (){}[]<>$@!%'\"=+-/*.:,;_\n\r",
+        "line_end_char": "",
+        "white_space_map": {
+            "\u0000": "\u2400",
+            " ": "\u00B7",
+            "\t": "\u21B9",
+            "\u00A0": "\u237D",
+            "\u00AD": "\u2423",
+            "\u00A0": "\u2420",
+            "\u180E": "\u2420",
+            "\u2000": "\u2420",
+            "\u2001": "\u2420",
+            "\u2002": "\u2420",
+            "\u2003": "\u2420",
+            "\u2004": "\u2420",
+            "\u2005": "\u2420",
+            "\u2006": "\u2420",
+            "\u2007": "\u2420",
+            "\u2008": "\u2420",
+            "\u2009": "\u2420",
+            "\u200A": "\u2420",
+            "\u200B": "\u2420",
+            "\u202F": "\u2420",
+            "\u205F": "\u2420",
+            "\u3000": "\u2420",
+            "\uFEFF": "\u2420"
+        },
+        "show_white_space": false,
+        "show_tab_indicators": true,
+        "tab_indicator_character": "\u203A",
+        "highlight_current_line": true,
+        "show_line_nums": true,
+        "line_nums_pad_space": true,
+        "show_line_colors": true,
+        "show_highlighting": true,
+        "theme": "monokai",
+        "use_mouse": false,
+        "use_global_buffer": true,
+        "regex_find": false
+    },
+    // UI Display Settings
+    "display": {
+        "show_top_bar": true,
+        "show_app_name": true,
+        "show_file_list": true,
+        "show_file_modified_indicator": true,
+        "show_legend": true,
+        "show_bottom_bar": true,
+        "invert_status_bars": false
+    }
+}
+"""
+SUPLEMON_CONFIG_FILE = "/tmp/suplemon-config.json"
+if not os.path.isfile(SUPLEMON_CONFIG_FILE):
+    with open(SUPLEMON_CONFIG_FILE, "w") as fp:
+        fp.write(OUR_SUPLEMON_CONFIG)
 
 class Command:
     """Defines a command which is run when repr(self) is evaluated."""
@@ -36,7 +110,7 @@ class EditCommand(Command):
     """Start suplemon with this single file to edit."""
 
     def __repr__(self):
-        app = App(filenames=[THE_CODE_FILE])
+        app = App(filenames=[THE_CODE_FILE], config_file=SUPLEMON_CONFIG_FILE)
         if app.init():
             app.run()
             return "I stored your code."
