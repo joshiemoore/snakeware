@@ -87,7 +87,7 @@ SUPLEMON_CONFIG_FILE = "/tmp/suplemon-config.json"
 if not os.path.isfile(SUPLEMON_CONFIG_FILE):
     with open(SUPLEMON_CONFIG_FILE, "w") as fp:
         fp.write(OUR_SUPLEMON_CONFIG)
-LIST_OF_COMMANDS = ("edit", "run", "list", "save", "new", "snakewm")
+LIST_OF_COMMANDS = ("edit", "run", "show", "save", "new", "snakewm")
 
 
 readline.clear_history()
@@ -167,6 +167,6 @@ snakewm = SnakeWMCommand()
 
 edit = EditCommand()
 run = RunCommand()
-list = ListCommand()
+show = ListCommand()
 save = SaveCommand()
 new = NewCommand()
