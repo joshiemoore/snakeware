@@ -2,6 +2,8 @@
 snakeware is a free Linux distro with a Python userspace inspired by the Commodore 64. You are booted directly into a
 Python interpreter, which you can use to do whatever you want with your computer.
 
+Our designated IRC channel is `#snakeware` on `irc.rizon.net`.
+
 [Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=d7zD9zmZvbQ)
 
 ![snakeware/snakewm running in QEMU](screenshot.png)
@@ -56,6 +58,8 @@ the Python environment, so ideas about that are welcome.
 ## TODO
 This is an abridged list of future plans:
 
+* Raspberry Pi configs for buildroot and kernel!!!!!!!
+* Fix pip module installation - won't work when cross-compiling
 * Many more snakewm apps
 * ~~App menu for choosing apps to run~~
 * ~~Improved/streamlined build system~~

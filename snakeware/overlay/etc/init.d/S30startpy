@@ -11,5 +11,5 @@ while [ 1 ]
 do
   clear
   printf "SNAKEWARE READY.\n\n"
-  /usr/bin/python3
+  PYTHONSTARTUP=/usr/share/snakeware/startup.py /usr/bin/python3
 done
