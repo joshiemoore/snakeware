@@ -45,7 +45,7 @@ class BusDance(pygame_gui.elements.UIWindow):
 
         # load and play the song
         pygame.mixer.init()
-        pygame.mixer.music.load(app_path + "/party.mp3")
+        pygame.mixer.music.load(app_path + "/party.ogg")
         pygame.mixer.music.play(loops=-1)
 
     def update(self, delta):
