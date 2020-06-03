@@ -1,10 +1,11 @@
 import os
+import readline
 import subprocess
 from shutil import which
 from suplemon.main import App
 
 THE_CODE_FILE = "/tmp/code.py"
-# Create an empty file to make sure that `list` and `run` do not crash. 
+# Create an empty file to make sure that `list` and `run` do not crash.
 if not os.path.isfile(THE_CODE_FILE):
     with open(THE_CODE_FILE, "w") as fp:
         fp.write("")
@@ -87,6 +88,9 @@ if not os.path.isfile(SUPLEMON_CONFIG_FILE):
     with open(SUPLEMON_CONFIG_FILE, "w") as fp:
         fp.write(OUR_SUPLEMON_CONFIG)
 
+readline.clear_history()
+
+
 class Command:
     """Defines a command which is run when repr(self) is evaluated."""
 
@@ -133,8 +137,41 @@ class ListCommand(Command):
         return ""
 
 
+class NewCommand(Command):
+    """Empty the current program"""
+
+    def run(self):
+        readline.clear_history()
+        with open(THE_CODE_FILE, "w") as fp:
+            fp.write("")
+        return ""
+
+
+class SaveCommand(Command):
+    """Save the previously entered statements as current program."""
+
+    def run(self):
+        previous_cmd_len = readline.get_current_history_length()
+
+        with open(THE_CODE_FILE, "w") as fp:
+            for idx in range(1, previous_cmd_len):
+                line = readline.get_history_item(idx)
+                if line and not line in (
+                    "edit",
+                    "run",
+                    "list",
+                    "save",
+                    "new",
+                    "snakewm",
+                ):
+                    fp.write(readline.get_history_item(idx) + "\n")
+        return ""
+
+
 snakewm = SnakeWMCommand()
 
 edit = EditCommand()
 run = RunCommand()
 list = ListCommand()
+save = SaveCommand()
+new = NewCommand()
