@@ -32,21 +32,21 @@ class SnakeWM:
     # 16 color palette
     PAINT_COLOR_LIST = [
         (255, 255, 255),
-        (192,192,192),
-        (128,128,128),
+        (192, 192, 192),
+        (128, 128, 128),
         (0, 0, 0),
-        (0,255,0),
-        (0,128,0),
-        (128,128,0),
-        (0,128,128),
-        (255,0,0),
-        (128,0,0),
+        (0, 255, 0),
+        (0, 128, 0),
+        (128, 128, 0),
+        (0, 128, 128),
+        (255, 0, 0),
+        (128, 0, 0),
         (128, 0, 128),
         (255, 0, 255),
         (0, 0, 255),
-        (0,0,128),
-        (0,255,255),
-        (255, 255, 0)
+        (0, 0, 128),
+        (0, 255, 255),
+        (255, 255, 0),
     ]
 
     # currently focused window
@@ -79,7 +79,7 @@ class SnakeWM:
         self.BG.fill(self.BG_COLOR)
 
         self.BRUSH_SURF = pygame.Surface((self.DIMS), flags=pygame.SRCALPHA)
-        self.BRUSH_SURF.fill((0,0,0,0))
+        self.BRUSH_SURF.fill((0, 0, 0, 0))
 
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
@@ -178,23 +178,27 @@ class SnakeWM:
                         elif event.key == pygame.K_p:
                             # toggle paint mode
                             self.PAINT = not self.PAINT
-                            self.BRUSH_SURF.fill((0,0,0,0))
+                            self.BRUSH_SURF.fill((0, 0, 0, 0))
 
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if self.PAINT:
                         if event.button == 4:
-                             # mouse wheel up
-                             if pressed[pygame.K_LALT]:
-                                 self.PAINT_COLOR = (self.PAINT_COLOR + 1) % len(self.PAINT_COLOR_LIST)
-                             else:
-                                 self.PAINT_RADIUS += 2
+                            # mouse wheel up
+                            if pressed[pygame.K_LALT]:
+                                self.PAINT_COLOR = (self.PAINT_COLOR + 1) % len(
+                                    self.PAINT_COLOR_LIST
+                                )
+                            else:
+                                self.PAINT_RADIUS += 2
                         elif event.button == 5:
                             # mouse wheel down
                             if pressed[pygame.K_LALT]:
-                                self.PAINT_COLOR = (self.PAINT_COLOR - 1) % len(self.PAINT_COLOR_LIST)
+                                self.PAINT_COLOR = (self.PAINT_COLOR - 1) % len(
+                                    self.PAINT_COLOR_LIST
+                                )
                             else:
                                 self.PAINT_RADIUS -= 2
-                            if self.PAINT_RADIUS < 2: 
+                            if self.PAINT_RADIUS < 2:
                                 self.PAINT_RADIUS = 2
                 elif event.type == pygame.USEREVENT:
                     if event.user_type == "window_selected":
@@ -222,11 +226,21 @@ class SnakeWM:
             if self.PAINT:
                 mpos = pygame.mouse.get_pos()
 
-                self.BRUSH_SURF.fill((0,0,0,0))
-                pygame.draw.circle(self.BRUSH_SURF, self.PAINT_COLOR_LIST[self.PAINT_COLOR], mpos, self.PAINT_RADIUS)
+                self.BRUSH_SURF.fill((0, 0, 0, 0))
+                pygame.draw.circle(
+                    self.BRUSH_SURF,
+                    self.PAINT_COLOR_LIST[self.PAINT_COLOR],
+                    mpos,
+                    self.PAINT_RADIUS,
+                )
 
                 if pygame.mouse.get_pressed()[0]:
-                    pygame.draw.circle(self.BG, self.PAINT_COLOR_LIST[self.PAINT_COLOR], mpos, self.PAINT_RADIUS)
+                    pygame.draw.circle(
+                        self.BG,
+                        self.PAINT_COLOR_LIST[self.PAINT_COLOR],
+                        mpos,
+                        self.PAINT_RADIUS,
+                    )
 
                 self.SCREEN.blit(self.BRUSH_SURF, (0, 0))
 
