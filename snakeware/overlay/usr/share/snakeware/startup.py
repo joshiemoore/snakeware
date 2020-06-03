@@ -109,26 +109,26 @@ class SnakeWMCommand(Command):
 class EditCommand(Command):
     """Start suplemon with this single file to edit."""
 
-    def __repr__(self):
+    def run(self):
         app = App(filenames=[THE_CODE_FILE], config_file=SUPLEMON_CONFIG_FILE)
         if app.init():
             app.run()
             return "I stored your code."
 
 
-class RunCommand:
+class RunCommand(Command):
     """Run the only program that we have in THE_CODE_FILE."""
 
-    def __repr__(self):
+    def run(self):
         _ = subprocess.run([THIS_PYTHON, THE_CODE_FILE])
         return ""
 
 
-class ListCommand:
+class ListCommand(Command):
     """Use less to show the contents of the only program that we have in 
     THE_CODE_FILE."""
 
-    def __repr__(self):
+    def run(self):
         _ = subprocess.run([LESS_PRG, THE_CODE_FILE])
         return ""
 
