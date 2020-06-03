@@ -4,7 +4,11 @@ snakewm is a basic window manager built using the pygame and pygame-gui packages
 **Keyboard-mappings:**
 + Open/close App Menu: `SUPER`
 + Exit snakewm: `ALT+ESC`
-
++ snakepaint mappings
+    + Toggle paint mode `ALT+P`
+    + Change brush size `SCROLL`
+    + Change colour `ALT+SCROLL`
+    + Change brush shape `CTRL+SCROLL`
 
 ## Running snakewm on snakeware
 To launch snakewm in snakeware Python shell, there are 2 ways:
