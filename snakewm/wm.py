@@ -193,7 +193,9 @@ class SnakeWM:
                                     self.PAINT_COLOR_LIST
                                 )
                             elif pressed[pygame.K_LCTRL]:
-                                self.PAINT_SHAPE = (self.PAINT_SHAPE + 1) % self.NUM_SHAPES
+                                self.PAINT_SHAPE = (
+                                    self.PAINT_SHAPE + 1
+                                ) % self.NUM_SHAPES
                             else:
                                 self.PAINT_RADIUS += 2
                         elif event.button == 5:
@@ -203,7 +205,9 @@ class SnakeWM:
                                     self.PAINT_COLOR_LIST
                                 )
                             elif pressed[pygame.K_LCTRL]:
-                                self.PAINT_SHAPE = (self.PAINT_SHAPE - 1) % self.NUM_SHAPES
+                                self.PAINT_SHAPE = (
+                                    self.PAINT_SHAPE - 1
+                                ) % self.NUM_SHAPES
                             else:
                                 self.PAINT_RADIUS -= 2
                             if self.PAINT_RADIUS < 2:
@@ -252,10 +256,9 @@ class SnakeWM:
                         draw_surf,
                         self.PAINT_COLOR_LIST[self.PAINT_COLOR],
                         pygame.Rect(
-                            (mpos[0] - self.PAINT_RADIUS,
-                             mpos[1] - self.PAINT_RADIUS), 
-                            (self.PAINT_RADIUS * 2, self.PAINT_RADIUS * 2)
-                        )
+                            (mpos[0] - self.PAINT_RADIUS, mpos[1] - self.PAINT_RADIUS),
+                            (self.PAINT_RADIUS * 2, self.PAINT_RADIUS * 2),
+                        ),
                     )
                 elif self.PAINT_SHAPE == 2:
                     # triangle
@@ -265,8 +268,8 @@ class SnakeWM:
                         (
                             (mpos[0] - self.PAINT_RADIUS, mpos[1] + self.PAINT_RADIUS),
                             (mpos[0] + self.PAINT_RADIUS, mpos[1] + self.PAINT_RADIUS),
-                            (mpos[0], mpos[1] - self.PAINT_RADIUS)
-                        )
+                            (mpos[0], mpos[1] - self.PAINT_RADIUS),
+                        ),
                     )
 
                 self.SCREEN.blit(self.BG, (0, 0))
