@@ -43,17 +43,17 @@ class BusDance(pygame_gui.elements.UIWindow):
 
         self.FRAMES_LEN = len(self.FRAMES)
 
-        #\TODO find fun, groovin, royalty-free tune to play
+        # \TODO find fun, groovin, royalty-free tune to play
         # load and play the song
-        #pygame.mixer.init()
-        #pygame.mixer.music.load(app_path + "/party.ogg")
-        #pygame.mixer.music.play(loops=-1)
+        # pygame.mixer.init()
+        # pygame.mixer.music.load(app_path + "/party.ogg")
+        # pygame.mixer.music.play(loops=-1)
 
     def update(self, delta):
         super().update(delta)
         self.dsurf.image.blit(self.FRAMES[self.FRAME_INDEX], (0, 0))
         self.FRAME_INDEX = (self.FRAME_INDEX + 1) % self.FRAMES_LEN
 
-    #def kill(self):
+    # def kill(self):
     #    pygame.mixer.music.stop()
     #    super().kill()
