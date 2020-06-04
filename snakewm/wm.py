@@ -154,20 +154,18 @@ class SnakeWM:
         menu_pos_x = 0
         menu_pos_y = self.DIMS[1] - menu_size_y
         self.menu_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((menu_pos_x, menu_pos_y), (menu_size_x, menu_size_y)),
-            text='Menu',
-            manager=self.MANAGER)
-
+            relative_rect=pygame.Rect(
+                (menu_pos_x, menu_pos_y), (menu_size_x, menu_size_y)
+            ),
+            text="Menu",
+            manager=self.MANAGER,
+        )
 
     def check_main_menu_state(self):
         if self.APPMENU is None:
             # open app menu
             self.APPMENU = AppMenuPanel(
-                self.MANAGER,
-                (0, 0),
-                "apps",
-                self.APPS,
-                self.appmenu_load,
+                self.MANAGER, (0, 0), "apps", self.APPS, self.appmenu_load,
             )
         else:
             # close app menu
@@ -179,7 +177,7 @@ class SnakeWM:
 
         clock = pygame.time.Clock()
         running = True
-        
+
         while running:
             delta = clock.tick(60) / 1000.0
 
