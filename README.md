@@ -25,7 +25,7 @@ You can burn the image file to a flash drive and boot it. Instructions to run it
 
 ### QEMU
 
-To run it snakeware on QEMU:
+To run snakeware on QEMU:
 
 1. [Download and Install QEMU](https://www.qemu.org/download/). Supports Linux, OSX, and Windows.
 2. Open your terminal/command prompt.
