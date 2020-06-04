@@ -148,10 +148,38 @@ class SnakeWM:
         if file_extension == ".jpg" or file_extension == ".png":
             self.BG = pygame.transform.scale(pygame.image.load(file), self.DIMS)
 
+    def load_task_bar(self):
+        menu_size_x = 100
+        menu_size_y = 50
+        menu_pos_x = 0
+        menu_pos_y = self.DIMS[1] - menu_size_y
+        self.menu_button = pygame_gui.elements.UIButton(
+            relative_rect=pygame.Rect((menu_pos_x, menu_pos_y), (menu_size_x, menu_size_y)),
+            text='Menu',
+            manager=self.MANAGER)
+
+
+    def check_main_menu_state(self):
+        if self.APPMENU is None:
+            # open app menu
+            self.APPMENU = AppMenuPanel(
+                self.MANAGER,
+                (0, 0),
+                "apps",
+                self.APPS,
+                self.appmenu_load,
+            )
+        else:
+            # close app menu
+            self.APPMENU.destroy()
+            self.APPMENU = None
+
     def run(self):
+        self.load_task_bar()
+
         clock = pygame.time.Clock()
         running = True
-
+        
         while running:
             delta = clock.tick(60) / 1000.0
 
@@ -160,19 +188,7 @@ class SnakeWM:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LSUPER:
-                        if self.APPMENU is None:
-                            # open app menu
-                            self.APPMENU = AppMenuPanel(
-                                self.MANAGER,
-                                (0, 0),
-                                "apps",
-                                self.APPS,
-                                self.appmenu_load,
-                            )
-                        else:
-                            # close app menu
-                            self.APPMENU.destroy()
-                            self.APPMENU = None
+                        self.check_main_menu_state()
 
                     if pressed[pygame.K_LALT]:
                         if event.key == pygame.K_ESCAPE:
@@ -226,6 +242,9 @@ class SnakeWM:
                     elif event.user_type == pygame_gui.UI_FILE_DIALOG_PATH_PICKED:
                         if event.ui_object_id == "#background_picker":
                             self.set_bg_image(event.text)
+                    elif event.user_type == pygame_gui.UI_BUTTON_PRESSED:
+                        if event.ui_element == self.menu_button:
+                            self.check_main_menu_state()
 
                 self.MANAGER.process_events(event)
 
