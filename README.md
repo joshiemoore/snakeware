@@ -4,7 +4,7 @@ Python interpreter, which you can use to do whatever you want with your computer
 
 [Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=spJD7uZAkds)
 
-[Official Snakeware Discord](https://discord.gg/yr27Zsy)
+[Official Snakeware Discord](https://discord.gg/SAdFjWG)
 
 IRC Channel: `#snakeware` on `irc.rizon.net`.
 
