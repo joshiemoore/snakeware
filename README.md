@@ -2,7 +2,9 @@
 snakeware is a free Linux distro with a Python userspace inspired by the Commodore 64. You are booted directly into a
 Python interpreter, which you can use to do whatever you want with your computer.
 
-[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=d7zD9zmZvbQ)
+Our designated IRC channel is `#snakeware` on `irc.rizon.net`.
+
+[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=spJD7uZAkds)
 
 ![snakeware/snakewm running in QEMU](screenshot.png)
 
@@ -18,18 +20,27 @@ have a usable set of userspace apps and utilities written entirely in Python, be
 ## Running
 [Download the latest release image.](https://github.com/joshiemoore/snakeware/releases)
 
-Then, burn the image file to a flash drive and boot it, or launch it in QEMU. Here is how I start it in QEMU, it
-works pretty well for me:
+You can burn the image file to a flash drive and boot it. Instructions to run it on QEMU are below.
 
-`qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
 
-Once you are booted into the Python environment, launch snakewm with these commands:
+### QEMU
+
+To run it snakeware on QEMU:
+
+1. [Download and Install QEMU](https://www.qemu.org/download/). Supports Linux, OSX, and Windows.
+2. Open your terminal/command prompt.
+3. Navigate to the directory/folder where the snakeware image image was downloaded.
+4. Run the command: `qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
+5. Wait for it to load.
+6. You will be be taken to a Python environment/shell.
+7. Launch snakewm with the following Python command:
+
 ```
 >>> from snakewm.wm import SnakeWM
 >>> SnakeWM().run()
 ```
+8. To open the app menu press the left WinKey (Left CMD key ⌘ on macOS).
 
-Press the Left WinKey to open the App Menu!
 
 ## Building
 The snakeware build system is based on buildroot. See the `snakeware/` directory in this repo for resources and
@@ -56,6 +67,8 @@ the Python environment, so ideas about that are welcome.
 ## TODO
 This is an abridged list of future plans:
 
+* Raspberry Pi configs for buildroot and kernel!!!!!!!
+* Fix pip module installation - won't work when cross-compiling
 * Many more snakewm apps
 * ~~App menu for choosing apps to run~~
 * ~~Improved/streamlined build system~~
@@ -63,7 +76,7 @@ This is an abridged list of future plans:
 * snake-games - full-screen user games separate from SnakeWM
 * ~~Modify partition scheme for faster boot - /usr on its own partition?~~
 * Take advantage of pygame_gui's theme functionality
-* Dynamic/interactive desktop backgrounds
+* ~~Dynamic/interactive desktop backgrounds~~
 * ~~Sound support~~
 * Networking -> web browser
     + snakechat - chat with everyone else who's using snakeware
