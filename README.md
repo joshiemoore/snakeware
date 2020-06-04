@@ -4,7 +4,7 @@ Python interpreter, which you can use to do whatever you want with your computer
 
 Our designated IRC channel is `#snakeware` on `irc.rizon.net`.
 
-[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=d7zD9zmZvbQ)
+[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=spJD7uZAkds)
 
 ![snakeware/snakewm running in QEMU](screenshot.png)
 
