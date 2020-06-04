@@ -159,7 +159,7 @@ class SnakeWM:
             manager=self.MANAGER)
 
 
-    def check_main_menu_state(self):
+    def toggle_main_menu(self):
         if self.APPMENU is None:
             # open app menu
             self.APPMENU = AppMenuPanel(
@@ -188,7 +188,7 @@ class SnakeWM:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_LSUPER:
-                        self.check_main_menu_state()
+                        self.toggle_main_menu()
 
                     if pressed[pygame.K_LALT]:
                         if event.key == pygame.K_ESCAPE:
@@ -244,7 +244,7 @@ class SnakeWM:
                             self.set_bg_image(event.text)
                     elif event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                         if event.ui_element == self.menu_button:
-                            self.check_main_menu_state()
+                            self.toggle_main_menu()
 
                 self.MANAGER.process_events(event)
 
