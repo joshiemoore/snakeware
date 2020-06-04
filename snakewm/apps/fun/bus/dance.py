@@ -5,6 +5,7 @@ import pygame_gui
 
 from pygame_gui.elements.ui_image import UIImage
 
+
 class BusDance(pygame_gui.elements.UIWindow):
     DIMS = (320, 240)
 
@@ -17,7 +18,7 @@ class BusDance(pygame_gui.elements.UIWindow):
             pygame.Rect(pos, (self.DIMS[0] + 32, self.DIMS[1] + 60)),
             manager=manager,
             window_display_title="BusDance",
-            object_id="#busdance"
+            object_id="#busdance",
         )
 
         self.dsurf = UIImage(
@@ -25,7 +26,7 @@ class BusDance(pygame_gui.elements.UIWindow):
             pygame.Surface(self.DIMS).convert(),
             manager=manager,
             container=self,
-            parent_element=self
+            parent_element=self,
         )
 
         frames_path = os.path.dirname(os.path.abspath(__file__)) + "/frames/"

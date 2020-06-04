@@ -1,5 +1,6 @@
 from .dance import BusDance
 
+
 def load(manager, params):
     """
     Create and launch a new instal of BusDance.
