@@ -89,7 +89,7 @@ class AppMenuPanel(UIPanel):
                 # next open a new child panel
                 self.child = AppMenuPanel(
                     self.ui_manager,
-                    (self.pos[0] + 1, self.element_keys.index(uitext)),
+                    (self.pos[0] + 1, self.pos[1] + self.element_keys.index(uitext)),
                     self.path + "." + uitext,
                     self.elements[uitext],
                     self.loadfunc,
