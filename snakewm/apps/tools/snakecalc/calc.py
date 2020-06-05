@@ -43,8 +43,7 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
 
             pygame_gui.elements.UIButton(
                 relative_rect=pygame.Rect(
-                    (i % 4 * self.BSIZE[0], 40 + int(i / 4)
-                     * self.BSIZE[1]), self.BSIZE
+                    (i % 4 * self.BSIZE[0], 40 + int(i / 4) * self.BSIZE[1]), self.BSIZE
                 ),
                 text="." if op == "p" else op,
                 manager=manager,
