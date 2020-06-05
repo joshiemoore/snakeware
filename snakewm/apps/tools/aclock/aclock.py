@@ -22,7 +22,7 @@ class SnakeAClock(pygame_gui.elements.UIWindow):
             manager=manager,
             window_display_title="aclock",
             object_id="#aclockterm",
-            resizable=True,
+            resizable=False,
         )
 
         self.dsurf = UIImage(
