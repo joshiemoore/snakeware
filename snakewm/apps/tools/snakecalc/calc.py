@@ -4,7 +4,7 @@ import pygame_gui
 
 class SnakeCalc(pygame_gui.elements.UIWindow):
     # operations to be converted to buttons
-    OPS = "789+" "456-" "123*" "p0=/" "C<%" "B"
+    OPS = "789+" "456-" "123*" "p0=/" "C<%"
 
     # button dimensions
     BSIZE = (67, 75)
@@ -81,17 +81,6 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
 
         self.set_text(result)
 
-    def calcBin(self, expression):
-        """Binary Calculation"""
-
-        result = ""
-        try:
-            result = str(bin(int(expression)))
-
-        except Exception:
-            result = "Error"
-
-        self.set_text(result)
 
     def input_op(self, op):
         """
@@ -107,7 +96,5 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
                 self.append_text(".")
             elif op == "<":
                 self.set_text(self.textbox.html_text[:-1])
-            elif op == 'B':
-                self.calcBin(self.textbox.html_text)
             else:
                 self.append_text(op)
