@@ -50,7 +50,7 @@ class AppMenuPanel(UIPanel):
         self.loadfunc = loadfunc
 
         # generate buttons
-        ekeys = list(elements.keys())
+        ekeys = sorted(list(elements.keys()))
         for i in range(len(ekeys)):
             UIButton(
                 pygame.Rect((0, i * BUTTON_DIMS[1]), BUTTON_DIMS),
@@ -87,7 +87,7 @@ class AppMenuPanel(UIPanel):
                 # next open a new child panel
                 self.child = AppMenuPanel(
                     self.ui_manager,
-                    (self.pos[0] + 1, list(self.elements.keys()).index(uitext)),
+                    (self.pos[0] + 1, sorted(list(self.elements.keys())).index(uitext)),
                     self.path + "." + uitext,
                     self.elements[uitext],
                     self.loadfunc,
