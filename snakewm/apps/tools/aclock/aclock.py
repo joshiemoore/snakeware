@@ -18,7 +18,7 @@ class SnakeAClock(pygame_gui.elements.UIWindow):
     DIMS = (300, 300)
     def __init__(self, pos, manager):
         super().__init__(
-            pygame.Rect(pos, (self.DIMS[0] + 32, self.DIMS[1] + 100)),
+            pygame.Rect(pos, (self.DIMS[0] + 32, self.DIMS[1] + 60)),
             manager=manager,
             window_display_title="aclock",
             object_id="#aclockterm",
@@ -34,18 +34,6 @@ class SnakeAClock(pygame_gui.elements.UIWindow):
         )
         self.draw_dial()
         self.clean_dial = self.dial.copy()
-        self.textbox = pygame_gui.elements.UITextBox(
-            "",
-            relative_rect=pygame.Rect(self.DIMS[0]/2 - 80, self.DIMS[1] + 1, 163, 40),
-            manager=manager,
-            container=self,
-            anchors={
-                "left": "left",
-                "right": "right",
-                "top": "top",
-                "bottom": "bottom",
-            },
-        )
 
     def process_event(self, event):
         super().process_event(event)
@@ -55,15 +43,6 @@ class SnakeAClock(pygame_gui.elements.UIWindow):
         self.dial = self.clean_dial.copy()
         self.draw_hands()
         self.dsurf.image.blit(self.dial, (0, 0))
-        dt = datetime.datetime.now()
-        # %X formatted clock, %x formatted date
-        current_time = dt.strftime("%X  %x")
-
-        self.set_text(current_time)
-
-    def set_text(self, text):
-        self.textbox.html_text = text
-        self.textbox.rebuild()
 
     def clocksize(self):
         return int(.95 * min(self.DIMS)/2)
