@@ -67,7 +67,6 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
         self.textbox.html_text = self.textbox.html_text + text
         self.textbox.rebuild()
 
-
     def calculate(self, expression):
         """
         Perform the actual calculation based on user input.
@@ -80,7 +79,6 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
             result = "Error"
 
         self.set_text(result)
-
 
     def input_op(self, op):
         """
