@@ -23,8 +23,10 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
         # Load list of musics
         app_path = os.path.dirname(os.path.abspath(__file__))
         self.musics_path = app_path + "/musics"
-        self.musics = glob.glob(self.musics_path + '/*.ogg')
-        self.musics_dict = dict((music_path.split("/")[-1], music_path) for music_path in self.musics)
+        self.musics = glob.glob(self.musics_path + "/*.ogg")
+        self.musics_dict = dict(
+            (music_path.split("/")[-1], music_path) for music_path in self.musics
+        )
 
         self.isPaused = False
 
@@ -36,7 +38,8 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
             self.play_button = pygame_gui.elements.UIButton(
                 relative_rect=pygame.Rect(
                     # Calculate button width by dividing width of window by number of buttons
-                    (i % len(btns_names) * self.BSIZE[0], self.DIMS[1] - self.BSIZE[1]), self.BSIZE
+                    (i % len(btns_names) * self.BSIZE[0], self.DIMS[1] - self.BSIZE[1]),
+                    self.BSIZE,
                 ),
                 text=btn.upper(),
                 manager=manager,
@@ -52,7 +55,7 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
             manager=manager,
             container=self,
             object_id="#op-musiclist",
-            item_list=list(self.musics_dict.keys())
+            item_list=list(self.musics_dict.keys()),
         )
 
     def process_event(self, event):
