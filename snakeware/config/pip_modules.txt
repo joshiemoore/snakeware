@@ -2,5 +2,3 @@ pygame_gui
 pyttsx3
 suplemon
 wcwidth
-pudb
-urwid
