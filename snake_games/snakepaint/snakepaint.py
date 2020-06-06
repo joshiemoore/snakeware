@@ -32,13 +32,9 @@ class SnakePaint:
 
         self._running = True
 
-
-
     def on_execute(self):
         self.on_init()
         self.start()
-
-
 
     def start(self):
         while self._running:
@@ -48,14 +44,26 @@ class SnakePaint:
                 self._running = False
             pygame.event.pump()
             if e.type == pygame.MOUSEBUTTONDOWN:
-                self.color = (random.randrange(256), random.randrange(256), random.randrange(256))
+                self.color = (
+                    random.randrange(256),
+                    random.randrange(256),
+                    random.randrange(256),
+                )
                 pygame.draw.circle(self._display_surf, self.color, e.pos, self.radius)
                 self.draw_on = True
             if e.type == pygame.MOUSEBUTTONUP:
                 self.draw_on = False
             if e.type == pygame.MOUSEMOTION:
                 if self.draw_on:
-                    pygame.draw.circle(self._display_surf, self.color, e.pos, self.radius)
-                    roundline(self._display_surf, self.color, e.pos, self.last_pos, self.radius)
+                    pygame.draw.circle(
+                        self._display_surf, self.color, e.pos, self.radius
+                    )
+                    roundline(
+                        self._display_surf,
+                        self.color,
+                        e.pos,
+                        self.last_pos,
+                        self.radius,
+                    )
                 self.last_pos = e.pos
             pygame.display.flip()
