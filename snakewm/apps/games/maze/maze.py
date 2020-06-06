@@ -2,12 +2,13 @@ import pygame
 import os
 from random import randrange, shuffle, random
 
+
 class Maze:
     dirToDelta = {
-        0: ( 0, -1),
-        1: ( 1,  0),
-        2: ( 0,  1),
-        3: (-1,  0),
+        0: (0, -1),
+        1: (1, 0),
+        2: (0, 1),
+        3: (-1, 0),
     }
 
     def __init__(self, size):
@@ -17,8 +18,8 @@ class Maze:
 
         self.size = size
         self.sprite_size = (32, 32)
-        self.width = int(self.size[0]/self.sprite_size[0])-8
-        self.height = int(self.size[1]/self.sprite_size[1])-2
+        self.width = int(self.size[0] / self.sprite_size[0]) - 8
+        self.height = int(self.size[1] / self.sprite_size[1]) - 2
         self.font_color = (255, 255, 255)
         self.font_bgcolor = (0, 0, 0)
         self.background = pygame.Surface(size)  # make a background surface
@@ -27,9 +28,15 @@ class Maze:
 
         self.player = []
         self.player.append(pygame.image.load(assets_path + "/player_up.jpg").convert())
-        self.player.append(pygame.image.load(assets_path + "/player_right.jpg").convert())
-        self.player.append(pygame.image.load(assets_path + "/player_down.jpg").convert())
-        self.player.append(pygame.image.load(assets_path + "/player_left.jpg").convert())
+        self.player.append(
+            pygame.image.load(assets_path + "/player_right.jpg").convert()
+        )
+        self.player.append(
+            pygame.image.load(assets_path + "/player_down.jpg").convert()
+        )
+        self.player.append(
+            pygame.image.load(assets_path + "/player_left.jpg").convert()
+        )
         self.floor = []
         self.floor.append(pygame.image.load(assets_path + "/floor0.png").convert())
         self.floor.append(pygame.image.load(assets_path + "/floor1.png").convert())
@@ -39,11 +46,11 @@ class Maze:
         self.font = pygame.font.Font(None, 24)
         self.font_height = self.font.size("")[1]
         self.font_xpos = (self.width + 2) * self.sprite_size[1]
-        self.font_width = self.size[0]  - self.font_xpos
+        self.font_width = self.size[0] - self.font_xpos
 
         self.maze = [[-1 for x in range(self.height)] for x in range(self.width)]
 
-        self.walls = self.height*self.width - 1
+        self.walls = self.height * self.width - 1
         self.moves = 0
         self.direction = 0
         self.x, self.y = randrange(self.width), randrange(self.height)
@@ -71,27 +78,33 @@ class Maze:
 
     def draw(self, surface):
         surface.blit(self.background, (0, 0))
-        for y in range(-1, self.height+1):
+        for y in range(-1, self.height + 1):
             self.draw_wall(surface, -1, y)
             self.draw_wall(surface, self.width, y)
-        for x in range(-1, self.width+1):
+        for x in range(-1, self.width + 1):
             self.draw_wall(surface, x, -1)
             self.draw_wall(surface, x, self.height)
         self.draw_stats_table(surface)
         for y in range(self.height):
             for x in range(self.width):
-                if self.block_free((x,y)):
+                if self.block_free((x, y)):
                     self.draw_empty(surface, x, y)
                 else:
                     self.draw_wall(surface, x, y)
         self.draw_player(surface)
 
     def draw_wall(self, surface, x, y):
-        rect = (((x+1)*self.sprite_size[0], (y+1)*self.sprite_size[1]), (self.sprite_size))
+        rect = (
+            ((x + 1) * self.sprite_size[0], (y + 1) * self.sprite_size[1]),
+            (self.sprite_size),
+        )
         surface.blit(self.wall, rect)
 
     def draw_empty(self, surface, x, y):
-        rect = (((x+1)*self.sprite_size[0], (y+1)*self.sprite_size[1]), (self.sprite_size))
+        rect = (
+            ((x + 1) * self.sprite_size[0], (y + 1) * self.sprite_size[1]),
+            (self.sprite_size),
+        )
         surface.blit(self.floor[self.maze[x][y]], rect)
 
     def render_stats_text(self, surface, text, y):
@@ -104,14 +117,16 @@ class Maze:
         surface.blit(text, textpos)
 
     def draw_player(self, surface):
-        rect = (((self.x+1)*self.sprite_size[0], (self.y+1)*self.sprite_size[1]), (self.sprite_size))
+        rect = (
+            ((self.x + 1) * self.sprite_size[0], (self.y + 1) * self.sprite_size[1]),
+            (self.sprite_size),
+        )
         surface.blit(self.player[self.direction], rect)
 
     def draw_stats_table(self, surface):
         self.render_stats_text(surface, "Maze", 0)
         self.render_stats_text(surface, "Dimensions", 2)
-        self.render_stats_text(surface, "{} x {}".format(self.width,
-            self.height), 3)
+        self.render_stats_text(surface, "{} x {}".format(self.width, self.height), 3)
         self.render_stats_text(surface, "Walls", 5)
         self.render_stats_text(surface, "{}".format(self.walls), 6)
         self.render_stats_text(surface, "Unvisited", 8)
@@ -123,7 +138,7 @@ class Maze:
         self.render_stats_text(surface, "Bumps", 17)
         self.render_stats_text(surface, "{}".format(self.bumps), 18)
 
-    def generate(self, deep=True, loop_prob = 0.05):
+    def generate(self, deep=True, loop_prob=0.05):
         x, y = self.x, self.y
         self.loop_prob = loop_prob
         ends = self.walled_neigbour_blocks((x, y))
@@ -144,15 +159,14 @@ class Maze:
 
     def in_bounds(self, coord):
         x, y = coord[0], coord[1]
-        return ( x >= 0 and x < self.width and
-            y >= 0 and y < self.height)
+        return x >= 0 and x < self.width and y >= 0 and y < self.height
 
     def block_removeable(self, coord):
         if self.block_free(coord):
             return False
 
         x, y = coord[0], coord[1]
-        bl = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+        bl = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
         n = 0
         for i in bl:
             if self.in_bounds(i) and self.block_free(i):
@@ -161,7 +175,7 @@ class Maze:
 
     def walled_neigbour_blocks(self, coord):
         x, y = coord[0], coord[1]
-        bl = [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]
+        bl = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
         shuffle(bl)
         rbl = []
         for i in bl:
@@ -169,7 +183,7 @@ class Maze:
                 rbl.append(i)
         return rbl
 
-    def turn(self, n = 1):
+    def turn(self, n=1):
         self.direction += n
         self.direction %= 4
 

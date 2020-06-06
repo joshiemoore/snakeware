@@ -1,5 +1,6 @@
 from .mazewindow import MazeWindow
 
+
 def load(manager, params):
     pos = (100, 100)
 

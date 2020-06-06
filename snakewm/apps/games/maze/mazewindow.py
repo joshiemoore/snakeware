@@ -7,6 +7,7 @@ from pygame_gui.elements.ui_image import UIImage
 
 from .maze import Maze
 
+
 class MazeWindow(UIWindow):
     def __init__(self, position, ui_manager):
         super().__init__(
