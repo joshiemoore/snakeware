@@ -59,7 +59,3 @@ class SnakePaint:
                     roundline(self._display_surf, self.color, e.pos, self.last_pos, self.radius)
                 self.last_pos = e.pos
             pygame.display.flip()
-
-
-obj = SnakePaint()
-obj.on_execute()
