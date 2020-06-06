@@ -22,8 +22,8 @@ class SnakeAClock(pygame_gui.elements.UIWindow):
             pygame.Rect(pos, (self.DIMS[0] + 32, self.DIMS[1] + 60)),
             manager=manager,
             window_display_title="aclock",
-            object_id="#aclockterm",
-            resizable=False,
+            object_id="#aclock",
+            resizable=True,
         )
 
         self.dsurf = UIImage(
@@ -35,9 +35,17 @@ class SnakeAClock(pygame_gui.elements.UIWindow):
         )
         self.draw_dial()
         self.clean_dial = self.dial.copy()
+        self.manager = manager
 
     def process_event(self, event):
         super().process_event(event)
+        r = super().get_abs_rect()
+        if event.type == pygame.MOUSEBUTTONUP and (
+            r.w != self.DIMS[0] + 32 or r.h != self.DIMS[1] + 60
+        ):
+            self.DIMS = r.w - 32, r.h - 60
+            super().kill()
+            self.__init__((r.left, r.top), self.manager)
 
     def update(self, delta):
         super().update(delta)
