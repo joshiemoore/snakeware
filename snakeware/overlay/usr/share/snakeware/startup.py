@@ -164,6 +164,13 @@ class SaveCommand(Command):
         return ""
 
 
+class SnakeGamesCommand(Command):
+    def run(self):
+        """Start SnakeWM."""
+        from snake_games.gamemenu  import SnakeGameMenu
+
+        return SnakeGameMenu().menu()
+
 
 snakewm = SnakeWMCommand()
 
@@ -172,3 +179,4 @@ run = RunCommand()
 show = ListCommand()
 save = SaveCommand()
 new = NewCommand()
+snakegames = SnakeGamesCommand()
