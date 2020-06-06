@@ -1,3 +1,6 @@
+# Read CPU usage in percent from /proc/stat
+# (only works on Linux)
+
 import time
 
 o = 0
@@ -20,6 +23,7 @@ def cpuproc():
     return int(q)
 
 
+# Test the module
 if __name__ == "__main__":
     while True:
         print(cpuproc())
