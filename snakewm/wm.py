@@ -80,17 +80,14 @@ class SnakeWM:
         self.SCREEN = pygame.display.set_mode(self.DIMS, pygame.FULLSCREEN)
 
         # init background
-        self.BG = pygame.Surface((self.DIMS))
+        self.BG = pygame.Surface(self.DIMS)
         self.BG.fill(self.BG_COLOR)
 
-        self.BRUSH_SURF = pygame.Surface((self.DIMS), flags=pygame.SRCALPHA)
+        self.BRUSH_SURF = pygame.Surface(self.DIMS, flags=pygame.SRCALPHA)
         self.BRUSH_SURF.fill((0, 0, 0, 0))
 
         # init UI manager
         self.MANAGER = pygame_gui.UIManager(self.DIMS)
-
-        self.rectangle = pygame.rect.Rect(176, 134, 17, 17)
-        self.rectangle_draging = False
 
         pygame.mouse.set_visible(True)
         pygame.display.update()
@@ -216,25 +213,6 @@ class SnakeWM:
                                 self.PAINT_RADIUS -= 2
                             if self.PAINT_RADIUS < 2:
                                 self.PAINT_RADIUS = 2
-                    else:
-                        # Start drawing rectangle
-                        if event.button == 1:
-                            self.rectangle_draging = True
-                            mouse_x, mouse_y = event.pos
-                            self.rectangle.x = mouse_x
-                            self.rectangle.y = mouse_y
-                            self.rectangle.width = 0
-                            self.rectangle.height = 0
-
-                elif event.type == pygame.MOUSEBUTTONUP:
-                    if event.button == 1:
-                        self.rectangle_draging = False
-
-                elif event.type == pygame.MOUSEMOTION:
-                    if self.rectangle_draging:
-                        mouse_x, mouse_y = event.pos
-                        self.rectangle.width = (mouse_x - self.rectangle.x)
-                        self.rectangle.height = (mouse_y - self.rectangle.y)
 
                 elif event.type == pygame.USEREVENT:
                     if event.user_type == "window_selected":
@@ -302,9 +280,6 @@ class SnakeWM:
             else:
                 # not in paint mode, just blit background
                 self.SCREEN.blit(self.BG, (0, 0))
-
-            if self.rectangle_draging:
-                pygame.gfxdraw.box(self.SCREEN, self.rectangle, (240, 240, 240, 50))
 
             self.MANAGER.draw_ui(self.SCREEN)
             pygame.display.update()
