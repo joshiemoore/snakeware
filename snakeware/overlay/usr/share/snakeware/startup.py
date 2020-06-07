@@ -88,7 +88,7 @@ if not os.path.isfile(SUPLEMON_CONFIG_FILE):
     with open(SUPLEMON_CONFIG_FILE, "w") as fp:
         fp.write(OUR_SUPLEMON_CONFIG)
 
-LIST_OF_COMMANDS = ("edit", "run", "show", "save", "new", "snakewm")
+LIST_OF_COMMANDS = ("edit", "run", "show", "save", "new", "snakewm", "snakegames")
 
 
 readline.clear_history()
@@ -167,7 +167,7 @@ class SaveCommand(Command):
 class SnakeGamesCommand(Command):
     def run(self):
         """Start SnakeWM."""
-        from snake_games.gamemenu  import SnakeGameMenu
+        from snake_games.gamemenu import SnakeGameMenu
 
         return SnakeGameMenu().menu()
 
