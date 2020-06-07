@@ -43,6 +43,10 @@ class SnakePaint:
             if keys[pygame.K_ESCAPE]:
                 self._running = False
             pygame.event.pump()
+            if keys[pygame.K_d]:
+                if e.type == pygame.MOUSEMOTION:
+                    if self.draw_on:
+                        self.color = (0, 0, 0)
             if e.type == pygame.MOUSEBUTTONDOWN:
                 self.color = (
                     random.randrange(256),
