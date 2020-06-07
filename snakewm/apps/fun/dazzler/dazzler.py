@@ -14,7 +14,7 @@ FPS = 15
 
 
 class Snazzler(pygame_gui.elements.UIWindow):
-    DIMS = SRES, SRES
+    DIMS = SRES, int(0.75 * SRES)
 
     def __init__(self, pos, manager):
         super().__init__(
