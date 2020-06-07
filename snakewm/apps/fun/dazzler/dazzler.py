@@ -85,11 +85,11 @@ class Snazzler(pygame_gui.elements.UIWindow):
             x = amp * (sin(phi * t * pi / 180) + off) ** self.pow
             y = amp * (cos(phi * t * pi / 180) + off) ** self.pow
             self.draw(x, y, c)
-            x = 2 * amp * (sin(phi * t * pi / 180) + off) ** self.pow
-            y = 2 * amp * (cos(phi * t * pi / 180) + off) ** self.pow
+            x = 2 * x
+            y = 2 * y
             self.draw(x, y, c)
-            x = 3 * amp * (sin(phi * t * pi / 180) + off) ** self.pow
-            y = 3 * amp * (cos(phi * t * pi / 180) + off) ** self.pow
+            x = 1.5 * x
+            y = 1.5 * y
             self.draw(x, y, c)
 
         out = pygame.transform.scale(self.dazz, (self.DIMS))
