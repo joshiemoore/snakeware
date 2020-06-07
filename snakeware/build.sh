@@ -8,12 +8,13 @@ if [ $# != 1 ]; then
 fi
 
 IMG_SIZE=400M
+BUILDROOT_VERSION=2020.05
 
 SNAKEWARE=$PWD
 IMG=snakeware.img
 
 if [ ! -d buildroot ]; then
-  git clone https://github.com/buildroot/buildroot.git buildroot --depth 1
+  git clone -b $BUILDROOT_VERSION https://github.com/buildroot/buildroot.git buildroot --depth 1
 fi
 
 if [ ! -f $SNAKEWARE/config/$1-buildroot-config ]; then
