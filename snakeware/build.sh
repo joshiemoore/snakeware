@@ -24,6 +24,7 @@ IMG_SIZE=400M
 BUILDROOT_VERSION=2020.05
 
 SNAKEWARE=$PWD
+SNAKEWARE_VERSION=$(git describe --tags)
 IMG=snakeware.img
 
 RIMG=$IMG.rootpartition
@@ -46,7 +47,16 @@ fi
 cp -p "$SNAKEWARE/config/$1-buildroot-config" "$SNAKEWARE/buildroot/.config"
 cp -p "$SNAKEWARE/config/$1-kernel-config" "$SNAKEWARE/buildroot/configs/snakeware-kernel"
 
-# copy rootfs overlay
+# copy rootfs overlay (while also creating /etc/os-release)
+mkdir -p "$SNAKEWARE/overlay/usr/lib"
+(
+  echo "NAME=snakeware"; \
+  echo "VERSION=$SNAKEWARE_VERSION"; \
+  echo "ID=snakeware"; \
+  echo "VERSION_ID=$SNAKEWARE_VERSION"; \
+  echo "PRETTY_NAME=\"snakeware $SNAKEWARE_VERSION\""; \
+  echo "HOME_URL=https://github.com/joshiemoore/snakeware"; \
+) > "$SNAKEWARE/overlay/usr/lib/os-release"
 rm -rf "$SNAKEWARE/buildroot/overlay"
 cp -r "$SNAKEWARE/overlay" "$SNAKEWARE/buildroot/"
 

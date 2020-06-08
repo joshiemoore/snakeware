@@ -1,4 +1,5 @@
 buildroot/
+overlay/usr/lib/os-release
 *.img
 
 run.sh
