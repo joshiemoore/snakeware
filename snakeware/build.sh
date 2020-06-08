@@ -43,8 +43,8 @@ if [ ! -f $SNAKEWARE/config/$1-buildroot-config ]; then
 fi
 
 # copy buildroot config and kernel config
-cp $SNAKEWARE/config/$1-buildroot-config $SNAKEWARE/buildroot/.config
-cp $SNAKEWARE/config/$1-kernel-config $SNAKEWARE/buildroot/configs/snakeware-kernel
+cp -p $SNAKEWARE/config/$1-buildroot-config $SNAKEWARE/buildroot/.config
+cp -p $SNAKEWARE/config/$1-kernel-config $SNAKEWARE/buildroot/configs/snakeware-kernel
 
 # copy rootfs overlay
 rm -rf $SNAKEWARE/buildroot/overlay
