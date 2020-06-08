@@ -34,26 +34,26 @@ BLOCK_SIZE=512
 MBR_BLOCK_CNT=2048
 
 if [ ! -d buildroot ]; then
-  git clone -b $BUILDROOT_VERSION https://github.com/buildroot/buildroot.git buildroot --depth 1
+  git clone -b "$BUILDROOT_VERSION" https://github.com/buildroot/buildroot.git buildroot --depth 1
 fi
 
-if [ ! -f $SNAKEWARE/config/$1-buildroot-config ]; then
+if [ ! -f "$SNAKEWARE/config/$1-buildroot-config" ]; then
   echo "Unsupported platform: $1"
   exit
 fi
 
 # copy buildroot config and kernel config
-cp -p $SNAKEWARE/config/$1-buildroot-config $SNAKEWARE/buildroot/.config
-cp -p $SNAKEWARE/config/$1-kernel-config $SNAKEWARE/buildroot/configs/snakeware-kernel
+cp -p "$SNAKEWARE/config/$1-buildroot-config" "$SNAKEWARE/buildroot/.config"
+cp -p "$SNAKEWARE/config/$1-kernel-config" "$SNAKEWARE/buildroot/configs/snakeware-kernel"
 
 # copy rootfs overlay
-rm -rf $SNAKEWARE/buildroot/overlay
-cp -r $SNAKEWARE/overlay $SNAKEWARE/buildroot/
+rm -rf "$SNAKEWARE/buildroot/overlay"
+cp -r "$SNAKEWARE/overlay" "$SNAKEWARE/buildroot/"
 
 # run build
 make -C buildroot
 
-cd $SNAKEWARE
+cd "$SNAKEWARE"
 
 if [ ! -f buildroot/output/images/rootfs.tar ]; then
   echo "Failed to generate rootfs.tar, not creating bootable image."
@@ -84,17 +84,17 @@ truncate -s "$IMG_SIZE" "$RIMG"
     echo
     echo a
     echo w
-) | fdisk $SNAKEWARE/$IMG
+) | fdisk "$SNAKEWARE/$IMG"
 
 mkfs.ext4 "$RIMG"
 fuse-ext2 "$RIMG" "$MNT" -o force
 
 # extract generated image to root partition, install grub
-tar -xf $SNAKEWARE/buildroot/output/images/rootfs.tar -C $MNT
-cp $SNAKEWARE/buildroot/output/images/rootfs.cpio $MNT/boot/initrd.img
-mkdir -p $MNT/boot/grub
+tar -xf "$SNAKEWARE/buildroot/output/images/rootfs.tar" -C "$MNT"
+cp "$SNAKEWARE/buildroot/output/images/rootfs.cpio" "$MNT/boot/initrd.img"
+mkdir -p "$MNT/boot/grub"
 grub-install --skip-fs-probe --modules=part_msdos --root-directory="$MNT" "$IMG"
-cp $SNAKEWARE/config/grub.cfg $MNT/boot/grub/grub.cfg
+cp "$SNAKEWARE/config/grub.cfg" "$MNT/boot/grub/grub.cfg"
 
 # copy the root partition image into the final disk image
 umount "$MNT"
