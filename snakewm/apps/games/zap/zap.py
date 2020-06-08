@@ -21,8 +21,8 @@ BASES = 3        # initial numbers of bases
 NEWBASE = 75000  # score for a bonus base
 
 class Zap(pygame_gui.elements.UIWindow):
+    res = SRES, int(0.75 * SRES)
     def __init__(self, pos, manager):
-        self.res = SRES, int(0.75 * SRES)
         super().__init__(
             pygame.Rect(pos, (self.res[0] + 32, self.res[1] + 60)),
             manager=manager,
@@ -97,7 +97,7 @@ class Zap(pygame_gui.elements.UIWindow):
         if event.type == pygame.MOUSEBUTTONUP and (
             r.w != self.res[0] + 32 or r.h != self.res[1] + 60
         ):
-            self.DIMS = r.w - 32, r.h - 60
+            self.res = r.w - 32, r.h - 60
             super().kill()
             self.__init__((r.left, r.top), self.manager)
         if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
