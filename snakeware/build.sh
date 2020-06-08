@@ -17,21 +17,14 @@ if [ ! -d buildroot ]; then
   git clone -b $BUILDROOT_VERSION https://github.com/buildroot/buildroot.git buildroot --depth 1
 fi
 
-if [ ! -f $SNAKEWARE/config/$1-buildroot-config ]; then
+if [ ! -f "$SNAKEWARE/external/configs/$1_defconfig" ]; then
   echo "Unsupported platform: $1"
   exit
 fi
 
-# copy buildroot config and kernel config
-cp $SNAKEWARE/config/$1-buildroot-config $SNAKEWARE/buildroot/.config
-cp $SNAKEWARE/config/$1-kernel-config $SNAKEWARE/buildroot/configs/snakeware-kernel
-
-# copy rootfs overlay
-rm -rf $SNAKEWARE/buildroot/overlay
-cp -r $SNAKEWARE/overlay $SNAKEWARE/buildroot/
-
 # run build
 cd buildroot
+make BR2_EXTERNAL="$SNAKEWARE/external" "$1_defconfig"
 make
 
 cd $SNAKEWARE
