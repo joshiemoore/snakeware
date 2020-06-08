@@ -9,7 +9,7 @@ amixer sset Master 100%
 # PYTHON THREE FOREVER BABY!
 while [ 1 ]
 do
-  clear
-  printf "SNAKEWARE READY.\n\n"
-  PYTHONSTARTUP=/usr/share/snakeware/startup.py /usr/bin/python3
+  clear >/dev/tty1
+  printf "SNAKEWARE READY.\n\n" >/dev/tty1
+  PYTHONSTARTUP=/usr/share/snakeware/startup.py /usr/bin/python3 </dev/tty1 >/dev/tty1 2>&1
 done
