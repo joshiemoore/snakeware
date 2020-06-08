@@ -35,8 +35,11 @@ To run snakeware on QEMU:
 4. Run the command: `qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
 5. Wait for it to load.
 6. You will be be taken to a Python environment/shell.
-7. Launch snakewm with the following Python command:
-
+7. Launch snakewm with either of the following Python commands:
+```
+>>> snakewm
+```
+or
 ```
 >>> from snakewm.wm import SnakeWM
 >>> SnakeWM().run()
