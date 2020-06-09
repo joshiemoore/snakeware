@@ -12,6 +12,7 @@ import pygame_gui
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements import UIButton
 
+
 class SnakeBGMenu(UIWindow):
     # size of each menu button
     BSIZE = (200, 20)
@@ -31,11 +32,13 @@ class SnakeBGMenu(UIWindow):
 
         # create window
         super().__init__(
-            pygame.Rect((100, 100), (self.BSIZE[0] + 32, self.BSIZE[1] * len(self.BGLIST))),
+            pygame.Rect(
+                (100, 100), (self.BSIZE[0] + 32, self.BSIZE[1] * len(self.BGLIST))
+            ),
             manager=manager,
             window_display_title="SnakeBG",
             object_id="#bgmenu",
-            resizable=False
+            resizable=False,
         )
 
         # add buttons
@@ -46,5 +49,5 @@ class SnakeBGMenu(UIWindow):
                 manager=manager,
                 container=self,
                 parent_element=self,
-                object_id=self.BGLIST[i]
+                object_id=self.BGLIST[i],
             )

@@ -243,8 +243,12 @@ class SnakeWM:
                         if event.ui_object_id == "#background_picker":
                             self.set_bg_image(event.text)
                     elif event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                        if "#bgmenu" in event.ui_object_id and not "title_bar" in event.ui_object_id and not "close_button" in event.ui_object_id:
-                            selected_bg = event.ui_object_id.split('.')[1]
+                        if (
+                            "#bgmenu" in event.ui_object_id
+                            and not "title_bar" in event.ui_object_id
+                            and not "close_button" in event.ui_object_id
+                        ):
+                            selected_bg = event.ui_object_id.split(".")[1]
                             self.DYNBG = SnakeBG(selected_bg, TESTMODE)
                             self.PAINT = False
 
