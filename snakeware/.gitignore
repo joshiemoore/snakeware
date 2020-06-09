@@ -1,4 +1,5 @@
 buildroot*/
 *.img
+*.iso
 
 run.sh
