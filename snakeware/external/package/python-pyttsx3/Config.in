@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_PYTTSX3
+	bool "python-pyttsx3"
+	help
+	  Text to Speech (TTS) library for Python 2 and 3. Works without
+	  internet connection or delay. Supports multiple TTS engines,
+	  including Sapi5, nsss, and espeak.
+
+	  https://github.com/nateshmbhat/pyttsx3
