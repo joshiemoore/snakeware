@@ -12,8 +12,10 @@ import pygame, pygame_gui
 
 if TESTMODE:
     from appmenu.appmenupanel import AppMenuPanel
+    from snakebg.bg import SnakeBG
 else:
     from snakewm.appmenu.appmenupanel import AppMenuPanel
+    from snakewm.snakebg.bg import SnakeBG
 
 
 class SnakeWM:
@@ -52,6 +54,9 @@ class SnakeWM:
     # paint shapes
     PAINT_SHAPE = 0
     NUM_SHAPES = 3
+
+    # reference to SnakeBG object for dynamic backgrounds
+    DYNBG = None
 
     # currently focused window
     FOCUS = None
@@ -231,8 +236,13 @@ class SnakeWM:
 
             self.MANAGER.update(delta)
 
-            # blit paintbrush layer
-            if self.PAINT:
+            # blit paintbrush/dynbg layer
+            if self.DYNBG is not None:
+                # update dynamic background
+                self.DYNBG.draw(self.BRUSH_SURF)
+                self.SCREEN.blit(self.BG, (0, 0))
+                self.SCREEN.blit(self.BRUSH_SURF, (0, 0))
+            elif self.PAINT:
                 mpos = pygame.mouse.get_pos()
 
                 # default drawing the brush to the temporary brush layer
