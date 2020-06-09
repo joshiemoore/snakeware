@@ -6,7 +6,8 @@ Joshua Moore 2020
 
 import importlib
 
-class SnakeBG():
+
+class SnakeBG:
     # reference to the imported background
     _BG = None
 

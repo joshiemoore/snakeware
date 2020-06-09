@@ -18,6 +18,7 @@ CYBER_STARS = None
 # horizontal position of the ship
 CYBER_SHIP_X = 200
 
+
 def drawbg(surface):
     global CYBER_OFFS
     global CYBER_STARS
@@ -32,20 +33,17 @@ def drawbg(surface):
         for x in range(50, 100):
             CYBER_STARS.append(
                 (
-                random.randint(0, SURF_WIDTH),
-                random.randint(0, SURF_HEIGHT / 2 - 5),
-                random.randint(1, 4)
+                    random.randint(0, SURF_WIDTH),
+                    random.randint(0, SURF_HEIGHT / 2 - 5),
+                    random.randint(1, 4),
                 )
             )
 
-    surface.fill((0,0,0))
+    surface.fill((0, 0, 0))
 
     # draw horizon line
     pygame.draw.line(
-        surface,
-        (255, 0, 255),
-        (0, SURF_HEIGHT / 2),
-        (SURF_WIDTH, SURF_HEIGHT / 2)
+        surface, (255, 0, 255), (0, SURF_HEIGHT / 2), (SURF_WIDTH, SURF_HEIGHT / 2)
     )
 
     # draw vertical lines
@@ -57,8 +55,8 @@ def drawbg(surface):
             (SURF_WIDTH / 2, SURF_HEIGHT / 2),
             (
                 SURF_WIDTH / 2 + math.cos(tdeg) * 2000,
-                SURF_HEIGHT / 2 + math.sin(tdeg) * 2000
-            )
+                SURF_HEIGHT / 2 + math.sin(tdeg) * 2000,
+            ),
         )
 
     # draw horizontal lines
@@ -67,12 +65,7 @@ def drawbg(surface):
     while y <= SURF_HEIGHT:
         ty = y + CYBER_OFFS * (dy / 10)
         if ty > SURF_HEIGHT / 2:
-            pygame.draw.line(
-                surface,
-                (255, 0, 255),
-                (0, ty),
-                (SURF_WIDTH, ty)
-            )
+            pygame.draw.line(surface, (255, 0, 255), (0, ty), (SURF_WIDTH, ty))
 
         y = y + dy
         dy = dy + 5
@@ -83,36 +76,25 @@ def drawbg(surface):
 
     # draw ship
     draw_ship(
-        surface, 
-        (int(SURF_WIDTH / 2), int(SURF_HEIGHT / 2)), 
-        CYBER_SHIP_X / SURF_WIDTH
+        surface, (int(SURF_WIDTH / 2), int(SURF_HEIGHT / 2)), CYBER_SHIP_X / SURF_WIDTH
     )
 
     CYBER_SHIP_X = CYBER_SHIP_X - int((CYBER_SHIP_X - pygame.mouse.get_pos()[0]) / 50)
 
     # draw stars
     for star in CYBER_STARS:
-        pygame.draw.circle(
-            surface,
-            (0, 255, 255),
-            (star[0], star[1]),
-            star[2]
-        )
+        pygame.draw.circle(surface, (0, 255, 255), (star[0], star[1]), star[2])
 
     # draw sun
     pygame.draw.arc(
         surface,
         (255, 0, 255),
-        pygame.Rect(
-            SURF_WIDTH / 2 - 150,
-            SURF_HEIGHT / 2 - 150,
-            300,
-            300
-        ),
+        pygame.Rect(SURF_WIDTH / 2 - 150, SURF_HEIGHT / 2 - 150, 300, 300),
         0,
         math.radians(181),
-        2
+        2,
     )
+
 
 def draw_ship(surface, origin, dx):
     """
@@ -122,22 +104,17 @@ def draw_ship(surface, origin, dx):
     """
     fx = (
         origin[0] - int(math.cos(math.radians(dx * 180)) * 700),
-        origin[1] + int(math.sin(math.radians(dx * 180)) * 300)
+        origin[1] + int(math.sin(math.radians(dx * 180)) * 300),
     )
 
     fl = (
         origin[0] - int(math.cos(math.radians((dx - 0.05) * 180)) * 700),
-        origin[1] + int(math.sin(math.radians((dx - 0.1) * 180)) * 500)
+        origin[1] + int(math.sin(math.radians((dx - 0.1) * 180)) * 500),
     )
 
     fr = (
         origin[0] - int(math.cos(math.radians((dx + 0.05) * 180)) * 700),
-        origin[1] + int(math.sin(math.radians((dx + 0.1) * 180)) * 500)
+        origin[1] + int(math.sin(math.radians((dx + 0.1) * 180)) * 500),
     )
 
-    pygame.draw.polygon(
-        surface,
-        (0,255,255),
-        (fx, fl, fr),
-       12
-    )
+    pygame.draw.polygon(surface, (0, 255, 255), (fx, fl, fr), 12)

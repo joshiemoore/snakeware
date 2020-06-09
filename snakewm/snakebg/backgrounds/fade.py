@@ -9,6 +9,7 @@ FCOLOR_G = 0
 FCOLOR_B = 0
 FCOLOR_STEP = 1
 
+
 def drawbg(surface):
     global FCOLOR_R
     global FCOLOR_G
