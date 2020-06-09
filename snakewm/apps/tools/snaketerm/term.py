@@ -137,7 +137,8 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             sys.stdout = tout = StringIO()
 
             try:
-                code = compile(self.input.get_text(), "snaketerm_code", "exec")
+                input_command = self.input.get_text()
+                code = compile(input_command, "snaketerm_code", "exec")
                 exec(code, globals())
             except Exception:
                 e_type, e_val, e_traceback = sys.exc_info()
@@ -147,6 +148,7 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
 
             sys.stdout = _stdout
             result = tout.getvalue()
+            self.append_text(">>> " + input_command + "\n")
             self.append_text(result)
             self.add_to_history(self.input.get_text())
             self.histindex = -1
