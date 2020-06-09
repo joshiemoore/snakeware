@@ -94,8 +94,11 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
         self.input.set_text(command[:ep] + command[to_pos:])
         self.input.edit_position = ep
 
-    def append_text(self, text):
-        self.textbox.html_text = self.textbox.html_text + text.replace("\n", "<br>")
+    def append_text(self, text, is_command=False):
+        if is_command:
+            self.textbox.html_text += ">>> " + text.replace("\n", "<br>") + "<br>"
+        else:
+            self.textbox.html_text += text.replace("\n", "<br>")
         self.textbox.rebuild()
         if self.textbox.scroll_bar is not None:
             self.textbox.scroll_bar.scroll_position = (
@@ -136,8 +139,9 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             _stdout = sys.stdout
             sys.stdout = tout = StringIO()
 
+            input_command = self.input.get_text()
             try:
-                code = compile(self.input.get_text(), "snaketerm_code", "exec")
+                code = compile(input_command, "snaketerm_code", "exec")
                 exec(code, globals())
             except Exception:
                 e_type, e_val, e_traceback = sys.exc_info()
@@ -147,8 +151,9 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
 
             sys.stdout = _stdout
             result = tout.getvalue()
+            self.append_text(input_command, is_command=True)
             self.append_text(result)
-            self.add_to_history(self.input.get_text())
+            self.add_to_history(input_command)
             self.histindex = -1
             self.flush_command_cache()
             self.input.set_text(str())
