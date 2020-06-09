@@ -61,6 +61,7 @@ class SnakeWM:
 
     # reference to SnakeBG object for dynamic backgrounds
     DYNBG = None
+    DYNBG_MENU = None
 
     # currently focused window
     FOCUS = None
@@ -194,9 +195,9 @@ class SnakeWM:
                             self.BRUSH_SURF.fill((0, 0, 0, 0))
                         elif event.key == pygame.K_d:
                             # toggle dynamic background
-                            if self.DYNBG is None:
-                                SnakeBGMenu(self.MANAGER)
-                            else:
+                            if self.DYNBG is None and self.DYNBG_MENU is None:
+                                self.DYNBG_MENU = SnakeBGMenu(self.MANAGER)
+                            elif self.DYNBG is not None:
                                 del self.DYNBG
                                 self.DYNBG = None
 
@@ -243,14 +244,19 @@ class SnakeWM:
                         if event.ui_object_id == "#background_picker":
                             self.set_bg_image(event.text)
                     elif event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                        if (
-                            "#bgmenu" in event.ui_object_id
-                            and not "title_bar" in event.ui_object_id
-                            and not "close_button" in event.ui_object_id
-                        ):
-                            selected_bg = event.ui_object_id.split(".")[1]
-                            self.DYNBG = SnakeBG(selected_bg, TESTMODE)
-                            self.PAINT = False
+                        if "#bgmenu" in event.ui_object_id:
+                            if "close_button" in event.ui_object_id:
+                                self.DYNBG_MENU.kill()
+                                del self.DYNBG_MENU
+                                self.DYNBG_MENU = None
+                            elif not "title_bar" in event.ui_object_id:
+                                selected_bg = event.ui_object_id.split(".")[1]
+                                self.DYNBG = SnakeBG(selected_bg, TESTMODE)
+                                self.DYNBG_MENU.kill()
+                                del self.DYNBG_MENU
+                                self.DYNBG_MENU = None
+
+                                self.PAINT = False
 
                 self.MANAGER.process_events(event)
 

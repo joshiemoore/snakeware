@@ -17,17 +17,14 @@ class SnakeBGMenu(UIWindow):
     # size of each menu button
     BSIZE = (200, 20)
 
-    # list of background modules
-    BGLIST = None
-
     def __init__(self, manager):
         # load bg module names
         bgdir = os.path.dirname(os.path.abspath(__file__)) + "/backgrounds/"
         self.BGLIST = []
         for f in os.listdir(bgdir):
-            if "__" in f:
+            if "__" in f or ".pyc" in f:
                 continue
-            self.BGLIST.append(f[:-3])
+            self.BGLIST.append(f.split('.')[0])
         self.BGLIST = sorted(self.BGLIST)
 
         # create window
