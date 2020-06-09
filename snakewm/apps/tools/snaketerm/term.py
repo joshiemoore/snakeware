@@ -96,7 +96,9 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
 
     def append_text(self, text, is_command=False):
         if is_command:
-            self.textbox.html_text = self.textbox.html_text + ">>> " + text.replace("\n", "<br>") + "<br>" 
+            self.textbox.html_text = (
+                self.textbox.html_text + ">>> " + text.replace("\n", "<br>") + "<br>"
+            )
         else:
             self.textbox.html_text = self.textbox.html_text + text.replace("\n", "<br>")
         self.textbox.rebuild()
