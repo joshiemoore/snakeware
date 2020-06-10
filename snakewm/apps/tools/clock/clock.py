@@ -11,7 +11,7 @@ class SnakeClock(pygame_gui.elements.UIWindow):
             manager=manager,
             window_display_title="clock",
             object_id="#clockterm",
-            resizable=True,
+            resizable=False,
         )
 
         self.textbox = pygame_gui.elements.UITextBox(
