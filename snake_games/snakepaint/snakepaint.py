@@ -19,6 +19,7 @@ class SnakePaint:
         self.last_pos = (0, 0)
         self.color = (255, 128, 0)
         self.radius = 10
+        self.eraser = False
 
     def on_init(self):
         pygame.init()
@@ -42,12 +43,24 @@ class SnakePaint:
             e = pygame.event.wait()
             if keys[pygame.K_ESCAPE]:
                 self._running = False
+            if e.type == pygame.KEYUP:
+                if e.key == pygame.K_d:
+                    self.eraser = not self.eraser
             pygame.event.pump()
             if e.type == pygame.MOUSEBUTTONDOWN:
+                if self.eraser:
+                    self.color = (0,0,0)
+                else:
+                    self.color = (
+                        random.randrange(256),
+                        random.randrange(256),
+                        random.randrange(256),
+                    )
+                pygame.draw.circle(self._display_surf, self.color, e.pos, self.radius)
+                self.draw_on = True
+            elif e.type == pygame.MOUSEBUTTONDOWN and self.eraser is True:
                 self.color = (
-                    random.randrange(256),
-                    random.randrange(256),
-                    random.randrange(256),
+                    0,0,0
                 )
                 pygame.draw.circle(self._display_surf, self.color, e.pos, self.radius)
                 self.draw_on = True
