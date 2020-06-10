@@ -18,7 +18,7 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
             manager=manager,
             window_display_title="snakecalc",
             object_id="#snaketerm",
-            resizable=True,
+            resizable=False,
         )
 
         self.textbox = pygame_gui.elements.UITextBox(
