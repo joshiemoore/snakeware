@@ -24,7 +24,7 @@ class SnakeBGMenu(UIWindow):
         for f in os.listdir(bgdir):
             if "__" in f or ".pyc" in f:
                 continue
-            self.BGLIST.append(f.split('.')[0])
+            self.BGLIST.append(f.split(".")[0])
         self.BGLIST = sorted(self.BGLIST)
 
         # create window
