@@ -11,16 +11,16 @@ MAXSAMP = 300
 class SnakeFPS(pygame_gui.elements.UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
-            pygame.Rect(pos, (395, 100)),
+            pygame.Rect(pos, (370, 100)),
             manager=manager,
             window_display_title="fps",
             object_id="#fps",
-            resizable=True,
+            resizable=False,
         )
 
         self.textbox = pygame_gui.elements.UITextBox(
             "",
-            relative_rect=pygame.Rect(0, 1, 363, 40),
+            relative_rect=pygame.Rect(0, 1, 338, 40),
             manager=manager,
             container=self,
             anchors={
