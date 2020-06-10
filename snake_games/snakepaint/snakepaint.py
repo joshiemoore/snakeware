@@ -80,6 +80,3 @@ class SnakePaint:
                     )
                 self.last_pos = e.pos
             pygame.display.flip()
-
-obj = SnakePaint()
-obj.on_execute()
