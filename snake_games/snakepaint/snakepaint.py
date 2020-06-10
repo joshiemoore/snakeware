@@ -49,7 +49,7 @@ class SnakePaint:
             pygame.event.pump()
             if e.type == pygame.MOUSEBUTTONDOWN:
                 if self.eraser:
-                    self.color = (0,0,0)
+                    self.color = (0, 0, 0)
                 else:
                     self.color = (
                         random.randrange(256),
@@ -59,9 +59,7 @@ class SnakePaint:
                 pygame.draw.circle(self._display_surf, self.color, e.pos, self.radius)
                 self.draw_on = True
             elif e.type == pygame.MOUSEBUTTONDOWN and self.eraser is True:
-                self.color = (
-                    0,0,0
-                )
+                self.color = (0, 0, 0)
                 pygame.draw.circle(self._display_surf, self.color, e.pos, self.radius)
                 self.draw_on = True
             if e.type == pygame.MOUSEBUTTONUP:
