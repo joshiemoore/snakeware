@@ -16,7 +16,7 @@ Martin C. Doege
 
 # Credits
 
-* Sound effects created PySynth (https://github.com/mdoege/PySynth)
+* Sound effects created by PySynth (https://github.com/mdoege/PySynth)
 * Graphics created with GIMP (https://www.gimp.org/)
 * OGG conversion with SOX (http://sox.sourceforge.net/)
 
