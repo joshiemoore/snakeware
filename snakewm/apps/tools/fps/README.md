@@ -16,3 +16,9 @@ Based on Clock by Abdur-Rahmaan Janhangeer
 + mail: arj.python@gmail.com
 
 + date: 30 May 2020
+
+Slight edits made by pavo
+
++ github: https://github.com/callmepavo
+
++ date: 10 May 2020
