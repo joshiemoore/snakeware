@@ -8,6 +8,7 @@ import pygame_gui
 
 from pygame_gui.elements import UITextBox
 
+import os
 
 class SnakeTerm(pygame_gui.elements.UIWindow):
     def __init__(self, pos, manager):
@@ -54,16 +55,14 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
 
         # jump attributes
         self.jump_chars = (" ", "-", "_", "/")
-
-        # TODO: load this from a file so users can configure
-        self.hotkeys = {
-            "ctrl": {
-                "l": self.clear_text,
-                "left": self.jump_left,
-                "right": self.jump_right,
-                "backspace": self.jump_backspace,
-            }
-        }
+        
+        current_dir = os.path.dirname(os.path.abspath(__file__)) 
+        try:
+            with open(current_dir + "/user_hotkeys.txt", "r") as f:
+                self.hotkeys = eval( f.read().replace("\n","") )
+        except:
+            with open(current_dir + "/default_hotkeys.txt", "r") as f:
+                self.hotkeys = eval( f.read().replace("\n","") )
 
     def set_text(self, text):
         self.textbox.html_text = text.replace("\n", "<br>")
@@ -123,7 +122,7 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             self.history[self.histindex + increment]
             self.histindex += increment
         except IndexError:
-            return self.histindex
+            pass
         return self.histindex
 
     def cache_command(self):
