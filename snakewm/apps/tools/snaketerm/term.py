@@ -10,6 +10,7 @@ from pygame_gui.elements import UITextBox
 
 import os
 
+
 class SnakeTerm(pygame_gui.elements.UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
@@ -55,14 +56,14 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
 
         # jump attributes
         self.jump_chars = (" ", "-", "_", "/")
-        
-        current_dir = os.path.dirname(os.path.abspath(__file__)) 
+
+        current_dir = os.path.dirname(os.path.abspath(__file__))
         try:
             with open(current_dir + "/user_hotkeys.txt", "r") as f:
-                self.hotkeys = eval( f.read().replace("\n","") )
+                self.hotkeys = eval(f.read().replace("\n", ""))
         except:
             with open(current_dir + "/default_hotkeys.txt", "r") as f:
-                self.hotkeys = eval( f.read().replace("\n","") )
+                self.hotkeys = eval(f.read().replace("\n", ""))
 
     def set_text(self, text):
         self.textbox.html_text = text.replace("\n", "<br>")
