@@ -371,6 +371,8 @@ class Piano(pygame_gui.elements.UIWindow):
             self.draw_bkey(k, c)
 
         # draw buttons
+        pygame.draw.rect(self.win, GRAY, RECT_NORMAL)
+        pygame.draw.rect(self.win, GRAY, RECT_SIMON)
         if not self.simon:
             pygame.draw.rect(self.win, ORANGE, RECT_NORMAL, 3)
         else:
