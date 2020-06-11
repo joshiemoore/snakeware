@@ -21,7 +21,10 @@ LW = 10  # outline width
 BKW = 22  # black key width
 BKH = 200  # black key height
 H = 350  # white key height
-XADJ, YADJ = 16, 40 # shift needed due to window decoration when interpreting mouse position
+XADJ, YADJ = (
+    16,
+    40,
+)  # shift needed due to window decoration when interpreting mouse position
 bkeys = {1: 1, 2: 3, 4: 6, 5: 8, 6: 10}
 wkeys = {0: 0, 1: 2, 2: 4, 3: 5, 4: 7, 5: 9, 6: 11, 7: 12}
 RECT_NORMAL = pygame.Rect((236, 432, 130, 55))  # button rects
@@ -89,8 +92,12 @@ class Piano(pygame_gui.elements.UIWindow):
         else:
             o = ""
         for n in range(13):
-            self.audio[n] = pygame.mixer.Sound(self.path + "/snd/piano%s_%02u.ogg" % (o, n))
-            self.sustain[n] = pygame.mixer.Sound(self.path + "/snd/piano%s_sustain_%02u.ogg" % (o, n))
+            self.audio[n] = pygame.mixer.Sound(
+                self.path + "/snd/piano%s_%02u.ogg" % (o, n)
+            )
+            self.sustain[n] = pygame.mixer.Sound(
+                self.path + "/snd/piano%s_sustain_%02u.ogg" % (o, n)
+            )
         self.audio["buzz"] = pygame.mixer.Sound(self.path + "/snd/buzz.ogg")
 
     def setvol(self):
@@ -136,7 +143,7 @@ class Piano(pygame_gui.elements.UIWindow):
             x, y = pygame.mouse.get_pos()
             x -= r[0] + XADJ
             y -= r[1] + YADJ
-            p = self.pos2key(x,y)
+            p = self.pos2key(x, y)
             if p != None:
                 self.stop(p)
 
@@ -216,42 +223,60 @@ class Piano(pygame_gui.elements.UIWindow):
 
         # piano key release
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_s or event.key == pygame.K_1 or event.key == pygame.K_LEFT:
+            if (
+                event.key == pygame.K_s
+                or event.key == pygame.K_1
+                or event.key == pygame.K_LEFT
+            ):
                 self.stop(0)
             if event.key == pygame.K_d:
                 self.stop(2)
-            if event.key == pygame.K_f or event.key == pygame.K_2 or event.key == pygame.K_DOWN:
+            if (
+                event.key == pygame.K_f
+                or event.key == pygame.K_2
+                or event.key == pygame.K_DOWN
+            ):
                 self.stop(4)
             if event.key == pygame.K_g:
                 self.stop(5)
-            if event.key == pygame.K_h or event.key == pygame.K_3 or event.key == pygame.K_RIGHT:
+            if (
+                event.key == pygame.K_h
+                or event.key == pygame.K_3
+                or event.key == pygame.K_RIGHT
+            ):
                 self.stop(7)
             if event.key == pygame.K_j:
                 self.stop(9)
             if event.key == pygame.K_k:
                 self.stop(11)
-            if event.key == pygame.K_l or event.key == pygame.K_4 or event.key == pygame.K_UP:
+            if (
+                event.key == pygame.K_l
+                or event.key == pygame.K_4
+                or event.key == pygame.K_UP
+            ):
                 self.stop(12)
 
             if event.key == pygame.K_e:
                 self.stop(1)
             if event.key == pygame.K_r:
                 self.stop(3)
-            if event.key == pygame.K_y or event.key == pygame.K_z:  # QWERTY/QWERTZ layout
+            if (
+                event.key == pygame.K_y or event.key == pygame.K_z
+            ):  # QWERTY/QWERTZ layout
                 self.stop(6)
             if event.key == pygame.K_u:
                 self.stop(8)
             if event.key == pygame.K_i:
                 self.stop(10)
 
-    def play(self, k, user = True):
+    def play(self, k, user=True):
         "Play a note"
         self.audio[k].play()
         if user and self.sust:
-            self.sustain[k].play(loops = -1)
+            self.sustain[k].play(loops=-1)
         self.keys[k] = True
 
-    def stop(self, k, user = True):
+    def stop(self, k, user=True):
         "Stop playing a note"
         self.audio[k].stop()
         self.sustain[k].stop()
@@ -260,7 +285,7 @@ class Piano(pygame_gui.elements.UIWindow):
         # check if user melody matches Simon's
         if self.simon and user == True:
             self.userseq.append(k)
-            if self.userseq == self.simonseq[:self.simonlen]:
+            if self.userseq == self.simonseq[: self.simonlen]:
                 print(self.simonlen, "CORRECT!")
                 self.update(NOTELEN)
                 time.sleep(NOTELEN)
@@ -268,8 +293,13 @@ class Piano(pygame_gui.elements.UIWindow):
                     self.simonlen += 1
                 self.simonplay = True
                 self.simonstart = time.time()
-                super().set_display_title('Simon (%u notes correct)' % (self.simonlen - 1))
-            if self.userseq and self.userseq[-1] != self.simonseq[len(self.userseq) - 1]:
+                super().set_display_title(
+                    "Simon (%u notes correct)" % (self.simonlen - 1)
+                )
+            if (
+                self.userseq
+                and self.userseq[-1] != self.simonseq[len(self.userseq) - 1]
+            ):
                 print("WRONG!")
                 self.audio["buzz"].play()
                 self.update(NOTELEN)
@@ -317,7 +347,7 @@ class Piano(pygame_gui.elements.UIWindow):
                 self.userseq = []
             elif n > self.lastplayed:
                 self.stopall()
-                self.play(self.simonseq[n], user = False)
+                self.play(self.simonseq[n], user=False)
                 self.lastplayed = n
 
         # draw keyboard
@@ -350,7 +380,7 @@ class Piano(pygame_gui.elements.UIWindow):
                 c = ORANGE
             else:
                 c = GRAY
-            pygame.draw.rect(self.win, c, (20*i+5, 432, 18, 22))
+            pygame.draw.rect(self.win, c, (20 * i + 5, 432, 18, 22))
 
         # draw octave indicator
         for i in 0, 1, 2:
@@ -358,7 +388,7 @@ class Piano(pygame_gui.elements.UIWindow):
                 c = ORANGE
             else:
                 c = GRAY
-            pygame.draw.rect(self.win, c, (70*i+570, 432, 65, 22))
+            pygame.draw.rect(self.win, c, (70 * i + 570, 432, 65, 22))
 
         self.win.blit(self.overlay, (0, 0))
 
