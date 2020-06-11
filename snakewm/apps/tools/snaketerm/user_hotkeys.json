@@ -1,0 +1,8 @@
+{
+	"ctrl" : {
+		"l" : "clear_text",
+		"left" : "jump_left",
+		"right" : "jump_right",
+		"backspace" : "jump_backspace"
+	}
+}

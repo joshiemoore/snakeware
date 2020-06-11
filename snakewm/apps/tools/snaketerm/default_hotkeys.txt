@@ -1,8 +1,0 @@
-{
-            "ctrl": {
-                "l": self.clear_text,
-                "left": self.jump_left,
-                "right": self.jump_right,
-                "backspace": self.jump_backspace,
-            }
-}
