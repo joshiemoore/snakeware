@@ -63,6 +63,7 @@ class Piano(pygame_gui.elements.UIWindow):
         self.path = os.path.dirname(os.path.abspath(__file__))
         self.volume = 5
         self.octave = 1
+        self.sust = True
         self.load_inst()
         self.setvol()
         self.win = pygame.Surface(self.res)
@@ -142,6 +143,9 @@ class Piano(pygame_gui.elements.UIWindow):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 self.stopall()
+
+            if event.key == pygame.K_c:
+                self.sust = not self.sust
 
             # volume
             if event.key == pygame.K_b:
@@ -243,7 +247,7 @@ class Piano(pygame_gui.elements.UIWindow):
     def play(self, k, user = True):
         "Play a note"
         self.audio[k].play()
-        if user:
+        if user and self.sust:
             self.sustain[k].play(loops = -1)
         self.keys[k] = True
 

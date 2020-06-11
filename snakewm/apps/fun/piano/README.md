@@ -4,7 +4,7 @@ Piano is combination of a toy piano which you can play with your mouse or keyboa
 
 The keys on the keyboard's home row (S to L) play the white keys, the black keys are on E, R, Y/Z, U, I. (So this should work with QWERTY, QWERTZ, and AZERTY keyboard layouts.) The C mjaor chord keys needed for Simon mode can also be played with the 1, 2, 3, 4 and cursor keys.
 
-Volume can be adjusted with the V and B keys, the octave can be changed with N and M.
+Volume can be adjusted with the V and B keys, the octave can be changed with N and M. C toggles sustain mode.
 
 Press Space to stop all sounds. If you click a key with the mouse, move the mouse away and release the button, you can create a note that plays permanently.
 
