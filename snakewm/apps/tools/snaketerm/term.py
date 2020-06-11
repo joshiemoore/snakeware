@@ -11,6 +11,7 @@ from pygame_gui.elements import UITextBox
 import os
 import json
 
+
 class SnakeTerm(pygame_gui.elements.UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
@@ -56,15 +57,15 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
 
         # jump attributes
         self.jump_chars = (" ", "-", "_", "/")
-        
+
         self.hotkeys = self.get_hotkeys()
-    
+
     def get_hotkeys(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        try: # first attmept to load user hotkeys
+        try:  # first attmept to load user hotkeys
             with open(current_dir + "/user_hotkeys.json", "r") as f:
                 raw_json = json.load(f)
-        except: # if that file doesn't exist use default
+        except:  # if that file doesn't exist use default
             with open(current_dir + "/default_hotkeys.json", "r") as f:
                 raw_json = json.load(f)
         # run through each value and add "self." then run through eval()
@@ -72,9 +73,11 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
         for mod_key in raw_json.keys():
             key_config[mod_key] = {}
             for normal_key in raw_json[mod_key].keys():
-                key_config[mod_key][normal_key] = eval("self." + raw_json[mod_key][normal_key])
+                key_config[mod_key][normal_key] = eval(
+                    "self." + raw_json[mod_key][normal_key]
+                )
         return key_config
-        
+
     def set_text(self, text):
         self.textbox.html_text = text.replace("\n", "<br>")
         self.textbox.rebuild()
