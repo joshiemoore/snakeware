@@ -73,7 +73,7 @@ the Python environment, so ideas about that are welcome.
 This is an abridged list of future plans:
 
 * Raspberry Pi configs for buildroot and kernel!!!!!!!
-* Fix pip module installation - won't work when cross-compiling
+* ~~Fix pip module installation - won't work when cross-compiling~~
 * Many more snakewm apps
 * ~~App menu for choosing apps to run~~
 * ~~Improved/streamlined build system~~
