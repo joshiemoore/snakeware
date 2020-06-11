@@ -1,0 +1,2 @@
+source "$BR2_EXTERNAL_SNAKEWARE_PATH/package/python-pygame-gui/Config.in"
+source "$BR2_EXTERNAL_SNAKEWARE_PATH/package/python-pyttsx3/Config.in"

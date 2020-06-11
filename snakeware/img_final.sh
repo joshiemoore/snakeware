@@ -27,7 +27,6 @@ mkdir -p $MNT/boot/grub
 cp $SNAKEWARE/buildroot/output/images/rootfs.cpio $MNT/boot/initrd.img
 
 grub-install --root-directory=$MNT /dev/loop$1
-cp $SNAKEWARE/config/grub.cfg $MNT/boot/grub/grub.cfg
 
 # unmount everything
 umount $MNT
