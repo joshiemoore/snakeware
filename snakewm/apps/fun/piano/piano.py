@@ -66,7 +66,7 @@ class Piano(pygame_gui.elements.UIWindow):
         self.path = os.path.dirname(os.path.abspath(__file__))
         self.volume = 5
         self.octave = 1
-        self.sust = True
+        self.sust = False
         self.load_inst()
         self.setvol()
         self.win = pygame.Surface(self.res)
@@ -99,6 +99,7 @@ class Piano(pygame_gui.elements.UIWindow):
                 self.path + "/snd/piano%s_sustain_%02u.ogg" % (o, n)
             )
         self.audio["buzz"] = pygame.mixer.Sound(self.path + "/snd/buzz.ogg")
+        self.setvol()
 
     def setvol(self):
         "Set volume for all loaded sounds"
@@ -278,7 +279,8 @@ class Piano(pygame_gui.elements.UIWindow):
 
     def stop(self, k, user=True):
         "Stop playing a note"
-        self.audio[k].stop()
+        if self.sust:
+            self.audio[k].stop()
         self.sustain[k].stop()
         self.keys[k] = False
 
@@ -369,6 +371,8 @@ class Piano(pygame_gui.elements.UIWindow):
             self.draw_bkey(k, c)
 
         # draw buttons
+        pygame.draw.rect(self.win, GRAY, RECT_NORMAL)
+        pygame.draw.rect(self.win, GRAY, RECT_SIMON)
         if not self.simon:
             pygame.draw.rect(self.win, ORANGE, RECT_NORMAL, 3)
         else:
