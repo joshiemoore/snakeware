@@ -2,7 +2,7 @@
 snakeware is a free Linux distro with a Python userspace inspired by the Commodore 64. You are booted directly into a
 Python interpreter, which you can use to do whatever you want with your computer.
 
-[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=bL55LTkG-R0)
+[Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=PYKUnC-k5bA)
 
 [Official Snakeware Discord](https://discord.gg/SAdFjWG)
 
@@ -72,7 +72,7 @@ the Python environment, so ideas about that are welcome.
 ## TODO
 This is an abridged list of future plans:
 
-* Raspberry Pi configs for buildroot and kernel!!!!!!!
+* ~~Raspberry Pi configs for buildroot and kernel!!!!!!!~~
 * ~~Fix pip module installation - won't work when cross-compiling~~
 * Many more snakewm apps
 * ~~App menu for choosing apps to run~~
