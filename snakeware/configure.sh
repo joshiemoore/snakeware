@@ -9,7 +9,7 @@ set -euo pipefail
 snakeware="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 external="$snakeware/external"
-buildroot="$snakeware/buildroot"
+buildroot="$snakeware/buildroot_$2"
 
 # https://buildroot.org/downloads/manual/manual.html#_configuration_of_other_components
 buildroot() {

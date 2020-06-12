@@ -128,7 +128,11 @@ class SnakeWM:
             app = "snakewm." + app
 
         _app = importlib.import_module(app)
-        _app.load(self.MANAGER, params)
+
+        try:
+            _app.load(self.MANAGER, params)
+        except:
+            pygame.quit()
 
     def appmenu_load(self, app):
         """

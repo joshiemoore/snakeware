@@ -12,8 +12,8 @@ BUILDROOT_VERSION=2020.05
 SNAKEWARE=$PWD
 IMG=snakeware.img
 
-if [ ! -d buildroot ]; then
-  git clone -b $BUILDROOT_VERSION https://github.com/buildroot/buildroot.git buildroot --depth 1
+if [ ! -d buildroot_$1 ]; then
+  git clone -b $BUILDROOT_VERSION https://github.com/buildroot/buildroot.git buildroot_$1 --depth 1
 fi
 
 if [ ! -f "$SNAKEWARE/external/configs/$1_defconfig" ]; then
@@ -22,16 +22,28 @@ if [ ! -f "$SNAKEWARE/external/configs/$1_defconfig" ]; then
 fi
 
 # run build
-cd buildroot
+cd buildroot_$1
 make BR2_EXTERNAL="$SNAKEWARE/external" "$1_defconfig"
 make
 
 cd $SNAKEWARE
 
-if [ ! -f buildroot/output/images/rootfs.iso9660 ]; then
-  echo "Failed to generate rootfs.tar, not creating bootable image."
-  exit
-fi
+if [ $1 == x86-64 ]; then
+  # look for x86-64 ISO
+  if [ ! -f buildroot_$1/output/images/rootfs.iso9660 ]; then
+    echo "Failed to generate rootfs.iso."
+    exit
+  fi
 
-cp buildroot/output/images/rootfs.iso9660 snakeware.iso
-echo "snakeware.iso SUCCESS :)"
+  cp buildroot_$1/output/images/rootfs.iso9660 snakeware_x86-64.iso
+  echo "snakeware_x86-64.iso SUCCESS :)"
+elif [ $1 == rpi4 ]; then
+  # look for rpi4 SD card image
+  if [ ! -f buildroot_$1/output/images/sdcard.img ]; then
+    echo "Failed to generate sdcard.img."
+    exit
+  fi
+
+  cp buildroot_$1/output/images/sdcard.img snakeware_rpi4.img
+  echo "snakeware_rpi4.img SUCCESS :)"
+fi

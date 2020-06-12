@@ -6,6 +6,7 @@ minutes each subsequent time (unless you do a `make clean` in the buildroot dire
 
 Currently supported platforms:
 * x86-64
+* rpi4
 
 ## Build Process
 
