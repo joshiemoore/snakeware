@@ -3,7 +3,7 @@
 # Displays the TIX clock
 # 2011-01-08 / 2020-06-12
 
-# Usage: pytix.py [update interval] [--24]
+# Usage: tix.py [update interval] [--24]
 
 import pygame
 import pygame_gui
