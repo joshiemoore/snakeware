@@ -22,8 +22,10 @@ have a usable set of userspace apps and utilities written entirely in Python, be
 ## Running
 [Download the latest release image.](https://github.com/joshiemoore/snakeware/releases)
 
-You can burn the image file to a flash drive and boot it. Instructions to run it on QEMU are below.
+You can burn the x86-64 ISO file to a flash drive and boot it, or launch the ISO in VirtualBox. Instructions to run it 
+in QEMU are below.
 
+The rpi4 image can be flashed to an SD card and run on your Raspberry Pi 4, with no further setup required.
 
 ### QEMU
 
@@ -32,7 +34,23 @@ To run snakeware on QEMU:
 1. [Download and Install QEMU](https://www.qemu.org/download/). Supports Linux, OSX, and Windows.
 2. Open your terminal/command prompt.
 3. Navigate to the directory/folder where the snakeware image image was downloaded.
-4. Run the command: `qemu-system-x86_64 -drive format=raw,file=snakeware.img -m 2048 -soundhw hda -audiodev id=pa,driver=pa`
+4. Launch the snakeware ISO using a script similar to this:
+```
+RAM="2G"
+ISO="snakeware_x86-64.iso"
+
+AUDIO="pa" # also available: alsa
+
+exec qemu-system-x86_64 \
+        -drive file="$ISO",media=cdrom,if=virtio \
+        -m "$RAM" \
+        -cpu host \
+        -machine type=q35,accel=kvm \
+        -smp $(nproc) \
+        -audiodev "$AUDIO,id=snd" \
+        -device ich9-intel-hda \
+        -device hda-output,audiodev=snd
+```
 5. Wait for it to load.
 6. You will be be taken to a Python environment/shell.
 7. Launch snakewm with either of the following Python commands:
@@ -63,8 +81,7 @@ familiar with pygame and pygame_gui will be able to write their own snakeware ap
 in `snakewm/apps/` for examples of how to get started, and feel free to ask questions if you need help.
 
 Those with experience building Linux systems are encouraged to contribute to the underlying aspects of the distro,
-such as the build/package scripts and configuration for the kernel, GRUB, etc. The build system is currently not
-very streamlined or robust, and I am sure that there are better ways to do a lot of it.
+such as the build/package scripts and configuration for the kernel, GRUB, etc.
 
 I would also like to eventually stop using Busybox for intialization and find a way to perform all necessary init from
 the Python environment, so ideas about that are welcome.
