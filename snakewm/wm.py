@@ -86,7 +86,9 @@ class SnakeWM:
         self.DIMS = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 
         # init screen
-        self.SCREEN = pygame.display.set_mode(self.DIMS, pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF)
+        self.SCREEN = pygame.display.set_mode(
+            self.DIMS, pygame.FULLSCREEN | pygame.HWSURFACE | pygame.DOUBLEBUF
+        )
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
