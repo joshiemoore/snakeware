@@ -4,7 +4,6 @@ import re
 import pygame
 import pygame_gui
 
-from pygame_gui.elements import UILabel
 from pygame_gui.elements import UITextBox
 from pygame_gui.elements import UITextEntryLine
 
@@ -23,14 +22,7 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
             resizable=True
         )
 
-        # self.label = UILabel(
-        #     relative_rect=pygame.Rect(-20, 10, 400, 20),
-        #     text="",
-        #     manager=manager,
-        #     container=self,
-        # )
-
-        self.box = pygame_gui.elements.UITextBox(
+        self.box = UITextBox(
             "",
             relative_rect=pygame.Rect(0, 0, 368, 100),
             manager=manager,
@@ -43,7 +35,7 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
             },
         )
 
-        self.input = pygame_gui.elements.UITextEntryLine(
+        self.input = UITextEntryLine(
             relative_rect=pygame.Rect(0, -35, 368, 30),
             manager=manager,
             container=self,
