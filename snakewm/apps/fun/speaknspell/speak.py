@@ -1,9 +1,10 @@
 import threading
+import re
 
 import pygame
 import pygame_gui
 
-from pygame_gui.elements import UILabel
+from pygame_gui.elements import UITextBox
 from pygame_gui.elements import UITextEntryLine
 
 import pyttsx3
@@ -14,21 +15,36 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
 
     def __init__(self, pos, manager):
         super().__init__(
-            pygame.Rect(pos, (400, 128)),
+            pygame.Rect(pos, (400, 200)),
             manager=manager,
             window_display_title="speaknspell",
             object_id="#speaknspell",
+            resizable=True
         )
 
-        self.label = UILabel(
-            relative_rect=pygame.Rect(-20, 10, 400, 20),
-            text="",
+        self.box = UITextBox(
+            "",
+            relative_rect=pygame.Rect(0, 0, 368, 100),
             manager=manager,
             container=self,
+            anchors={
+                "left": "left",
+                "right": "right",
+                "top": "top",
+                "bottom": "bottom",
+            },
         )
 
         self.input = UITextEntryLine(
-            relative_rect=pygame.Rect(0, 40, 368, 30), manager=manager, container=self
+            relative_rect=pygame.Rect(0, -35, 368, 30),
+            manager=manager,
+            container=self,
+            anchors={
+                "left": "left",
+                "right": "right",
+                "top": "bottom",
+                "bottom": "bottom",
+            },
         )
 
         self.engine = pyttsx3.init()
@@ -36,6 +52,7 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
         self.speakthrd = None
 
         self.speak("Hello, thank you for using snakeware!")
+        self.input.focus()
 
     def speak(self, text):
         if self.speakthrd is not None and self.speakthrd.is_alive():
@@ -44,10 +61,12 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
         if text == "":
             return
 
-        self.engine.say(text)
+        spoken = re.sub(r"<(.*?)>", "", text)
+        self.engine.say(spoken)
         self.speakthrd = threading.Thread(target=self.engine.runAndWait, args=())
         self.speakthrd.start()
-        self.label.set_text(text)
+        self.box.html_text = text
+        self.box.rebuild()
         self.input.set_text("")
 
     def process_event(self, event):
