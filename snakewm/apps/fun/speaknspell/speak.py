@@ -19,7 +19,7 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
             manager=manager,
             window_display_title="speaknspell",
             object_id="#speaknspell",
-            resizable=True
+            resizable=True,
         )
 
         self.box = UITextBox(
