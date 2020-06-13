@@ -18,8 +18,6 @@ RES = 220,250
 inter = 1
 
 def mainprog(win, res):
-    global disp
-
     box4, box11, boxy = res[0] // 4, res[0] // 11, res[1] // 5
 
     now = datetime.datetime.now()
