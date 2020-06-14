@@ -77,7 +77,10 @@ class Help(pygame_gui.elements.UIWindow):
         for i in range(len(self.files)):
             if self.files[i][0] == n:
                 for l in open(self.files[i][1]):
-                    s += l.replace("\n", "<br>")
+                    x = l.strip()
+                    if len(x) > 1 and x[0] == "#":
+                        x = "<b><u>" + x[1:] + " </u></b>"
+                    s += x + "<br>"
 
         self.set_text(s)
 
