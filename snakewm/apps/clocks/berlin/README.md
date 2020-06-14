@@ -1,6 +1,6 @@
 # Berlin
 
-The is a PyGame version of the [Berlin clock](https://en.wikipedia.org/wiki/Berlin_Clock).
+This is a PyGame version of the [Berlin clock](https://en.wikipedia.org/wiki/Berlin_Clock).
 
 How to read:
 
