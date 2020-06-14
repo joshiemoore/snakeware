@@ -1,5 +1,5 @@
 # FPS
-FPS displays the current frame rate.
+FPS displays the current, average, minimum, and maximum frame rate. By default, the last 300 samples are used for average/min/max.
 
 # Authors
 
