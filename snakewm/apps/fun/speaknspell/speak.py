@@ -67,8 +67,7 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
         if text == "":
             return
 
-        text = text.replace("\n", "<br>")
-
+        text = re.sub(r"(\\r)?\\n", "<br>", text)
         spoken = re.sub(r"<(.*?)>", "", text)
         self.engine.say(spoken)
         self.speakthrd = threading.Thread(target=self.engine.runAndWait, args=())
