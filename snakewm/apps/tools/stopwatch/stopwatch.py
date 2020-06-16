@@ -11,7 +11,7 @@ class Stopwatch(pygame_gui.elements.UIWindow):
             manager=manager,
             window_display_title="stopwatch",
             object_id="#stopwatch",
-            resizable=True,
+            resizable=False,
         )
 
         self.textbox = pygame_gui.elements.UITextBox(
