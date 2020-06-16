@@ -57,7 +57,7 @@ class SpeakSpell(pygame_gui.elements.UIWindow):
         # history attributes
         self.histsize = 100
         self.histindex = -1
-        self.history = ["Hello, thank you for using snakeware"]
+        self.history = ["Hello, thank you for using snakeware!"]
         self.cached_command = ""
 
     def speak(self, text):
