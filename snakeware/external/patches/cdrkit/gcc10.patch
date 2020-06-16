@@ -1,0 +1,10 @@
+--- a/genisoimage/CMakeLists.txt	2020-06-17 02:05:22.199829107 +0300
++++ b/genisoimage/CMakeLists.txt	2020-06-17 02:05:17.745829324 +0300
+@@ -57,6 +57,7 @@
+
+
+ SET_TARGET_PROPERTIES(genisoimage devdump isodebug isodump isoinfo isovfy PROPERTIES  SKIP_BUILD_RPATH TRUE)
++SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fcommon")
+
+ INSTALL(TARGETS genisoimage devdump isodebug isodump isoinfo isovfy DESTINATION bin)
+ INSTALL(FILES
