@@ -7,7 +7,7 @@ import time
 class Stopwatch(pygame_gui.elements.UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
-            pygame.Rect(pos, (335, 110)),
+            pygame.Rect(pos, (362, 75)),
             manager=manager,
             window_display_title="stopwatch",
             object_id="#stopwatch",
@@ -16,12 +16,12 @@ class Stopwatch(pygame_gui.elements.UIWindow):
 
         self.textbox = pygame_gui.elements.UITextBox(
             "0 : 0 : 0",
-            relative_rect=pygame.Rect(1, 1, 99, 49),
+            relative_rect=pygame.Rect(0, 3, 130, 35),
             manager=manager,
             container=self,
         )
 
-        button_layout_rect = pygame.Rect(100, 0, 100, 50)
+        button_layout_rect = pygame.Rect(130, 3, 100, 35)
         self.start_button = pygame_gui.elements.UIButton(
             relative_rect=button_layout_rect,
             text="start/pause",
@@ -30,7 +30,7 @@ class Stopwatch(pygame_gui.elements.UIWindow):
             object_id="#start_button",
         )
 
-        button2_layout_rect = pygame.Rect(200, 0, 100, 50)
+        button2_layout_rect = pygame.Rect(230, 3, 100, 35)
         self.reset_button = pygame_gui.elements.UIButton(
             relative_rect=button2_layout_rect,
             text="reset",
