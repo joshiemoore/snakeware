@@ -55,12 +55,12 @@ class Stopwatch(pygame_gui.elements.UIWindow):
         super().update(time_delta)
         if self.currently_counting:
             self.time_counter += time_delta
-            secs = int(self.time_counter % 60)
-            mins = int( (self.time_counter % (60**2)) // 60 )
-            hours = int(self.time_counter // (60**2))
+        secs = int(self.time_counter % 60)
+        mins = int( (self.time_counter % (60**2)) // 60 )
+        hours = int(self.time_counter // (60**2))
 
-            counter_str = f"{str(hours)} : {str(mins)} : {str(secs)}"
-            self.set_text(counter_str)
+        counter_str = f"{str(hours)} : {str(mins)} : {str(secs)}"
+        self.set_text(counter_str)
     
     def set_text(self, text):
         self.textbox.html_text = text
@@ -69,3 +69,4 @@ class Stopwatch(pygame_gui.elements.UIWindow):
     def reset_time(self):
         self.time_counter = 0
         self.currently_counting = False
+        self.update(0)
