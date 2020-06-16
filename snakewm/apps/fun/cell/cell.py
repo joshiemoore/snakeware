@@ -107,7 +107,5 @@ class Cell(pygame_gui.elements.UIWindow):
                 (x, self.DIMS[1] - 1),
                 1,
             )
-        super().set_display_title(
-            "cell (rule %u, generation %u)" % (self.rule, self.gen)
-        )
+        super().set_display_title("cell (rule %u)" % self.rule)
         self.dsurf.image.blit(self.screen, (0, 0))
