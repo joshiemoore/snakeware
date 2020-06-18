@@ -6,6 +6,17 @@ amixer sset Speaker unmute
 
 amixer sset Master 100%
 
+# create snakeuser directory in root dir
+mkdir /snakeuser
+
+# attempt to mount SNAKEUSER partition to /snakeuser
+# this will fail if no SNAKEUSER partition exists, which is fine,
+# we will just be in the "live" environment with no persistence
+mount -t ext4 /dev/disk/by-label/SNAKEUSER /snakeuser
+
+# cd to the user partition
+cd /snakeuser
+
 # PYTHON THREE FOREVER BABY!
 while [ 1 ]
 do

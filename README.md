@@ -27,6 +27,22 @@ in QEMU are below.
 
 The rpi4 image can be flashed to an SD card and run on your Raspberry Pi 4, with no further setup required.
 
+### Flash Drive / SD Card
+
+To run snakeware on real hardware, simply write the image file to the flash drive or SD card using `dd`, then boot it.
+No further setup is required if you just need a live, non-persistent environment.
+
+To create a persistent snakeware drive:
+
+1. Note the virtual device corresponding to the drive you wrote the snakeware image to. For this example, we will
+assume `/dev/sdc`.
+2. Use `cfdisk` to add another partition to the drive, after the snakeware partition(s). This partition can be any size, but you'll likely want to fill the rest of the drive. Take note of the number of the new partition. This will be your "snakeuser" partition, where all of your scripts and data will be stored.
+3. Once you have written the partition to the drive, format the partition to ext4. For example, `mkfs.ext4 /dev/sdc2`.
+4. Finally, give the paritition the SNAKEUSER label, ex: `e2label /dev/sdc2 SNAKEUSER`.
+
+Once you've completed these steps, the snakeuser partition will be automatically mounted as `/snakeuser` and chdir'd
+into on boot. Files and data stored on this partition will persist between boots.
+
 ### QEMU
 
 To run snakeware on QEMU:
