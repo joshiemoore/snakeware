@@ -194,8 +194,9 @@ def ini(s, res):
     global audio
 
     audio = {}
-    for n in range(1, 89):
-        audio[n] = pygame.mixer.Sound(PATH + "/midisnd/midi%02u.ogg" % n)
+    for n in range(2, 89):
+        # samples are numbered with middle C == 39 (i.e. off by one)
+        audio[n] = pygame.mixer.Sound(PATH + "/midisnd/midi%02u.ogg" % (n - 1))
         audio[n].set_volume(0.2)
 
 
@@ -227,8 +228,8 @@ def play(s, res, fpsfac, tfac):
     rinc = int(inc * fpsfac * tfac)
     for x, y in notes:
         if t <= y - first < t + rinc:
-            audio[x - 1].stop()
-            audio[x - 1].play()
+            audio[x].stop()
+            audio[x].play()
             pygame.draw.rect(s, (255, 255, 255), [RES[0] - 2, RES[1] - 5 * x, 2, 2])
             # print(y, x)
     t += rinc
