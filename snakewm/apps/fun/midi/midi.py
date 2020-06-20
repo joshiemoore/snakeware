@@ -227,8 +227,8 @@ def play(s, res, fpsfac, tfac):
     rinc = int(inc * fpsfac * tfac)
     for x, y in notes:
         if t <= y - first < t + rinc:
-            audio[x].stop()
-            audio[x].play()
+            audio[x - 1].stop()
+            audio[x - 1].play()
             pygame.draw.rect(s, (255, 255, 255), [RES[0] - 2, RES[1] - 5 * x, 2, 2])
             # print(y, x)
     t += rinc
