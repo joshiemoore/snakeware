@@ -2,9 +2,9 @@ import os
 
 # mount SNAKEUSER again if the first one didn't catch it.
 # If it's already mounted, nothing will happen.
-code = os.system("mount -t ext4 /dev/disk/by-label/SNAKEUSER /snakeuser")
+code = os.system("mount -t ext4 /dev/disk/by-label/SNAKEUSER /snakeuser 2>/dev/null")
 
-if int(code) != 0:
+elif int(code) != 0:
     print("Looks like your persistent partition could not be found. If you did make a persistent partition, try running exit(). If that doesn't work, then something went wrong with your drive or with your partition.")
 
 os.chdir("/snakeuser")
