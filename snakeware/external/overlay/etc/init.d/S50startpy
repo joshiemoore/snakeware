@@ -16,7 +16,8 @@ mkdir /snakeuser
 for i in $(seq 1 5); do
     if [ -e /dev/disk/by-label/SNAKEUSER ]; then
 	echo "persistent storage found"
-	mount /dev/disk/by-label/SNAKEUSER /snakeuser
+	sleep 1
+	mount -t ext4 /dev/disk/by-label/SNAKEUSER /snakeuser
 	break
     else
 	echo "Waiting for persistent storage (try $i)"
