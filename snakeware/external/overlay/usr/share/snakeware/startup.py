@@ -19,12 +19,14 @@ class SnakeWMCommand(Command):
 
 class ShutdownCommand(Command):
     def run(self):
+        import os
         
         os.system("/sbin/poweroff -f")
 
 
 class RebootCommand(Command):
     def run(self):
+        import os
 
         os.system("/sbin/reboot -f")
 
