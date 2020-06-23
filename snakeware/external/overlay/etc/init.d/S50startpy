@@ -14,7 +14,7 @@ mkdir /snakeuser
 # we will just be in the "live" environment with no persistence
 
 for i in $(seq 1 5); do
-    if [ -f /dev/disk/by-label/SNAKEUSER ]; then
+    if [ -e /dev/disk/by-label/SNAKEUSER ]; then
 	echo "persistent storage found"
 	mount /dev/disk/by-label/SNAKEUSER /snakeuser
 	break
