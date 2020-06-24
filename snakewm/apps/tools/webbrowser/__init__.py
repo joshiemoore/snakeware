@@ -3,7 +3,7 @@ from .webbrowser import Webbrowser
 
 def load(manager, params):
     """
-    Create an launch a new instance of SnakeTerm.
+    Create an launch a new instance of the Webbrowser.
     """
     # default position
     pos = (100, 100)
