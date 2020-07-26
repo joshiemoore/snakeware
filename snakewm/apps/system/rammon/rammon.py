@@ -5,7 +5,7 @@ import pygame
 import pygame_gui
 from pygame_gui.elements.ui_image import UIImage
 
-from .ramproc import ramproc
+from .ramproc import ramproc, ramproc2
 
 BLUE = 68, 174, 220
 GRAY = 76, 80, 82
@@ -16,11 +16,23 @@ class SnakeMon(pygame_gui.elements.UIWindow):
 
     def __init__(self, pos, manager):
         super().__init__(
-            pygame.Rect(pos, (self.DIMS[0] + 32, self.DIMS[1] + 60)),
+            pygame.Rect(pos, (self.DIMS[0] + 32, self.DIMS[1] + 100)),
             manager=manager,
             window_display_title="rammon",
             object_id="#rammonterm",
             resizable=False,
+        )
+        self.textbox = pygame_gui.elements.UITextBox(
+            "",
+            relative_rect=pygame.Rect(0, 100, 200, 100),
+            manager=manager,
+            container=self,
+            anchors={
+                "left": "left",
+                "right": "right",
+                "top": "top",
+                "bottom": "bottom",
+            },
         )
 
         self.dsurf = UIImage(
@@ -45,6 +57,8 @@ class SnakeMon(pygame_gui.elements.UIWindow):
             self.last_time = time.time()
         self.dsurf.image.blit(self.ram, (0, 0))
 
+        self.set_text("%s" % ramproc2())
+
     def draw_ram(self):
         ram_perc = ramproc()
         self.ram.scroll(dx=-1)
@@ -62,3 +76,7 @@ class SnakeMon(pygame_gui.elements.UIWindow):
             ((self.DIMS[0] - 1), self.DIMS[1] - ram_perc),
             1,
         )
+
+    def set_text(self, text):
+        self.textbox.html_text = text
+        self.textbox.rebuild()

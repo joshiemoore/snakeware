@@ -15,8 +15,8 @@ Based heavily on cpumon Martin C. Doege
 
 + date: 5 Jun 2020
 
-Change from CPU usage to RAM made by pavo
+Change from CPU usage to RAM made by pavo, the usage in numbers by mochidaz
 
-+ github: https://github.com/callmepavo
++ github: https://github.com/callmepavo, https://github.com/mochidaz
 
 + date: 9 July 2020
