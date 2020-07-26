@@ -22,6 +22,9 @@ def cpuproc():
     o = int(f[4])
     return int(q)
 
+def cpuproc2():
+    return str("CPU Usage: <br>{}/100".format(cpuproc()))
+
 
 # Test the module
 if __name__ == "__main__":

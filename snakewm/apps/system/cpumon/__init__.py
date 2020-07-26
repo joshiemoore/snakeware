@@ -1,4 +1,4 @@
-from .cpumon import SnakeMon
+from .sysmon import SnakeMon
 
 
 def load(manager, params):
