@@ -20,9 +20,17 @@ def ramproc():
     perc = round((used / total) * 100)
     return perc
 
+def ramproc2():
+    file = open("/proc/meminfo").read().split("\n")
+
+    total = isolate_num(file[0])
+    used = total - isolate_num(file[2])  # uses memavaiable line
+    return "Ram Usage: <br>{}/{}".format(used, total)
+
 
 # Test the module
 if __name__ == "__main__":
     while True:
+        print(ramproc2())
         print(ramproc())
         time.sleep(1)
