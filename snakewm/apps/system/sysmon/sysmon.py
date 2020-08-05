@@ -15,7 +15,7 @@ except ImportError:
 
 BLUE = 68, 174, 220
 GRAY = 76, 80, 82
-
+RED = 255, 0, 0
 
 class SnakeMon(pygame_gui.elements.UIWindow):
     DIMS = (200, 100)
@@ -127,7 +127,7 @@ class SnakeMon(pygame_gui.elements.UIWindow):
         )
         pygame.draw.line(
             self.ram,
-            BLUE,
+            RED,
             ((self.DIMS[0] - 1), self.DIMS[1] - 1),
             ((self.DIMS[0] - 1), self.DIMS[1] - ram_perc),
             1,
