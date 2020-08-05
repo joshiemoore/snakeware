@@ -55,7 +55,6 @@ class Stopwatch(pygame_gui.elements.UIWindow):
         )
 
         self.arr = []
-        self.count = 0
         self.saver = False
         self.time_counter = 0
         self.currently_counting = False
@@ -70,7 +69,6 @@ class Stopwatch(pygame_gui.elements.UIWindow):
                     self.reset_time()
                 elif event.ui_element == self.save_time:
                     self.saver = True
-                    self.count += 1
 
     def update(self, time_delta):
         super().update(time_delta)
@@ -100,3 +98,4 @@ class Stopwatch(pygame_gui.elements.UIWindow):
         self.update(0)
         self.time_box.html_text = ""
         self.time_box.rebuild()
+        self.arr.clear()
