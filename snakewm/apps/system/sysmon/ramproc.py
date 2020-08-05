@@ -20,6 +20,7 @@ def ramproc():
     perc = round((used / total) * 100)
     return perc
 
+
 def ramproc2():
     file = open("/proc/meminfo").read().split("\n")
 
