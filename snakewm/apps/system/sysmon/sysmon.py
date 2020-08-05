@@ -26,7 +26,7 @@ class SnakeMon(pygame_gui.elements.UIWindow):
             manager=manager,
             window_display_title="Sysmon",
             object_id="#sysmonterm",
-            resizable=True,
+            resizable=False,
         )
 
         self.textbox_ram = pygame_gui.elements.UITextBox(
