@@ -17,6 +17,7 @@ BLUE = 68, 174, 220
 GRAY = 76, 80, 82
 RED = 255, 0, 0
 
+
 class SnakeMon(pygame_gui.elements.UIWindow):
     DIMS = (200, 100)
 

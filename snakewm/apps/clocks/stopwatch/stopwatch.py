@@ -38,7 +38,7 @@ class Stopwatch(pygame_gui.elements.UIWindow):
             manager=manager,
             object_id="#reset_button",
         )
-        button3_layout_rect = pygame.Rect(0,75, 200, 35)
+        button3_layout_rect = pygame.Rect(0, 75, 200, 35)
         self.save_time = pygame_gui.elements.UIButton(
             relative_rect=button3_layout_rect,
             text="save time",
@@ -49,7 +49,7 @@ class Stopwatch(pygame_gui.elements.UIWindow):
 
         self.time_box = pygame_gui.elements.UITextBox(
             "",
-            relative_rect=pygame.Rect(0, 110, 200,150),
+            relative_rect=pygame.Rect(0, 110, 200, 150),
             manager=manager,
             container=self,
         )
@@ -90,7 +90,6 @@ class Stopwatch(pygame_gui.elements.UIWindow):
             self.time_box.html_text = "<br>".join(self.arr)
             self.time_box.rebuild()
             self.saver = False
-
 
     def reset_time(self):
         self.time_counter = 0
