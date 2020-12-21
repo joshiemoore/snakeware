@@ -134,7 +134,7 @@ class RandomMaze:
                 disjoint_set.union(set_a, set_b)
 
     def list(self):
-        return [[int(w) for w in list(i)] for i in str(self).split("\n")][:-1]
+        return [list(map(int, list(i))) for i in str(self).split("\n")][:-1]
 
 
 class Maze3D:
