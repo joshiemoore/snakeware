@@ -12,9 +12,19 @@ mkdir /snakeuser
 # attempt to mount SNAKEUSER partition to /snakeuser
 # this will fail if no SNAKEUSER partition exists, which is fine,
 # we will just be in the "live" environment with no persistence
-mount -t ext4 /dev/disk/by-label/SNAKEUSER /snakeuser
 
-# cd to the user partition
+for i in $(seq 1 5); do
+    if [ -e /dev/disk/by-label/SNAKEUSER ]; then
+	echo "persistent storage found"
+	sleep 1
+	mount -t ext4 /dev/disk/by-label/SNAKEUSER /snakeuser
+	break
+    else
+	echo "Waiting for persistent storage (try $i)"
+	sleep 1
+    fi
+done
+
 cd /snakeuser
 
 # PYTHON THREE FOREVER BABY!
