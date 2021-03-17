@@ -4,7 +4,7 @@ import pygame
 import pygame_gui
 from pygame_gui.elements.ui_drop_down_menu import UIDropDownMenu
 
-import os, time
+import os
 
 
 path = os.path.dirname(os.path.abspath(__file__))
