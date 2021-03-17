@@ -1,9 +1,5 @@
 import pygame
 import pygame_gui
-
-import time
-
-
 class Stopwatch(pygame_gui.elements.UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
