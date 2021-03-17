@@ -72,7 +72,6 @@ def calc_ra_dec(y, m, d, h):
     d = FNday(y, m, d, h)
 
     w = 282.9404 + 4.70935e-5 * d
-    a = 1.000000
     e = 0.016709 - 1.151e-9 * d
     M = 356.0470 + 0.9856002585 * d
     M = rev(M)
@@ -143,7 +142,6 @@ def plot(x, y, alt, width):
         odat[ix : ix + 3] = ddat[ix : ix + 3]
     elif alt > blur:
         dc = ddat[ix : ix + 3]
-        nc = ndat[ix : ix + 3]
         i = sin(rads * alt)
         shad_int = min(2.0, max(1.0, shad_div / float(100.0 + dc[0] + dc[1] + dc[2])))
         shad_int *= (shad_int - 0.98) ** 0.2  # reduce brightness in deserts
@@ -154,8 +152,7 @@ def plot(x, y, alt, width):
         odat[ix : ix + 3] = ndat[ix : ix + 3]
     else:
         dc = ddat[ix : ix + 3]
-        nc = ndat[ix : ix + 3]
-        odat[ix : ix + 3] = mixp(nc, dc, (alt + blur) / blur / 2.0)
+        odat[ix : ix + 3] = mixp(ndat[ix : ix + 3], dc, (alt + blur) / blur / 2.0)
 
 
 def calc_image(res=DIMS):
@@ -172,9 +169,6 @@ def calc_image(res=DIMS):
 
     y, m, d, h = init()
     ra, dec = calc_ra_dec(y, m, d, h)
-    hx = res[0] / 2
-    hy = res[1] / 2
-
     for y in range(int(res[1])):
         for x in range(res[0]):
             lat, lon = xy2ll(x, y, res)
