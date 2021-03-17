@@ -7,7 +7,7 @@ import pygame
 import pygame_gui
 from pygame_gui.elements.ui_image import UIImage
 
-import sys, time, datetime
+import time, datetime
 
 ORANGE = 204, 100, 0
 YELLOW = 249, 244, 46
