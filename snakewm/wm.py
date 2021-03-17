@@ -5,7 +5,6 @@ Snake Window Manager
 TESTMODE = __name__ == "__main__"
 
 import os
-import sys
 import importlib
 
 import pygame, pygame_gui
