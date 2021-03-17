@@ -364,7 +364,6 @@ class Maze3D:
                 prop = propH
                 wallImg = self.walllight[wallTypeH]
             else:
-                coeffLight = 1.0
                 dist = distV
                 prop = propV
                 wallImg = self.walldark[wallTypeV]
