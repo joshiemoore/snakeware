@@ -1,7 +1,4 @@
 import pygame
-import pygame_gui
-
-from pygame_gui.ui_manager import UIManager
 from pygame_gui.elements.ui_window import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
