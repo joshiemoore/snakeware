@@ -161,9 +161,6 @@ class SnakeApp:
         ):
             print("You lose!")
             self._running = False
-
-        pass
-
     def on_render(self):
         self._display_surf.fill((0, 0, 0))
         self.player.draw(self._display_surf)
