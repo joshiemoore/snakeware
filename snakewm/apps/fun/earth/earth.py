@@ -12,7 +12,7 @@ by Paul Schlyter
 """
 
 from math import *
-import os, sys, time
+import os, time
 
 import pygame
 import pygame_gui
