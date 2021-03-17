@@ -5,9 +5,6 @@ from io import StringIO
 
 import pygame
 import pygame_gui
-
-from pygame_gui.elements import UITextBox
-
 import os
 import json
 
