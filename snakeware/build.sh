@@ -7,7 +7,7 @@ if [ $# != 1 ]; then
   exit
 fi
 
-BUILDROOT_VERSION=2020.05
+BUILDROOT_VERSION=2021.08
 
 SNAKEWARE=$PWD
 IMG=snakeware.img

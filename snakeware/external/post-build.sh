@@ -2,7 +2,7 @@
 # packing the final image.
 
 # set this to the current Python 3.x version
-PYLIBVER=python3.8
+PYLIBVER=python3.9
 
 SNAKEWARE=$PWD/..
 
