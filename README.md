@@ -44,7 +44,7 @@ into on boot. Files and data stored on this partition will persist between boots
 
 To run snakeware on QEMU:
 
-1. [Download and install QEMU](https://www.qemu.org/download/). Supports Linux, macOS, and Windows.
+1. [Download and install QEMU](https://www.qemu.org/download/).
 2. Open your terminal/command prompt.
 3. Navigate to the directory/folder where the snakeware image image was downloaded.
 4. Launch the snakeware ISO using a script similar to this:
@@ -71,7 +71,7 @@ exec qemu-system-x86_64 \
 
 To run snakeware on VirtualBox:
 
-1. [Download and install VirtualBox](https://www.virtualbox.org/wiki/Downloads).  Supports Linux, macOS, and Windows.
+1. [Download and install VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 2. Open and create a new virtual machine with `Type: Linux` and `Version: Other Linux (64-bit)`.
 3. Set virtual hard disk size and RAM (recommended 2GB) to your liking.
 4. After snakeware VM is created, open vm settings, go to `Storage`.
@@ -94,9 +94,13 @@ or
 >>> from snakewm.wm import SnakeWM
 >>> SnakeWM().run()
 ```
-2. To open the app menu press the left WinKey (Left CMD key ⌘ on macOS).
+2. To open the app menu press the Super key.
 
 ## Building
+GNU/Linux is the only supported development platform for snakeware. If you encounter build errors while trying
+to build on Windows or macOS, please ensure the error is reproducible in a GNU/Linux environment before opening
+an issue.
+
 The snakeware build system is based on buildroot. See the `snakeware/` directory in this repo for resources and
 documentation on how to build your own snakeware distro image.
 
