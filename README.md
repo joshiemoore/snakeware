@@ -4,10 +4,6 @@ Python interpreter, which you can use to do whatever you want with your computer
 
 [Check out our latest demo on YouTube!](https://www.youtube.com/watch?v=PYKUnC-k5bA)
 
-[Official Snakeware Discord](https://discord.gg/SAdFjWG)
-
-IRC Channel: `#snakeware` on `irc.rizon.net`.
-
 ![snakeware/snakewm running in QEMU](screenshot.png)
 
 ## Motivation
