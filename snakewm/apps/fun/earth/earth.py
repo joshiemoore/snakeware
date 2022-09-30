@@ -148,7 +148,7 @@ def plot(x, y, alt, width):
         shad_int = min(2.0, max(1.0, shad_div / float(100.0 + dc[0] + dc[1] + dc[2])))
         shad_int *= (shad_int - 0.98) ** 0.2  # reduce brightness in deserts
         odat[ix : ix + 3] = mul_tup(
-            dc, 1.0 + 0.5 * (diff_int * i + i ** spec_exp) * shad_int
+            dc, 1.0 + 0.5 * (diff_int * i + i**spec_exp) * shad_int
         )
     elif alt < -blur:
         odat[ix : ix + 3] = ndat[ix : ix + 3]

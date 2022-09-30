@@ -76,8 +76,8 @@ class Stopwatch(pygame_gui.elements.UIWindow):
             self.time_counter += time_delta
         mili = int(self.time_counter * 100 % 100)
         secs = int(self.time_counter % 60)
-        mins = int((self.time_counter % (60 ** 2)) // 60)
-        hours = int(self.time_counter // (60 ** 2))
+        mins = int((self.time_counter % (60**2)) // 60)
+        hours = int(self.time_counter // (60**2))
 
         counter_str = f"     {str(hours)} : {str(mins)} : {str(secs)} : {str(mili)}"
         self.set_text(counter_str)
