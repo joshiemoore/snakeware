@@ -50,7 +50,7 @@ class Player:
     def update(self):
         """Update"""
 
-        self.updateCount = self.updateCount + 1
+        self.updateCount += 1
         if self.updateCount > self.updateCountMax:
 
             # update previous positions
@@ -60,13 +60,13 @@ class Player:
 
             # update position of head of snake
             if self.direction == 0:
-                self.x[0] = self.x[0] + self.step
+                self.x[0] += self.step
             if self.direction == 1:
-                self.x[0] = self.x[0] - self.step
+                self.x[0] -= self.step
             if self.direction == 2:
-                self.y[0] = self.y[0] - self.step
+                self.y[0] -= self.step
             if self.direction == 3:
-                self.y[0] = self.y[0] + self.step
+                self.y[0] += self.step
 
             self.updateCount = 0
 
@@ -157,7 +157,7 @@ class SnakeApp:
             ):
                 self.apple.x = randint(2, int(self.DIMS[0] / 44) - 2) * 44
                 self.apple.y = randint(2, int(self.DIMS[1] / 44) - 2) * 44
-                self.player.length = self.player.length + 1
+                self.player.length += 1
 
         # does snake collide with itself?
         for i in range(2, self.player.length):

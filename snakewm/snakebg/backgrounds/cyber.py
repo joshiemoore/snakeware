@@ -71,10 +71,10 @@ def drawbg(surface):
         if ty > SURF_HEIGHT / 2:
             pygame.draw.line(surface, (255, 0, 255), (0, ty), (SURF_WIDTH, ty))
 
-        y = y + dy
-        dy = dy + 5
+        y += dy
+        dy += 5
 
-    CYBER_OFFS = CYBER_OFFS + 0.1
+    CYBER_OFFS += 0.1
     if CYBER_OFFS > 10:
         CYBER_OFFS = 0
 
@@ -83,7 +83,7 @@ def drawbg(surface):
         surface, (int(SURF_WIDTH / 2), int(SURF_HEIGHT / 2)), CYBER_SHIP_X / SURF_WIDTH
     )
 
-    CYBER_SHIP_X = CYBER_SHIP_X - int((CYBER_SHIP_X - pygame.mouse.get_pos()[0]) / 50)
+    CYBER_SHIP_X -= int((CYBER_SHIP_X - pygame.mouse.get_pos()[0]) / 50)
 
     # draw stars
     for star in CYBER_STARS:

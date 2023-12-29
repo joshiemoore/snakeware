@@ -57,11 +57,11 @@ class SnakeGameMenu:
         elif resp == "+":
             # next page
             if self.cur_page < int(len(self.LIST) / 10):
-                self.cur_page = self.cur_page + 1
+                self.cur_page += 1
         elif resp == "-":
             # prev page
             if self.cur_page > 0:
-                self.cur_page = self.cur_page - 1
+                self.cur_page -= 1
         elif len(resp) == 1 and resp in self.GAMENUMS:
             # load selected game
             sidx = self.cur_page * 10 + int(resp)

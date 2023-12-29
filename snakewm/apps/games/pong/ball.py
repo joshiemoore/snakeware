@@ -32,7 +32,7 @@ class Ball:
         y_random = random.uniform(-0.5, 0.5)
         x_random = 1.0 - abs(y_random)
         if random.randint(0, 1) == 1:
-            x_random = x_random * -1.0
+            x_random *= -1.0
         self.velocity = [x_random * self.ball_speed, y_random * self.ball_speed]
 
     def reset(self):
@@ -55,7 +55,7 @@ class Ball:
                 collided_this_frame = True
                 if not self.collided:
                     self.collided = True
-                    self.velocity[1] = self.velocity[1] * -1
+                    self.velocity[1] *= -1
 
         for bat in bats:
             if self.rect.colliderect(bat.rect):
@@ -74,7 +74,7 @@ class Ball:
                         normalized_relative_intersect_y * self.max_bat_bounce_angle
                     )
 
-                    self.velocity[0] = self.velocity[0] * -1
+                    self.velocity[0] *= -1
                     self.velocity[1] = self.ball_speed * -math.sin(bounce_angle)
 
         if not collided_this_frame:

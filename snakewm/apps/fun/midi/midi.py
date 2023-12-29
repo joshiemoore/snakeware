@@ -83,7 +83,7 @@ class MidiFile(object):
         num = self.read_byte(file)
 
         if num & 0x80:
-            num = num & 0x7F
+            num &= 0x7F
             while True:
                 counter -= 1
                 c = self.read_byte(file)
@@ -292,11 +292,11 @@ class MIDI(UIWindow):
         super().process_event(event)
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
             self.mselect += 1
-            self.mselect = self.mselect % len(self.mlist)
+            self.mselect %= len(self.mlist)
             load_song(self.screen, RES, self.mlist[self.mselect])
         if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
             self.mselect -= 1
-            self.mselect = self.mselect % len(self.mlist)
+            self.mselect %= len(self.mlist)
             load_song(self.screen, RES, self.mlist[self.mselect])
         if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
             self.tempo += 0.05
@@ -327,7 +327,7 @@ class MIDI(UIWindow):
         if not play(self.screen, RES, TARGET_FPS / self.fps, self.tempo):
             # advance to next song in playlist
             self.mselect += 1
-            self.mselect = self.mselect % len(self.mlist)
+            self.mselect %= len(self.mlist)
             load_song(self.screen, RES, self.mlist[self.mselect])
 
         self.dsurf.image.blit(self.screen, (0, 0))
