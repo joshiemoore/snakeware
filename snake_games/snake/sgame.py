@@ -214,7 +214,7 @@ class SnakeApp:
     def on_execute(self):
         """On execute"""
 
-        if self.on_init() == False:
+        if not self.on_init():
             self._running = False
 
         while self._running:

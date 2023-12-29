@@ -92,7 +92,7 @@ class MidiFile(object):
                 if not (c & 0x80):
                     break
 
-        return (num, counter)
+        return num, counter
 
     def __init__(self, file_name):
         self.tempo = 120

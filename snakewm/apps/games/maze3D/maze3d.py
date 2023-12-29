@@ -224,9 +224,9 @@ class Maze3D:
         """
 
         if self.toggleTurnLeft:
-            self.playerDir = (self.playerDir + self.angleStep) % (two_pi)
+            self.playerDir = (self.playerDir + self.angleStep) % two_pi
         if self.toggleTurnRight:
-            self.playerDir = (self.playerDir - self.angleStep) % (two_pi)
+            self.playerDir = (self.playerDir - self.angleStep) % two_pi
         if self.toggleMoveFw:
             self.move(1)
         if self.toggleMoveBw:
@@ -331,7 +331,7 @@ class Maze3D:
             # ray angle with the horizontal
             rayAngle = (
                 self.playerDir + (self.viewAngle / 2) - r * self.rayAngleStep
-            ) % (two_pi)
+            ) % two_pi
             # check distance with vertical lines (ray goes to the left or right, hence the variables name)
             distH = 100000  # default distance
             propH = 0  # to know what part of the texture to draw
