@@ -5,10 +5,10 @@ Read CPU usage in percent from /proc/stat
 
 import time
 
-
 o = 0
 t = time.time()
 numcpu = 1
+
 for l in open("/proc/stat"):
     x = l.split()
     if l[:3] == "cpu" and len(x[0]) > 3:

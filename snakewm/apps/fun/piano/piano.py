@@ -10,7 +10,6 @@ import pygame
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-
 BLACK = 0, 0, 0
 WHITE = 200, 200, 200
 ORANGE = 255, 255, 255
@@ -187,25 +186,25 @@ class Piano(UIWindow):
 
             # piano key press
             if (
-                event.key == pygame.K_s
-                or event.key == pygame.K_1
-                or event.key == pygame.K_LEFT
+                    event.key == pygame.K_s
+                    or event.key == pygame.K_1
+                    or event.key == pygame.K_LEFT
             ):
                 self.play(0)
             if event.key == pygame.K_d:
                 self.play(2)
             if (
-                event.key == pygame.K_f
-                or event.key == pygame.K_2
-                or event.key == pygame.K_DOWN
+                    event.key == pygame.K_f
+                    or event.key == pygame.K_2
+                    or event.key == pygame.K_DOWN
             ):
                 self.play(4)
             if event.key == pygame.K_g:
                 self.play(5)
             if (
-                event.key == pygame.K_h
-                or event.key == pygame.K_3
-                or event.key == pygame.K_RIGHT
+                    event.key == pygame.K_h
+                    or event.key == pygame.K_3
+                    or event.key == pygame.K_RIGHT
             ):
                 self.play(7)
             if event.key == pygame.K_j:
@@ -213,9 +212,9 @@ class Piano(UIWindow):
             if event.key == pygame.K_k:
                 self.play(11)
             if (
-                event.key == pygame.K_l
-                or event.key == pygame.K_4
-                or event.key == pygame.K_UP
+                    event.key == pygame.K_l
+                    or event.key == pygame.K_4
+                    or event.key == pygame.K_UP
             ):
                 self.play(12)
 
@@ -224,7 +223,7 @@ class Piano(UIWindow):
             if event.key == pygame.K_r:
                 self.play(3)
             if (
-                event.key == pygame.K_y or event.key == pygame.K_z
+                    event.key == pygame.K_y or event.key == pygame.K_z
             ):  # QWERTY/QWERTZ layout
                 self.play(6)
             if event.key == pygame.K_u:
@@ -235,25 +234,25 @@ class Piano(UIWindow):
         # piano key release
         if event.type == pygame.KEYUP:
             if (
-                event.key == pygame.K_s
-                or event.key == pygame.K_1
-                or event.key == pygame.K_LEFT
+                    event.key == pygame.K_s
+                    or event.key == pygame.K_1
+                    or event.key == pygame.K_LEFT
             ):
                 self.stop(0)
             if event.key == pygame.K_d:
                 self.stop(2)
             if (
-                event.key == pygame.K_f
-                or event.key == pygame.K_2
-                or event.key == pygame.K_DOWN
+                    event.key == pygame.K_f
+                    or event.key == pygame.K_2
+                    or event.key == pygame.K_DOWN
             ):
                 self.stop(4)
             if event.key == pygame.K_g:
                 self.stop(5)
             if (
-                event.key == pygame.K_h
-                or event.key == pygame.K_3
-                or event.key == pygame.K_RIGHT
+                    event.key == pygame.K_h
+                    or event.key == pygame.K_3
+                    or event.key == pygame.K_RIGHT
             ):
                 self.stop(7)
             if event.key == pygame.K_j:
@@ -261,9 +260,9 @@ class Piano(UIWindow):
             if event.key == pygame.K_k:
                 self.stop(11)
             if (
-                event.key == pygame.K_l
-                or event.key == pygame.K_4
-                or event.key == pygame.K_UP
+                    event.key == pygame.K_l
+                    or event.key == pygame.K_4
+                    or event.key == pygame.K_UP
             ):
                 self.stop(12)
 
@@ -272,7 +271,7 @@ class Piano(UIWindow):
             if event.key == pygame.K_r:
                 self.stop(3)
             if (
-                event.key == pygame.K_y or event.key == pygame.K_z
+                    event.key == pygame.K_y or event.key == pygame.K_z
             ):  # QWERTY/QWERTZ layout
                 self.stop(6)
             if event.key == pygame.K_u:
@@ -311,8 +310,8 @@ class Piano(UIWindow):
                     "Simon (%u notes correct)" % (self.simonlen - 1)
                 )
             if (
-                self.userseq
-                and self.userseq[-1] != self.simonseq[len(self.userseq) - 1]
+                    self.userseq
+                    and self.userseq[-1] != self.simonseq[len(self.userseq) - 1]
             ):
                 print("WRONG!")
                 self.audio["buzz"].play()

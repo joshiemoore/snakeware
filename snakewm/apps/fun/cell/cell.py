@@ -8,7 +8,6 @@ import pygame
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-
 RULES = (
     18,
     22,

@@ -8,7 +8,6 @@ from pygame.event import Event
 import pygame_gui
 from pygame_gui.elements import UIButton, UIPanel
 
-
 # panel draw layer
 PANEL_LAYER = 10
 

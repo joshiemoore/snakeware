@@ -14,7 +14,6 @@ except ImportError:
     psutil = None
     from .cpuproc import cpuproc, cpuproc2
 
-
 BLUE = 68, 174, 220
 GRAY = 76, 80, 82
 RED = 255, 0, 0

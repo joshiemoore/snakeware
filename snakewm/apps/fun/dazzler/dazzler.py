@@ -8,7 +8,6 @@ import pygame
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-
 RES = 64
 RES2 = RES / 2
 SRES = 640

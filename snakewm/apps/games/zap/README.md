@@ -20,6 +20,7 @@ Martin C. Doege
 + date: 8 Jun 2020
 
 # Credits
+
 * Sound effects created with sfxr (http://www.drpetter.se/project_sfxr.html)
 * Intro fanfare created with PySynth (https://github.com/mdoege/PySynth)
 * Graphics created with GrafX2 (http://grafx2.chez.com/) and GIMP (https://www.gimp.org/)

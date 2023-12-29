@@ -19,7 +19,6 @@ import pygame
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-
 path = os.path.dirname(os.path.abspath(__file__))
 
 day = path + "/d.jpg"  # images for day
@@ -161,22 +160,22 @@ def plot(x, y, alt, width):
 
     ix = 3 * int(y * width + x)
     if alt > blur and not phong:
-        odat[ix : ix + 3] = ddat[ix : ix + 3]
+        odat[ix: ix + 3] = ddat[ix: ix + 3]
     elif alt > blur:
-        dc = ddat[ix : ix + 3]
-        nc = ndat[ix : ix + 3]
+        dc = ddat[ix: ix + 3]
+        nc = ndat[ix: ix + 3]
         i = sin(rads * alt)
         shad_int = min(2.0, max(1.0, shad_div / float(100.0 + dc[0] + dc[1] + dc[2])))
         shad_int *= (shad_int - 0.98) ** 0.2  # reduce brightness in deserts
-        odat[ix : ix + 3] = mul_tup(
+        odat[ix: ix + 3] = mul_tup(
             dc, 1.0 + 0.5 * (diff_int * i + i ** spec_exp) * shad_int
         )
     elif alt < -blur:
-        odat[ix : ix + 3] = ndat[ix : ix + 3]
+        odat[ix: ix + 3] = ndat[ix: ix + 3]
     else:
-        dc = ddat[ix : ix + 3]
-        nc = ndat[ix : ix + 3]
-        odat[ix : ix + 3] = mixp(nc, dc, (alt + blur) / blur / 2.0)
+        dc = ddat[ix: ix + 3]
+        nc = ndat[ix: ix + 3]
+        odat[ix: ix + 3] = mixp(nc, dc, (alt + blur) / blur / 2.0)
 
 
 def calc_image(res=DIMS):

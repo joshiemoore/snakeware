@@ -6,7 +6,6 @@ import time
 import pygame
 from pygame_gui.elements import UITextBox, UIWindow
 
-
 MAXSAMP = 300
 
 

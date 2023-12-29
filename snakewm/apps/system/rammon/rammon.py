@@ -8,7 +8,6 @@ from pygame_gui.elements.ui_image import UIImage
 
 from .ramproc import ramproc
 
-
 BLUE = 68, 174, 220
 GRAY = 76, 80, 82
 

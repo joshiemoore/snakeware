@@ -8,7 +8,6 @@ from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-
 DARK = 33, 41, 46
 WHITE = 255, 255, 255
 GRAY = 76, 80, 82

@@ -1,5 +1,6 @@
 """Snake games"""
 
+
 def menu():
     """Menu for Snake Games"""
 
