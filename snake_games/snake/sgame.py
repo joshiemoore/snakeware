@@ -1,3 +1,5 @@
+"""Snake"""
+
 import os
 from random import randint
 import time
@@ -7,6 +9,8 @@ from pygame.locals import QUIT, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_ESCAPE
 
 
 class Apple:
+    """Apple"""
+
     x = 0
     y = 0
     step = 44
@@ -16,10 +20,14 @@ class Apple:
         self.y = y * self.step
 
     def draw(self, surface):
+        """Draw"""
+
         pygame.draw.rect(surface, (0, 255, 0), (self.x, self.y, 44, 44), 0)
 
 
 class Player:
+    """Player"""
+
     x = [0]
     y = [0]
     step = 44
@@ -40,6 +48,7 @@ class Player:
         self.x[2] = 2 * 44
 
     def update(self):
+        """Update"""
 
         self.updateCount = self.updateCount + 1
         if self.updateCount > self.updateCountMax:
@@ -62,24 +71,37 @@ class Player:
             self.updateCount = 0
 
     def moveRight(self):
+        """Move right"""
+
         self.direction = 0
 
     def moveLeft(self):
+        """Move left"""
+
         self.direction = 1
 
     def moveUp(self):
+        """Move up"""
         self.direction = 2
 
     def moveDown(self):
+        """Move down"""
+
         self.direction = 3
 
     def draw(self, surface):
+        """Draw"""
+
         for i in range(0, self.length):
             pygame.draw.rect(surface, (255, 0, 0), (self.x[i], self.y[i], 44, 44), 0)
 
 
 class Game:
+    """Game"""
+
     def isCollision(self, x1, y1, x2, y2, bsize):
+        """isCollision"""
+
         if x1 >= x2 and x1 <= x2 + bsize:
             if y1 >= y2 and y1 <= y2 + bsize:
                 return True
@@ -87,6 +109,8 @@ class Game:
 
 
 class SnakeApp:
+    """Snake App"""
+
     player = 0
     apple = 0
 
@@ -100,6 +124,8 @@ class SnakeApp:
         self.apple = Apple(5, 5)
 
     def on_init(self):
+        """On init"""
+
         pygame.init()
 
         # initialize pygame to the framebuffer
@@ -114,10 +140,14 @@ class SnakeApp:
         self._running = True
 
     def on_event(self, event):
+        """On event"""
+
         if event.type == QUIT:
             self._running = False
 
     def on_loop(self):
+        """On loop"""
+
         self.player.update()
 
         # does snake eat apple?
@@ -166,16 +196,22 @@ class SnakeApp:
         pass
 
     def on_render(self):
+        """On render"""
+
         self._display_surf.fill((0, 0, 0))
         self.player.draw(self._display_surf)
         self.apple.draw(self._display_surf)
         pygame.display.flip()
 
     def on_cleanup(self):
+        """On cleanup"""
+
         pygame.quit()
         exit(0)
 
     def on_execute(self):
+        """On execute"""
+
         if self.on_init() == False:
             self._running = False
 

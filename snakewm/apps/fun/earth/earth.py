@@ -42,6 +42,8 @@ UPDATE = 600  # update every ten minutes
 
 
 def init():
+    """Init"""
+
     t = time.gmtime(time.time())
     y = t[0]
     m = t[1]
@@ -53,15 +55,20 @@ def init():
     return y, m, d, h
 
 
-#   Get the days to J2000
-#   h is UT in decimal hours
-#   FNday only works between 1901 to 2099 - see Meeus chapter 7
 def FNday(y, m, d, h):
+    """
+    Get the days to J2000
+    h is UT in decimal hours
+    FNday only works between 1901 and 2099 - see Meeus chapter 7
+    """
+
     days = 367 * y - 7 * (y + (m + 9) // 12) // 4 + 275 * m // 9 + d - 730530 + h / 24.0
     return float(days)
 
 
 def rev(x):
+    """Rev"""
+
     rv = x - int(x / 360) * 360
     if rv < 0:
         rv += 360
@@ -69,6 +76,8 @@ def rev(x):
 
 
 def calc_ra_dec(y, m, d, h):
+    """Calc ra dec"""
+
     global L
 
     d = FNday(y, m, d, h)
@@ -101,6 +110,8 @@ def calc_ra_dec(y, m, d, h):
 
 
 def calc_alt(RA, Decl, lat, long, h):
+    """Calc alt"""
+
     GMST0 = (L * rads + 180 * rads) / 15 * degs
     SIDTIME = GMST0 + h + long / 15
     HA = rev((SIDTIME - RA)) * 15
@@ -120,12 +131,16 @@ def calc_alt(RA, Decl, lat, long, h):
 
 
 def xy2ll(x, y, res):
+    """xy2ll"""
+
     lat = 90.0 - float(y) / res[1] * 180.0
     lon = float(x) / res[0] * 360.0 - 180.0
     return lat, lon
 
 
 def mixp(a, b, x):
+    """mixp"""
+
     c = []
     for ai, bi in zip(a, b):
         c.append(int((1 - x) * ai + x * bi))
@@ -133,6 +148,8 @@ def mixp(a, b, x):
 
 
 def mul_tup(a, x):
+    """mul tup"""
+
     b = []
     for i in a:
         b.append(int(x * i))
@@ -140,6 +157,8 @@ def mul_tup(a, x):
 
 
 def plot(x, y, alt, width):
+    """plot"""
+
     ix = 3 * int(y * width + x)
     if alt > blur and not phong:
         odat[ix : ix + 3] = ddat[ix : ix + 3]
@@ -161,6 +180,8 @@ def plot(x, y, alt, width):
 
 
 def calc_image(res=DIMS):
+    """Calc image"""
+
     global ddd, nnn, ddat, ndat, odat
 
     assert res[1] % 2 == 0, "Odd vertical resolutions not supported."
@@ -191,6 +212,8 @@ def calc_image(res=DIMS):
 
 
 class Earth(UIWindow):
+    """Earth"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (DIMS[0] + 32, DIMS[1] + 60)),
@@ -210,9 +233,13 @@ class Earth(UIWindow):
         self.start = True
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         if self.start:
             self.start = False

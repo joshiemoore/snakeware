@@ -1,10 +1,11 @@
+"""Piano"""
+
 from .piano import Piano
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Piano.
-    """
+    """Create and launch a new instance of Piano."""
+
     # default position
     pos = (100, 100)
 

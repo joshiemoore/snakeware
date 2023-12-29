@@ -1,4 +1,4 @@
-# Help browser for Snakeware
+"""Help browser for Snakeware"""
 
 import os
 
@@ -11,11 +11,15 @@ path = os.path.dirname(os.path.abspath(__file__))
 
 
 def appname(x):
+    """App name"""
+
     l = x.split("/")
     return l[-2]
 
 
 def gethelp():
+    """Get help"""
+
     d = path + "/../.."
     h = []
     for root, dirs, files in os.walk(d, topdown=False):
@@ -27,6 +31,8 @@ def gethelp():
 
 
 class Help(UIWindow):
+    """Help window"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (630, 490)),
@@ -64,9 +70,13 @@ class Help(UIWindow):
         self.last = 0
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
     def update(self, time_delta):
+        """Update"""
+
         super().update(time_delta)
 
         n = self.menu.selected_option
@@ -85,5 +95,7 @@ class Help(UIWindow):
         self.set_text(s)
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox.html_text = text
         self.textbox.rebuild()

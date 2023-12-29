@@ -1,4 +1,4 @@
-# RAM usage monitor
+"""RAM usage monitor"""
 
 import time
 
@@ -14,6 +14,8 @@ GRAY = 76, 80, 82
 
 
 class SnakeMon(UIWindow):
+    """Snake Monitor"""
+
     DIMS = (200, 100)
 
     def __init__(self, pos, manager):
@@ -37,9 +39,13 @@ class SnakeMon(UIWindow):
         self.last_time = 0
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         # limit frame rate to 4 FPS
         if time.time() - self.last_time > 0.25:
@@ -48,6 +54,8 @@ class SnakeMon(UIWindow):
         self.dsurf.image.blit(self.ram, (0, 0))
 
     def draw_ram(self):
+        """Draw RAM"""
+
         ram_perc = ramproc()
         self.ram.scroll(dx=-1)
         pygame.draw.line(

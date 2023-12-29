@@ -1,10 +1,11 @@
+"""Ram monitor"""
+
 from .rammon import SnakeMon
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of SnakeMon.
-    """
+    """Create and launch a new instance of SnakeMon."""
+
     # default position
     pos = (100, 100)
 

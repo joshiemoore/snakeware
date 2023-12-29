@@ -1,3 +1,5 @@
+"""Pong"""
+
 from pygame import Surface
 from pygame.font import Font
 from pygame.locals import K_w, K_s, K_UP, K_DOWN
@@ -9,6 +11,8 @@ from .score import Score
 
 
 class PongGame:
+    """Pong game"""
+
     def __init__(self, size):
         self.size = size
         self.background = Surface(size)  # make a background surface
@@ -42,10 +46,14 @@ class PongGame:
         self.ball = Ball((int(size[0] / 2), int(size[1] / 2)))
 
     def process_event(self, event):
+        """Process event"""
+
         for bat in self.bats:
             bat.process_event(event)
 
     def update(self, time_delta):
+        """Update"""
+
         for bat in self.bats:
             bat.update(time_delta)
 
@@ -59,6 +67,8 @@ class PongGame:
             self.score.increase_player_1_score()
 
     def draw(self, surface):
+        """Draw"""
+
         surface.blit(self.background, (0, 0))
 
         for wall in self.walls:

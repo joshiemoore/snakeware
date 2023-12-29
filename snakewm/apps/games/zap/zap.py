@@ -1,4 +1,4 @@
-# Zap
+"""Zap"""
 
 from math import sin, cos, pi
 import os
@@ -24,6 +24,8 @@ NEWBASE = 75000  # score for a bonus base
 
 
 class Zap(UIWindow):
+    """Zap"""
+
     res = SRES, int(0.75 * SRES)
 
     def __init__(self, pos, manager):
@@ -97,6 +99,8 @@ class Zap(UIWindow):
             pygame.draw.line(self.starfield, (120, 120, 120), (x, y), (x, y))
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.MOUSEBUTTONUP and (
@@ -126,7 +130,8 @@ class Zap(UIWindow):
             self.dir = 3
 
     def incscore(self, x):
-        "Increase score and highscore"
+        """Increase score and highscore"""
+
         self.score += x
         self.hiscore = max(self.score, self.hiscore)
         print("S/HS", self.score, self.hiscore)
@@ -134,7 +139,8 @@ class Zap(UIWindow):
         print(self.bases + self.bonus, "BASES")
 
     def fire(self):
-        "Trigger has been pulled, check if anything has been hit"
+        """Trigger has been pulled, check if anything has been hit"""
+
         self.audio["fire"].play()
         self.lasertime = time.time()
         if self.satstage:
@@ -171,11 +177,13 @@ class Zap(UIWindow):
             return
 
     def station(self, s):
-        "Draw the station"
+        """Draw the station"""
+
         self.dazz.blit(self.img["station"], (CENTER[0] - s, CENTER[1] - s))
 
     def enemy(self, s):
-        "Draw enemy fighters"
+        """Draw enemy fighters"""
+
         x, y = (
             int(self.shipdist * sin(PI2 * self.shipdir)),
             int(self.shipdist * cos(PI2 * self.shipdir)),
@@ -185,13 +193,15 @@ class Zap(UIWindow):
         )
 
     def photons(self, s):
-        "Draw photon torpedoes"
+        """Draw photon torpedoes"""
+
         for n in range(4):
             x, y = (int(self.phot[n] * sin(PI2 * n)), int(self.phot[n] * cos(PI2 * n)))
             self.dazz.blit(self.img["photon"], (CENTER[0] - s + x, CENTER[1] - s - y))
 
     def sat(self, s):
-        "Draw attack satellite"
+        """Draw attack satellite"""
+
         x, y = (
             int(self.satdist * sin(PI2 * self.satdir)),
             int(self.satdist * cos(PI2 * self.satdir)),
@@ -199,7 +209,8 @@ class Zap(UIWindow):
         self.dazz.blit(self.img["sat"], (CENTER[0] - s + x, CENTER[1] - s - y))
 
     def gun(self):
-        "Draw the station's gun"
+        """Draw the station's gun"""
+
         pygame.draw.line(
             self.dazz,
             (255, 255, 0),
@@ -211,7 +222,8 @@ class Zap(UIWindow):
         )
 
     def laser(self):
-        "Draw a laser shot from the station"
+        """Draw a laser shot from the station"""
+
         dist = min(100, self.shipdist, self.phot[self.dir])
         if time.time() - self.lasertime < 0.1:
             pygame.draw.line(
@@ -225,7 +237,8 @@ class Zap(UIWindow):
             )
 
     def scores(self):
-        "Draw score and highscore display"
+        """Draw score and highscore display"""
+
         for n, c in enumerate("%u" % self.score):
             i = int(c)
             self.dazz.blit(self.img["num"], (5 * n, 6), area=(5 * i, 0, 5, 5))
@@ -242,7 +255,8 @@ class Zap(UIWindow):
         self.dazz.blit(self.img["text"], (0, RESY - 5), area=(0, 6, 28, 5))
 
     def endgame(self):
-        "The station has been destroyed"
+        """The station has been destroyed"""
+
         self.bases -= 1
         print(self.bases + self.bonus, "BASES")
         if self.bases + self.bonus > 0:
@@ -261,8 +275,10 @@ class Zap(UIWindow):
             self.attract = True
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
-        "Main loop"
+
         if self.paused and not self.step:
             return
         self.step = False

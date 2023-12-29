@@ -1,4 +1,4 @@
-# The Dazzler
+"""The Dazzler"""
 
 from math import pi, sin, cos
 import random
@@ -16,6 +16,8 @@ FPS = 15
 
 
 class Snazzler(UIWindow):
+    """Snazzler"""
+
     DIMS = SRES, int(0.75 * SRES)
 
     def __init__(self, pos, manager):
@@ -43,6 +45,8 @@ class Snazzler(UIWindow):
         self.manager = manager
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.MOUSEBUTTONUP and (
@@ -57,12 +61,16 @@ class Snazzler(UIWindow):
             self.step = True
 
     def draw(self, x, y, c):
+        """Draw"""
+
         pygame.draw.line(self.dazz, c, (RES2 + x, RES2 + y), (RES2 + x, RES2 + y))
         pygame.draw.line(self.dazz, c, (RES2 - x, RES2 + y), (RES2 - x, RES2 + y))
         pygame.draw.line(self.dazz, c, (RES2 + x, RES2 - y), (RES2 + x, RES2 - y))
         pygame.draw.line(self.dazz, c, (RES2 - x, RES2 - y), (RES2 - x, RES2 - y))
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         if (self.paused and not self.step) or (time.time() - self.lastframe < 1 / FPS):
             return

@@ -1,10 +1,11 @@
+"""Earth"""
+
 from .earth import Earth
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Earth.
-    """
+    """Create and launch a new instance of Earth."""
+
     # default position
     pos = (100, 100)
 

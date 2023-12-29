@@ -1,3 +1,5 @@
+"""Terminal"""
+
 from io import StringIO
 import json
 import os
@@ -9,6 +11,8 @@ from pygame_gui.elements import UITextBox, UITextEntryLine, UIWindow
 
 
 class SnakeTerm(UIWindow):
+    """Snake terminal"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (400, 300)),
@@ -57,6 +61,8 @@ class SnakeTerm(UIWindow):
         self.hotkeys = self.get_hotkeys()
 
     def get_hotkeys(self):
+        """Get hotkeys"""
+
         current_dir = os.path.dirname(os.path.abspath(__file__))
         try:  # first attmept to load user hotkeys
             with open(current_dir + "/user_hotkeys.json", "r") as f:
@@ -75,10 +81,14 @@ class SnakeTerm(UIWindow):
         return key_config
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox.html_text = text.replace("\n", "<br>")
         self.textbox.rebuild()
 
     def clear_text(self):
+        """Clear text"""
+
         self.set_text(str())
 
     def jump_left(self):
@@ -110,6 +120,8 @@ class SnakeTerm(UIWindow):
         self.input.edit_position = ep
 
     def append_text(self, text, is_command=False):
+        """Append text"""
+
         if is_command:
             self.textbox.html_text += ">>> " + text.replace("\n", "<br>") + "<br>"
         else:
@@ -122,11 +134,15 @@ class SnakeTerm(UIWindow):
             self.textbox.scroll_bar.scroll_wheel_down = True
 
     def add_to_history(self, command):
+        """Add to history"""
+
         self.history = [command] + self.history
         if len(self.history) > self.histsize:
             del self.history[-1]
 
     def set_from_history(self):
+        """Set from history"""
+
         if self.histindex > -1:
             self.input.set_text(self.history[self.histindex])
         else:
@@ -134,6 +150,8 @@ class SnakeTerm(UIWindow):
         self.input.edit_position = len(self.input.get_text())
 
     def set_histindex(self, increment):
+        """Set histindex"""
+
         try:
             self.history[self.histindex + increment]
             self.histindex += increment
@@ -142,12 +160,18 @@ class SnakeTerm(UIWindow):
         return self.histindex
 
     def cache_command(self):
+        """Cache command"""
+
         self.cached_command = self.input.get_text()
 
     def flush_command_cache(self):
+        """Flush command cache"""
+
         self.cached_command = str()
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
         if event.type == pygame.KEYUP and event.key == pygame.K_RETURN:

@@ -4,9 +4,8 @@ from .aclock import SnakeAClock
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of SnakeAClock.
-    """
+    """Create and launch a new instance of SnakeAClock."""
+
     # default position
     pos = (100, 100)
 

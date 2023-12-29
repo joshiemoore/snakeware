@@ -1,3 +1,5 @@
+"""Background image"""
+
 import os
 
 import pygame
@@ -5,9 +7,7 @@ import pygame_gui
 
 
 def load(manager, params):
-    """
-    Launch a file dialog to change the desktop background.
-    """
+    """Launch a file dialog to change the desktop background."""
 
     # default position
     pos = (30, 30)

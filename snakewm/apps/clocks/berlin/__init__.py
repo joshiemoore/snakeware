@@ -1,10 +1,11 @@
+"""Berlin"""
+
 from .berlin import Berlin
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Berlin.
-    """
+    """Create and launch a new instance of Berlin."""
+
     # default position
     pos = (100, 100)
 

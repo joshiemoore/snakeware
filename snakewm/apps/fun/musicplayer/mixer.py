@@ -1,7 +1,10 @@
+"""Mixer"""
+
 from pygame import mixer
 
 
 class Mixer(object):
+    """Mixer"""
 
     # init pygame mixer
     def __init__(self):
@@ -10,40 +13,49 @@ class Mixer(object):
     # load selected music
     @classmethod
     def load(cls, file):
+        """Load"""
+
         mixer.music.load(file)
 
-    # play music
     @classmethod
     def play(cls):
+        """Play music"""
+
         mixer.music.play()
 
-    # pause music
     @classmethod
     def pause(cls):
+        """Pause music"""
+
         cls.isPaused = True
         mixer.music.pause()
 
-    # resume music
     @classmethod
     def resume(cls):
+        """Resume music"""
+
         mixer.music.unpause()
 
-    # rewind music
     @classmethod
     def rewind(cls):
+        """Rewind music"""
+
         mixer.music.rewind()
 
-    # stop music
     @classmethod
     def stop(cls):
+        """Stop music"""
+
         mixer.music.stop()
 
-    # change volume - 0.0 to 1.0
     @classmethod
     def set_volume(cls, value):
+        """Change volume - 0.0 to 1.0"""
+
         mixer.music.set_volume(value)
 
-    # show the music volume
     @classmethod
     def get_volume(cls):
+        """Get the music volume"""
+
         return float(mixer.music.get_volume())

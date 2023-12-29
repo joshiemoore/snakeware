@@ -1,10 +1,11 @@
+"""Tix"""
+
 from .tix import TIX
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of TIX.
-    """
+    """Create and launch a new instance of TIX."""
+
     # default position
     pos = (100, 100)
 

@@ -8,9 +8,12 @@ import os
 import random
 
 import pygame
+from pygame.locals import FULLSCREEN, KEYDOWN, K_ESCAPE
 
 
 class CirclezApp:
+    """Circlez App"""
+
     def __init__(self):
         pygame.init()
 
@@ -22,7 +25,7 @@ class CirclezApp:
         self.DIMS = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 
         # init screen
-        self.SCREEN = pygame.display.set_mode(self.DIMS, pygame.FULLSCREEN)
+        self.SCREEN = pygame.display.set_mode(self.DIMS, FULLSCREEN)
 
         # init background
         self.BG = pygame.Surface((self.DIMS))
@@ -32,11 +35,13 @@ class CirclezApp:
         pygame.display.update()
 
     def run(self):
+        """Run Circlez App"""
+
         clock = pygame.time.Clock()
 
         while True:
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                if event.type == KEYDOWN and event.key == K_ESCAPE:
                     exit()
 
             pygame.draw.circle(

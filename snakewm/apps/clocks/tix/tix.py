@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-# Displays the TIX clock
-# 2011-01-08 / 2020-06-12
+"""
+Displays the TIX clock
+2011-01-08 / 2020-06-12
+"""
 
 # Usage: tix.py [update interval] [--24]
 
@@ -33,7 +35,8 @@ else:
 
 
 def tog(start, end, n, col=2):
-    "Toggle on n values randomly in the array between start and end"
+    """Toggle on n values randomly in the array between start and end"""
+
     global disp
 
     for z in random.sample(range(3 * (end - start)), n):
@@ -41,6 +44,8 @@ def tog(start, end, n, col=2):
 
 
 def mainprog(win, res):
+    """Main prog"""
+
     global disp
 
     boxx, boxy = res[0] // 12, res[0] // 12
@@ -60,6 +65,8 @@ def mainprog(win, res):
 
 
 class TIX(UIWindow):
+    """TIX"""
+
     res = 420, 105
 
     def __init__(self, pos, manager):
@@ -84,6 +91,8 @@ class TIX(UIWindow):
         self.last = 0
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.MOUSEBUTTONUP and (
@@ -94,6 +103,8 @@ class TIX(UIWindow):
             self.__init__((r.left, r.top), self.manager)
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         if time.time() - self.last < inter:
             return

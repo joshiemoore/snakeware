@@ -1,10 +1,14 @@
-# Read RAM usage in percent from /proc/meminfo
-# (only works on Linux)
+"""
+Read RAM usage in percent from /proc/meminfo
+(only works on Linux)
+"""
 
 import time
 
 
 def isolate_num(text):
+    """Isolate num"""
+
     digits = ""
     for c in text:
         if c in "0123456789":
@@ -13,6 +17,8 @@ def isolate_num(text):
 
 
 def ramproc():
+    """RAM proc"""
+
     file = open("/proc/meminfo").read().split("\n")
 
     total = isolate_num(file[0])
@@ -22,6 +28,8 @@ def ramproc():
 
 
 def ramproc2():
+    """RAM proc 2"""
+
     file = open("/proc/meminfo").read().split("\n")
 
     total = isolate_num(file[0])

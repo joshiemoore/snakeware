@@ -1,10 +1,15 @@
+"""Clock"""
+
 import datetime
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UITextBox, UIWindow
 
 
 class SnakeClock(UIWindow):
+    """Snake clock"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (195, 100)),
@@ -27,10 +32,14 @@ class SnakeClock(UIWindow):
             },
         )
 
-    def process_event(self, event):
-        super().process_event(event)
+    def process_event(self, event: Event) -> bool:
+        """Process event"""
 
-    def update(self, time_delta):
+        return super().process_event(event)
+
+    def update(self, time_delta: float) -> None:
+        """Update"""
+
         super().update(time_delta)
 
         dt = datetime.datetime.now()
@@ -40,5 +49,7 @@ class SnakeClock(UIWindow):
         self.set_text(current_time)
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox.html_text = text
         self.textbox.rebuild()

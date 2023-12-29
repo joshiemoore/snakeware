@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Toy piano and Simon/Atari Touch Me game in PyGame
+"""Toy piano and Simon/Atari Touch Me game in PyGame"""
 
 import os
 import random
@@ -48,6 +48,8 @@ SIMONCOL = (
 
 
 class Piano(UIWindow):
+    """Piano"""
+
     def __init__(self, pos, manager):
         self.res = 800, H + 150
         super().__init__(
@@ -86,7 +88,8 @@ class Piano(UIWindow):
         self.userseq = []
 
     def load_inst(self):
-        "Load instrument samples"
+        """Load instrument samples"""
+
         self.audio, self.sustain = {}, {}
         if self.octave == 0:
             o = "_low"
@@ -105,16 +108,20 @@ class Piano(UIWindow):
         self.setvol()
 
     def setvol(self):
-        "Set volume for all loaded sounds"
+        """Set volume for all loaded sounds"""
+
         for n in range(13):
             self.audio[n].set_volume(self.volume / 10)
             self.sustain[n].set_volume(self.volume / 10)
 
     def setoct(self):
-        "Change octave"
+        """Change octave"""
+
         self.load_inst()
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.QUIT:
@@ -274,14 +281,16 @@ class Piano(UIWindow):
                 self.stop(10)
 
     def play(self, k, user=True):
-        "Play a note"
+        """Play a note"""
+
         self.audio[k].play()
         if user and self.sust:
             self.sustain[k].play(loops=-1)
         self.keys[k] = True
 
     def stop(self, k, user=True):
-        "Stop playing a note"
+        """Stop playing a note"""
+
         if self.sust:
             self.audio[k].stop()
         self.sustain[k].stop()
@@ -314,22 +323,26 @@ class Piano(UIWindow):
                 self.userseq = []
 
     def stopall(self):
-        "Stop all notes"
+        """Stop all notes"""
+
         for k in range(13):
             self.sustain[k].stop()
             self.keys[k] = False
 
     def draw_wkey(self, k, c):
-        "Draw white key"
+        """Draw white key"""
+
         pygame.draw.rect(self.win, BLACK, (100 * k, 0, 100, H))
         pygame.draw.rect(self.win, c, (int(100 * k + LW / 2), LW, 100 - LW, H - 2 * LW))
 
     def draw_bkey(self, k, c):
-        "Draw black key"
+        """Draw black key"""
+
         pygame.draw.rect(self.win, c, (100 * k - BKW, 0, 2 * BKW, BKH))
 
     def pos2key(self, x, y):
-        "Get key number from mouse click position"
+        """Get key number from mouse click position"""
+
         for k in 1, 2, 4, 5, 6:
             if y < BKH and (100 * k - BKW < x < 100 * k + BKW):
                 return bkeys[k]
@@ -338,6 +351,8 @@ class Piano(UIWindow):
                 return wkeys[k]
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         # Simon plays its melody
         if self.simon and self.simonplay:

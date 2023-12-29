@@ -1,4 +1,4 @@
-# CPU usage monitor
+"""CPU usage monitor"""
 
 import time
 
@@ -21,6 +21,8 @@ RED = 255, 0, 0
 
 
 class SnakeMon(pygame_gui.elements.UIWindow):
+    """Snake Monitor"""
+
     DIMS = (200, 100)
 
     def __init__(self, pos, manager):
@@ -79,9 +81,13 @@ class SnakeMon(pygame_gui.elements.UIWindow):
         self.last_time = 0
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         # limit frame rate to 4 FPS
         if time.time() - self.last_time > 0.25:
@@ -98,6 +104,8 @@ class SnakeMon(pygame_gui.elements.UIWindow):
             self.set_text2("%s" % cpuproc2())
 
     def draw_cpu(self):
+        """Draw CPU"""
+
         if psutil:
             cpu_perc = int(psutil.cpu_percent(interval=None))
         else:
@@ -119,6 +127,8 @@ class SnakeMon(pygame_gui.elements.UIWindow):
         )
 
     def draw_ram(self):
+        """Draw RAM"""
+
         ram_perc = ramproc()
         self.ram.scroll(dx=-1)
         pygame.draw.line(
@@ -137,9 +147,13 @@ class SnakeMon(pygame_gui.elements.UIWindow):
         )
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox_ram.html_text = text
         self.textbox_ram.rebuild()
 
     def set_text2(self, text):
+        """Set text"""
+
         self.textbox_cpu.html_text = text
         self.textbox_cpu.rebuild()

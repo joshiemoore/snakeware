@@ -1,10 +1,11 @@
+"""Snake calculator"""
+
 from .calc import SnakeCalc
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of SnakeCalc.
-    """
+    """Create and launch a new instance of SnakeCalc."""
+
     # default position
     pos = (100, 100)
 

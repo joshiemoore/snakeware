@@ -1,9 +1,10 @@
-# Analog PyGame clock
+"""Analog PyGame clock"""
 
 import datetime
 from math import pi, sin, cos
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -15,6 +16,8 @@ RED = 255, 0, 0
 
 
 class SnakeAClock(UIWindow):
+    """Snake AClock"""
+
     DIMS = (300, 300)
 
     def __init__(self, pos, manager):
@@ -37,7 +40,14 @@ class SnakeAClock(UIWindow):
         self.clean_dial = self.dial.copy()
         self.manager = manager
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
+        """Process event
+        Overrides method in UIWindow.
+
+        :return bool: Return True if this element should consume this event and not pass it to the
+                      rest of the UI.
+        """
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.MOUSEBUTTONUP and (
@@ -47,16 +57,27 @@ class SnakeAClock(UIWindow):
             super().kill()
             self.__init__((r.left, r.top), self.manager)
 
-    def update(self, delta):
-        super().update(delta)
+        return True
+
+    def update(self, time_delta: float) -> None:
+        """Update
+
+        :param time_delta: time passed in seconds between one call to this method and the next.
+        """
+
+        super().update(time_delta)
         self.dial = self.clean_dial.copy()
         self.draw_hands()
         self.dsurf.image.blit(self.dial, (0, 0))
 
     def clocksize(self):
+        """Clock size"""
+
         return int(0.95 * min(self.DIMS) / 2)
 
     def diam(self, x, r1, r2, r3, dx):
+        """Diameter"""
+
         x1, y1 = (
             r1 * self.clocksize() * sin(x * pi / 180),
             r1 * self.clocksize() * cos(x * pi / 180),
@@ -82,6 +103,8 @@ class SnakeAClock(UIWindow):
         pygame.draw.polygon(self.dial, WHITE, p)
 
     def draw_dial(self):
+        """Draw dial"""
+
         self.dial = pygame.Surface(self.DIMS)
         self.dial.fill(DARK)
         pygame.draw.circle(
@@ -118,6 +141,8 @@ class SnakeAClock(UIWindow):
                 self.diam(x, 0.95, 0.95, 0.87, 1)
 
     def draw_hands(self):
+        """Draw hands"""
+
         # hour hand
         now = datetime.datetime.now()
         x = 30 * ((now.hour - 12) % 12) + now.minute / 2

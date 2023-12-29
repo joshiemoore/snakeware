@@ -1,10 +1,11 @@
+"""MIDI"""
+
 from .midi import MIDI
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Midi.
-    """
+    """Create and launch a new instance of Midi."""
+
     # default position
     pos = (100, 100)
 

@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-# Displays the Berlin clock
-# 2020-06-13
+"""
+Displays the Berlin clock
+2020-06-13
+"""
 
 import datetime
 import time
@@ -9,7 +11,6 @@ import time
 import pygame
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
-
 
 ORANGE = 204, 100, 0
 YELLOW = 249, 244, 46
@@ -21,6 +22,8 @@ inter = 0.1
 
 
 def mainprog(win, res):
+    """Main prog"""
+
     box4, box11, boxy = res[0] // 4, res[0] // 11, res[1] // 5
 
     now = datetime.datetime.now()
@@ -91,6 +94,8 @@ def mainprog(win, res):
 
 
 class Berlin(UIWindow):
+    """Berlin"""
+
     res = RES
 
     def __init__(self, pos, manager):
@@ -115,6 +120,10 @@ class Berlin(UIWindow):
         self.last = 0
 
     def process_event(self, event):
+        """Process event
+        Overrides method in UIWindow.
+        """
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.MOUSEBUTTONUP and (
@@ -124,7 +133,11 @@ class Berlin(UIWindow):
             super().kill()
             self.__init__((r.left, r.top), self.manager)
 
-    def update(self, delta):
+    def update(self, delta: float) -> None:
+        """Update
+        Overrides method in UIWindow.
+        """
+
         super().update(delta)
         if time.time() - self.last < inter:
             return

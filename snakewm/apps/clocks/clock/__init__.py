@@ -1,10 +1,11 @@
+"""Clock"""
+
 from .clock import SnakeClock
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of SnakeClock.
-    """
+    """Create and launch a new instance of SnakeClock."""
+
     # default position
     pos = (100, 100)
 

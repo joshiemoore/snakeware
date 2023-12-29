@@ -1,3 +1,5 @@
+"""Snake terminal"""
+
 from .term import SnakeTerm
 
 

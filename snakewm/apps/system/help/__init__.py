@@ -1,10 +1,11 @@
+"""Help"""
+
 from .help import Help
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Help.
-    """
+    """Create and launch a new instance of Help."""
+
     # default position
     pos = (100, 100)
 

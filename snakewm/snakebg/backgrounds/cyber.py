@@ -22,6 +22,8 @@ CYBER_SHIP_X = 200
 
 
 def drawbg(surface):
+    """Draw background"""
+
     global CYBER_OFFS
     global CYBER_STARS
     global CYBER_SHIP_X
@@ -100,7 +102,7 @@ def drawbg(surface):
 
 def draw_ship(surface, origin, dx):
     """
-    Draw the "space ship"
+    Draw the "spaceship"
     origin - tuple representing center of the screen
     dx - (shipX / screen_width)
     """

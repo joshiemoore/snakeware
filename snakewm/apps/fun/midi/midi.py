@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-# Based on code from https://github.com/osakared/midifile.py
-# which appears to be based on
-# https://github.com/gasman/jasmid/blob/master/midifile.js
+"""
+Based on code from https://github.com/osakared/midifile.py
+which appears to be based on
+https://github.com/gasman/jasmid/blob/master/midifile.js
 
 # Original license:
 
-"""
 Copyright (c) 2014, Thomas J. Webb
 All rights reserved.
 
@@ -63,16 +63,22 @@ class Note(object):
         return s
 
     def get_end(self):
+        """Get end"""
+
         return self.start + self.duration
 
 
 class MidiFile(object):
-    "Represents the notes in a MIDI file"
+    """Represents the notes in a MIDI file"""
 
     def read_byte(self, file):
+        """Read byte"""
+
         return struct.unpack("B", file.read(1))[0]
 
     def read_variable_length(self, file, counter):
+        """Read variable length"""
+
         counter -= 1
         num = self.read_byte(file)
 
@@ -195,7 +201,8 @@ SONG_DIR = PATH + "/goldberg"
 
 
 def ini(s, res):
-    "Load samples"
+    """Load samples"""
+
     global audio
 
     audio = {}
@@ -206,7 +213,8 @@ def ini(s, res):
 
 
 def load_song(s, res, fn):
-    "Load song data"
+    """Load song data"""
+
     global notes, t, inc, first, last
 
     notes = []
@@ -225,7 +233,8 @@ def load_song(s, res, fn):
 
 
 def play(s, res, fpsfac, tfac):
-    "Play all notes that should trigger during this PyGame frame"
+    """Play all notes that should trigger during this PyGame frame"""
+
     global t
     s.scroll(dx=-2)
     pygame.draw.rect(s, BACKGROUND, [RES[0] - 2, 0, 2, RES[1]])
@@ -246,6 +255,8 @@ def play(s, res, fpsfac, tfac):
 
 
 class MIDI(UIWindow):
+    """MIDI"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (RES[0] + 32, RES[1] + 60)),
@@ -276,6 +287,8 @@ class MIDI(UIWindow):
         self.paused = False
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
             self.mselect += 1
@@ -293,6 +306,8 @@ class MIDI(UIWindow):
             self.paused = not self.paused
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         # measure FPS for automatic adjustment
         if self.calib > 0:

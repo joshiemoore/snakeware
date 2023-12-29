@@ -1,10 +1,11 @@
+"""Cell"""
+
 from .cell import Cell
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Cell.
-    """
+    """Create and launch a new instance of Cell."""
+
     # default position
     pos = (100, 100)
 

@@ -1,3 +1,5 @@
+"""Speak"""
+
 import re
 import threading
 
@@ -8,6 +10,8 @@ import pyttsx3
 
 
 class SpeakSpell(UIWindow):
+    """Speak Spell"""
+
     speakthrd = None
 
     def __init__(self, pos, manager):
@@ -58,6 +62,8 @@ class SpeakSpell(UIWindow):
         self.cached_command = ""
 
     def speak(self, text):
+        """Speak"""
+
         if self.speakthrd is not None and self.speakthrd.is_alive():
             return
 
@@ -74,12 +80,18 @@ class SpeakSpell(UIWindow):
         self.input.set_text("")
 
     def cache_command(self):
+        """Cache command"""
+
         self.cached_command = self.input.get_text()
 
     def flush_command_cache(self):
+        """Flush command cache"""
+
         self.cached_command = ""
 
     def set_histindex(self, increment):
+        """Set histindex"""
+
         try:
             # self.history[self.histindex + increment]
             self.histindex += increment
@@ -88,6 +100,8 @@ class SpeakSpell(UIWindow):
         return self.histindex
 
     def set_from_history(self):
+        """Set from history"""
+
         if self.histindex > -1:
             self.input.set_text(self.history[self.histindex])
         else:
@@ -95,11 +109,15 @@ class SpeakSpell(UIWindow):
         self.input.edit_position = len(self.input.get_text())
 
     def add_to_history(self, text):
+        """Add to history"""
+
         self.history = [text] + self.history
         if len(self.history) > self.histsize:
             del self.history[-1]
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         if event.type == pygame.USEREVENT and event.ui_element == self.input:
             if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:

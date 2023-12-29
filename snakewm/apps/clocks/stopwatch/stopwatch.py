@@ -1,9 +1,14 @@
+"""Stopwatch"""
+
 import pygame
+from pygame.event import Event
 import pygame_gui
 from pygame_gui.elements import UIButton, UITextBox, UIWindow
 
 
 class Stopwatch(UIWindow):
+    """Stopwatch"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (232, 310)),
@@ -58,7 +63,9 @@ class Stopwatch(UIWindow):
         self.time_counter = 0
         self.currently_counting = False
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
+        """Process event"""
+
         super().process_event(event)
         if event.type == pygame.USEREVENT:
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
@@ -69,7 +76,11 @@ class Stopwatch(UIWindow):
                 elif event.ui_element == self.save_time:
                     self.saver = True
 
-    def update(self, time_delta):
+        return True
+
+    def update(self, time_delta: float) -> None:
+        """Update"""
+
         super().update(time_delta)
         if self.currently_counting:
             self.time_counter += time_delta
@@ -82,6 +93,8 @@ class Stopwatch(UIWindow):
         self.set_text(counter_str)
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox.html_text = text
         self.textbox.rebuild()
         if self.saver:
@@ -91,6 +104,8 @@ class Stopwatch(UIWindow):
             self.saver = False
 
     def reset_time(self):
+        """Reset time"""
+
         self.time_counter = 0
         self.currently_counting = False
         self.update(0)

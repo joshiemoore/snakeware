@@ -4,6 +4,7 @@ current directory.
 """
 
 import pygame
+from pygame.event import Event
 import pygame_gui
 from pygame_gui.elements import UIButton, UIPanel
 
@@ -16,6 +17,8 @@ BUTTON_DIMS = (200, 25)
 
 
 class AppMenuPanel(UIPanel):
+    """App menu panel"""
+
     manager = None
     pos = None
     path = None
@@ -61,9 +64,15 @@ class AppMenuPanel(UIPanel):
                 object_id="menu-" + self.path.replace(".", "-"),
             )
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
+        """Process event
+        Overrides method in UIPanel.
+
+        :return: Should return True if this element consumes this event.
+        """
+
         if event.type != pygame.USEREVENT:
-            return
+            return False
 
         if event.user_type == pygame_gui.UI_BUTTON_PRESSED and event.ui_object_id == (
             "panel.menu-" + self.path.replace(".", "-")
@@ -94,10 +103,11 @@ class AppMenuPanel(UIPanel):
                     self.loadfunc,
                 )
 
+        return False
+
     def destroy(self):
-        """
-        Recursively kill this panel and all child panels.
-        """
+        """Recursively kill this panel and all child panels."""
+
         if self.child is not None:
             self.child.destroy()
             self.child = None

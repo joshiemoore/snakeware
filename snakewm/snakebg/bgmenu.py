@@ -11,6 +11,8 @@ from pygame_gui.elements import UIButton, UIWindow
 
 
 class SnakeBGMenu(UIWindow):
+    """Background menu"""
+
     # size of each menu button
     BSIZE = (200, 20)
 

@@ -1,3 +1,5 @@
+"""Maze"""
+
 import os
 from random import random, randrange, shuffle
 
@@ -5,6 +7,8 @@ import pygame
 
 
 class Maze:
+    """Maze"""
+
     dirToDelta = {
         0: (0, -1),
         1: (1, 0),
@@ -65,6 +69,8 @@ class Maze:
         self.generate()
 
     def process_event(self, event):
+        """Process event"""
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.turn(-1)
@@ -78,6 +84,8 @@ class Maze:
         return False
 
     def draw(self, surface):
+        """Draw"""
+
         surface.blit(self.background, (0, 0))
         for y in range(-1, self.height + 1):
             self.draw_wall(surface, -1, y)
@@ -95,6 +103,8 @@ class Maze:
         self.draw_player(surface)
 
     def draw_wall(self, surface, x, y):
+        """Draw wall"""
+
         rect = (
             ((x + 1) * self.sprite_size[0], (y + 1) * self.sprite_size[1]),
             (self.sprite_size),
@@ -102,6 +112,8 @@ class Maze:
         surface.blit(self.wall, rect)
 
     def draw_empty(self, surface, x, y):
+        """Draw empty"""
+
         rect = (
             ((x + 1) * self.sprite_size[0], (y + 1) * self.sprite_size[1]),
             (self.sprite_size),
@@ -109,6 +121,8 @@ class Maze:
         surface.blit(self.floor[self.maze[x][y]], rect)
 
     def render_stats_text(self, surface, text, y):
+        """Render stats text"""
+
         text = self.font.render(text, 1, self.font_color)
         textpos = text.get_rect()
         textpos.move_ip(self.font_xpos, y * self.font_height)
@@ -118,6 +132,8 @@ class Maze:
         surface.blit(text, textpos)
 
     def draw_player(self, surface):
+        """Draw player"""
+
         rect = (
             ((self.x + 1) * self.sprite_size[0], (self.y + 1) * self.sprite_size[1]),
             (self.sprite_size),
@@ -125,6 +141,8 @@ class Maze:
         surface.blit(self.player[self.direction], rect)
 
     def draw_stats_table(self, surface):
+        """Draw stats table"""
+
         self.render_stats_text(surface, "Maze", 0)
         self.render_stats_text(surface, "Dimensions", 2)
         self.render_stats_text(surface, "{} x {}".format(self.width, self.height), 3)
@@ -140,6 +158,8 @@ class Maze:
         self.render_stats_text(surface, "{}".format(self.bumps), 18)
 
     def generate(self, deep=True, loop_prob=0.05):
+        """Generate"""
+
         x, y = self.x, self.y
         self.loop_prob = loop_prob
         ends = self.walled_neigbour_blocks((x, y))
@@ -155,14 +175,20 @@ class Maze:
                 ends += self.walled_neigbour_blocks((x, y))
 
     def block_free(self, coord):
+        """Block free"""
+
         x, y = coord[0], coord[1]
         return self.maze[x][y] != -1
 
     def in_bounds(self, coord):
+        """In bounds"""
+
         x, y = coord[0], coord[1]
         return x >= 0 and x < self.width and y >= 0 and y < self.height
 
     def block_removeable(self, coord):
+        """Block removable"""
+
         if self.block_free(coord):
             return False
 
@@ -175,6 +201,8 @@ class Maze:
         return n <= 1 or random() < self.loop_prob
 
     def walled_neigbour_blocks(self, coord):
+        """Walled neighbour blocks"""
+
         x, y = coord[0], coord[1]
         bl = [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]
         shuffle(bl)
@@ -185,10 +213,14 @@ class Maze:
         return rbl
 
     def turn(self, n=1):
+        """Turn"""
+
         self.direction += n
         self.direction %= 4
 
     def move(self):
+        """Move"""
+
         x, y = self.x, self.y
         nx = x + self.dirToDelta[self.direction][0]
         ny = y + self.dirToDelta[self.direction][1]

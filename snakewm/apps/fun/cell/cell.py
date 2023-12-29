@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Cellular automaton
+"""Cellular automaton"""
 
 import random
 
@@ -35,10 +35,14 @@ NCELL = RES[0]
 
 
 def getcol():
+    """Get col"""
+
     return [85 * random.randint(0, 3) for q in (1, 2, 3)]
 
 
 class Cell(UIWindow):
+    """Cell"""
+
     DIMS = RES
 
     def __init__(self, pos, manager):
@@ -66,6 +70,8 @@ class Cell(UIWindow):
         self.COL = getcol(), getcol()
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         r = super().get_abs_rect()
         if event.type == pygame.MOUSEBUTTONUP and (
@@ -76,6 +82,8 @@ class Cell(UIWindow):
             self.__init__((r.left, r.top), self.manager)
 
     def newgen(self):
+        """New gen"""
+
         self.gen += 1
         cell2 = [0 for q in range(2 + NCELL)]
         for x in range(NCELL):
@@ -88,6 +96,8 @@ class Cell(UIWindow):
         self.cell = cell2
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         self.line += 1
         self.screen.scroll(dy=-1)

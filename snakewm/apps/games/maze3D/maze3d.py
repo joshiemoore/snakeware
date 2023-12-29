@@ -1,9 +1,10 @@
+"""Maze 3D"""
+
 from math import cos, sin, tan, pi, floor, ceil, sqrt
 import os
 import random
 
 import pygame
-
 
 two_pi = pi * 2
 half_pi = pi * 0.5
@@ -13,7 +14,11 @@ NUMBER_OF_RAYS = 320
 
 
 class DisjointSet:
+    """Disjoint set"""
+
     class Element:
+        """Element"""
+
         def __init__(self, key):
             self.key = key
             self.parent = self
@@ -29,11 +34,15 @@ class DisjointSet:
         self.tree = {}
 
     def make_set(self, key):
+        """Make set"""
+
         e = self.Element(key)
         if not key in self.tree.keys():
             self.tree[key] = e
 
     def find(self, key):
+        """Find"""
+
         if key in self.tree.keys():
             element = self.tree[key]
         if key in self.tree.keys() and element.parent != element:
@@ -42,6 +51,8 @@ class DisjointSet:
             return element.parent
 
     def union(self, element_a, element_b):
+        """Union"""
+
         root_a = self.find(element_a.key)
         root_b = self.find(element_b.key)
         if root_a != root_b and root_a.rank < root_b.rank:
@@ -54,6 +65,8 @@ class DisjointSet:
 
 
 class RandomMaze:
+    """Random maze"""
+
     def __init__(self, width):
         self.width = width
         self.height = width
@@ -98,6 +111,8 @@ class RandomMaze:
         return s
 
     def kruskalize(self):
+        """kruskalize"""
+
         edges_ordered = []
         for row in range(0, self.height):
             for col in range(0, self.width):
@@ -135,10 +150,14 @@ class RandomMaze:
                 disjoint_set.union(set_a, set_b)
 
     def list(self):
+        """List"""
+
         return [list(map(int, list(i))) for i in str(self).split("\n")][:-1]
 
 
 class Maze3D:
+    """Maze 3D"""
+
     def __init__(self, size):
 
         app_path = os.path.dirname(os.path.abspath(__file__))
@@ -198,9 +217,12 @@ class Maze3D:
             random.randint(30, 100)
         ).list()  # Make the maze a random one with random length and height between 30 and 100
 
-    # Update player position according to flags set by process_event
-    # Called each frame to get smooth movement
     def updatePos(self):
+        """
+        Update player position according to flags set by process_event
+        Called each frame to get smooth movement
+        """
+
         if self.toggleTurnLeft:
             self.playerDir = (self.playerDir + self.angleStep) % (two_pi)
         if self.toggleTurnRight:
@@ -210,8 +232,9 @@ class Maze3D:
         if self.toggleMoveBw:
             self.move(-1)
 
-    # Move forward or backward
     def move(self, dir):
+        """Move forward or backward"""
+
         flag = False
         x, y = self.playerX, self.playerY
         # Calculating new coords
@@ -264,8 +287,12 @@ class Maze3D:
                 self.playerX = ceil(nx) + 0.01
             return
 
-    # Key handling set flags for updatePos
     def process_event(self, event):
+        """Process event
+
+        Key handling set flags for updatePos
+        """
+
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 self.toggleTurnLeft = True
@@ -292,9 +319,12 @@ class Maze3D:
             return True
         return False
 
-    # Raycaster written thanks to https://www.playfuljs.com/a-first-person-engine-in-265-lines/
-    # and https://youtu.be/gYRrGTC7GtA
     def draw(self, surface):
+        """
+        Raycaster written thanks to https://www.playfuljs.com/a-first-person-engine-in-265-lines/
+        and https://youtu.be/gYRrGTC7GtA
+        """
+
         # set background image
         surface.blit(self.bg_img, (0, 0))
         for r in range(self.numRays):

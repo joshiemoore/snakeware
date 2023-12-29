@@ -8,6 +8,8 @@ import importlib
 
 
 class SnakeBG:
+    """Snake background"""
+
     # reference to the imported background
     _BG = None
 
@@ -20,7 +22,8 @@ class SnakeBG:
         self._BG = importlib.import_module(bgmod)
 
     def draw(self, surface):
-        # draw the background if the _BG module is set
+        """Draw the background if the _BG module is set"""
+
         if self._BG is None:
             return
 

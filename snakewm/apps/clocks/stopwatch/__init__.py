@@ -1,10 +1,11 @@
+"""Stopwatch"""
+
 from .stopwatch import Stopwatch
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of Stopwatch.
-    """
+    """Create and launch a new instance of Stopwatch."""
+
     # default position
     pos = (100, 100)
 

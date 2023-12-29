@@ -11,6 +11,8 @@ FCOLOR_STEP = 1
 
 
 def drawbg(surface):
+    """Draw background"""
+
     global FCOLOR_R
     global FCOLOR_G
     global FCOLOR_B

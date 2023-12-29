@@ -1,10 +1,11 @@
+"""Music player"""
+
 from .musicplayer import MusicPlayer
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of MusicPlayer.
-    """
+    """Create and launch a new instance of MusicPlayer."""
+
     # default position
     pos = (100, 100)
 

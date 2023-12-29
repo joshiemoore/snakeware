@@ -1,10 +1,11 @@
+"""FPS"""
+
 from .fps import SnakeFPS
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of SnakeFPS.
-    """
+    """Create and launch a new instance of SnakeFPS."""
+
     # default position
     pos = (100, 100)
 

@@ -1,3 +1,5 @@
+"""Music player"""
+
 import glob
 import os
 
@@ -8,6 +10,8 @@ from .mixer import Mixer
 
 
 class MusicPlayer(pygame_gui.elements.UIWindow):
+    """Music Player"""
+
     DIMS = (400, 250)
 
     def __init__(self, pos, manager):
@@ -59,6 +63,8 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
         )
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
         if event.type == pygame.USEREVENT:
@@ -95,8 +101,12 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
                 return True
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
 
     def kill(self):
+        """Kill"""
+
         self.mixer.stop()
         super().kill()

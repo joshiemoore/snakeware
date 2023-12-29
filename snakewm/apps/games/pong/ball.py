@@ -1,3 +1,5 @@
+"""Ball"""
+
 import math
 import random
 
@@ -5,6 +7,8 @@ import pygame
 
 
 class Ball:
+    """Ball"""
+
     def __init__(self, start_position):
         self.rect = pygame.Rect(start_position, (5, 5))
         self.colour = pygame.Color(255, 255, 255)
@@ -18,9 +22,13 @@ class Ball:
         self.create_random_start_vector()
 
     def render(self, screen):
+        """Render"""
+
         pygame.draw.rect(screen, self.colour, self.rect)
 
     def create_random_start_vector(self):
+        """Create random start vector"""
+
         y_random = random.uniform(-0.5, 0.5)
         x_random = 1.0 - abs(y_random)
         if random.randint(0, 1) == 1:
@@ -28,10 +36,14 @@ class Ball:
         self.velocity = [x_random * self.ball_speed, y_random * self.ball_speed]
 
     def reset(self):
+        """Reset"""
+
         self.position = [self.start_position[0], self.start_position[1]]
         self.create_random_start_vector()
 
     def update(self, dt, bats, walls):
+        """Update"""
+
         self.position[0] += self.velocity[0] * dt
         self.position[1] += self.velocity[1] * dt
         self.rect.x = self.position[0]

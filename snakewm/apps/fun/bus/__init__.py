@@ -1,3 +1,5 @@
+"""Bus"""
+
 from .dance import BusDance
 
 

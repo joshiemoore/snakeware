@@ -1,5 +1,7 @@
-# Read CPU usage in percent from /proc/stat
-# (only works on Linux)
+"""
+Read CPU usage in percent from /proc/stat
+(only works on Linux)
+"""
 
 import time
 
@@ -14,6 +16,8 @@ for l in open("/proc/stat"):
 
 
 def cpuproc():
+    """CPU proc"""
+
     global o, t
     f = open("/proc/stat").readline().split()
     q = 0.01 * (int(f[4]) - o) / (time.time() - t)
@@ -25,6 +29,8 @@ def cpuproc():
 
 
 def cpuproc2():
+    """CPU proc 2"""
+
     return str("CPU Usage: <br>{}/100".format(cpuproc()))
 
 

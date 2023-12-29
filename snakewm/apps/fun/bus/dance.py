@@ -1,3 +1,5 @@
+"""BusDance"""
+
 import os
 
 import pygame
@@ -6,6 +8,8 @@ from pygame_gui.elements.ui_image import UIImage
 
 
 class BusDance(UIWindow):
+    """BusDance"""
+
     DIMS = (320, 240)
 
     FRAMES = []
@@ -49,6 +53,8 @@ class BusDance(UIWindow):
         # pygame.mixer.music.play(loops=-1)
 
     def update(self, delta):
+        """Update"""
+
         super().update(delta)
         self.dsurf.image.blit(self.FRAMES[self.FRAME_INDEX], (0, 0))
         self.FRAME_INDEX = (self.FRAME_INDEX + 1) % self.FRAMES_LEN

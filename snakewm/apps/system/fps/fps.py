@@ -1,4 +1,4 @@
-# FPS counter for Snakeware
+"""FPS counter for Snakeware"""
 
 import statistics
 import time
@@ -11,6 +11,8 @@ MAXSAMP = 300
 
 
 class SnakeFPS(UIWindow):
+    """Snake FPS"""
+
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (370, 100)),
@@ -36,9 +38,13 @@ class SnakeFPS(UIWindow):
         self.samp = []
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
     def update(self, time_delta):
+        """Update"""
+
         super().update(time_delta)
 
         fps = 1 / (time.time() - self.last)
@@ -52,5 +58,7 @@ class SnakeFPS(UIWindow):
         )
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox.html_text = text
         self.textbox.rebuild()

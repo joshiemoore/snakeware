@@ -1,3 +1,5 @@
+"""Snake paint"""
+
 import os
 import random
 
@@ -5,6 +7,8 @@ import pygame
 
 
 def roundline(srf, color, start, end, radius=1):
+    """Roundline"""
+
     dx = end[0] - start[0]
     dy = end[1] - start[1]
     distance = max(abs(dx), abs(dy))
@@ -15,6 +19,8 @@ def roundline(srf, color, start, end, radius=1):
 
 
 class SnakePaint:
+    """Snake Paint"""
+
     def __init__(self):
         self._running = True
         self._display_surf = None
@@ -25,6 +31,8 @@ class SnakePaint:
         self.eraser = False
 
     def on_init(self):
+        """On init"""
+
         pygame.init()
 
         os.putenv("SDL_FBDEV", "/dev/fb0")
@@ -37,10 +45,14 @@ class SnakePaint:
         self._running = True
 
     def on_execute(self):
+        """On execute"""
+
         self.on_init()
         self.start()
 
     def start(self):
+        """Start"""
+
         while self._running:
             keys = pygame.key.get_pressed()
             e = pygame.event.wait()

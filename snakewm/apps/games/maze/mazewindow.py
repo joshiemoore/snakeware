@@ -1,3 +1,5 @@
+"""Maze window"""
+
 from pygame import Rect, Surface
 from pygame_gui.elements.ui_image import UIImage
 from pygame_gui.elements.ui_window import UIWindow
@@ -6,6 +8,8 @@ from .maze import Maze
 
 
 class MazeWindow(UIWindow):
+    """Maze window"""
+
     def __init__(self, position, ui_manager):
         super().__init__(
             Rect(position, (640, 480)),
@@ -26,9 +30,13 @@ class MazeWindow(UIWindow):
         self.maze = Maze(game_surface_size)
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
         return self.maze.process_event(event)
 
     def update(self, time_delta):
+        """Update"""
+
         super().update(time_delta)
         self.maze.draw(self.game_surface_element.image)

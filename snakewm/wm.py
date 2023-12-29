@@ -1,6 +1,4 @@
-"""
-Snake Window Manager
-"""
+"""Snake Window Manager"""
 
 import importlib
 import os
@@ -23,6 +21,8 @@ else:
 
 
 class SnakeWM:
+    """SnakeWM"""
+
     SCREEN = None
     DIMS = None
     BG = None
@@ -106,6 +106,7 @@ class SnakeWM:
         Static function that recursively populates dict 'tree' with the
         app directory structure starting at 'path'.
         """
+
         for f in os.listdir(path):
             if os.path.isfile(path + "/" + f + "/__init__.py"):
                 tree[f] = None
@@ -124,6 +125,7 @@ class SnakeWM:
         add the app UI to the passed UIManager object. See existing apps for
         examples.
         """
+
         if not TESTMODE:
             app = "snakewm." + app
 
@@ -147,22 +149,22 @@ class SnakeWM:
         self.loadapp(app)
 
     def set_bg_color(self, color):
-        """
-        Set the desktop background to 'color', where color is an RGB tuple.
-        """
+        """Set the desktop background to 'color', where color is an RGB tuple."""
+
         self.BG = pygame.Surface((self.DIMS))
         self.BG_COLOR = color
         self.BG.fill(self.BG_COLOR)
 
     def set_bg_image(self, file):
-        """
-        Sets the desktop background to an image.
-        """
+        """Sets the desktop background to an image."""
+
         filename, file_extension = os.path.splitext(file)
         if file_extension == ".jpg" or file_extension == ".png":
             self.BG = pygame.transform.scale(pygame.image.load(file), self.DIMS)
 
-    def run(self):
+    def run(self) -> None:
+        """Run"""
+
         clock = pygame.time.Clock()
         running = True
 

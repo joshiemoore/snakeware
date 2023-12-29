@@ -1,8 +1,12 @@
+"""Game menu"""
+
 import importlib
 import os
 
 
 class SnakeGameMenu:
+    """Snake Game Menu"""
+
     GAMENUMS = "0123456789"
 
     def __init__(self):
@@ -17,9 +21,8 @@ class SnakeGameMenu:
                 self.LIST.append(file)
 
     def list_page(self):
-        """
-        List all of the games on the current page.
-        """
+        """List all the games on the current page."""
+
         page_idx = self.cur_page * 10
 
         for i in range(10):
@@ -33,6 +36,7 @@ class SnakeGameMenu:
         Render the full current page for the games list, including the
         header and prompt for user input.
         """
+
         os.system("clear")
 
         print("\n\n~~~~~ SNAKE GAMES ~~~~~\n")
@@ -74,5 +78,7 @@ class SnakeGameMenu:
             exit()
 
     def menu(self):
+        """Menu"""
+
         while True:
             self.list_games()

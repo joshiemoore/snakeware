@@ -1,10 +1,11 @@
+"""Speak 'n spell"""
+
 from .speak import SpeakSpell
 
 
 def load(manager, params):
-    """
-    Create and launch a new instance of SpeakSpell.
-    """
+    """Create and launch a new instance of SpeakSpell."""
+
     # default position
     pos = (100, 100)
 
