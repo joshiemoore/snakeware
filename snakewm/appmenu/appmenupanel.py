@@ -79,7 +79,7 @@ class AppMenuPanel(UIPanel):
             # open clicked app
             uitext = event.ui_element.text
 
-            if self.elements[uitext] == None:
+            if self.elements[uitext] is None:
                 self.loadfunc(self.path + "." + uitext)
 
         if (
@@ -88,7 +88,7 @@ class AppMenuPanel(UIPanel):
         ):
             uitext = event.ui_element.text
 
-            if self.elements[uitext] != None:
+            if self.elements[uitext] is not None:
                 # first destroy the active child panel
                 if self.child is not None:
                     self.child.destroy()

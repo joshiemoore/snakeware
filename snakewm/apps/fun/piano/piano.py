@@ -130,7 +130,7 @@ class Piano(UIWindow):
             x -= r[0] + XADJ
             y -= r[1] + YADJ
             p = self.pos2key(x, y)
-            if p != None:
+            if p is not None:
                 self.play(p)
             if RECT_VOL.collidepoint(x, y):
                 self.volume = int(1 + 10 * (x - RECT_VOL.left) / RECT_VOL.width)
@@ -154,7 +154,7 @@ class Piano(UIWindow):
             x -= r[0] + XADJ
             y -= r[1] + YADJ
             p = self.pos2key(x, y)
-            if p != None:
+            if p is not None:
                 self.stop(p)
 
         if event.type == pygame.KEYDOWN:
