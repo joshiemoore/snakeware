@@ -61,7 +61,10 @@ class SnakeTerm(UIWindow):
         self.hotkeys = self.get_hotkeys()
 
     def get_hotkeys(self):
-        """Get hotkeys"""
+        """Get hotkeys
+
+        IDE may report it as static, but calls elements from self dynamically!
+        """
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         try:  # first attmept to load user hotkeys

@@ -71,7 +71,8 @@ class Note(object):
 class MidiFile(object):
     """Represents the notes in a MIDI file"""
 
-    def read_byte(self, file):
+    @staticmethod
+    def read_byte(file):
         """Read byte"""
 
         return struct.unpack("B", file.read(1))[0]

@@ -101,6 +101,7 @@ class SnakeWM:
         pygame.mouse.set_visible(True)
         pygame.display.update()
 
+    @staticmethod
     def iter_dir(tree, path):
         """
         Static function that recursively populates dict 'tree' with the

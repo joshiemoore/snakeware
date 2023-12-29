@@ -339,7 +339,8 @@ class Piano(UIWindow):
 
         pygame.draw.rect(self.win, c, (100 * k - BKW, 0, 2 * BKW, BKH))
 
-    def pos2key(self, x, y):
+    @staticmethod
+    def pos2key(x, y):
         """Get key number from mouse click position"""
 
         for k in 1, 2, 4, 5, 6:

@@ -99,7 +99,8 @@ class Player:
 class Game:
     """Game"""
 
-    def isCollision(self, x1, y1, x2, y2, bsize):
+    @staticmethod
+    def isCollision(x1, y1, x2, y2, bsize):
         """isCollision"""
 
         if x1 >= x2 and x1 <= x2 + bsize:
@@ -203,7 +204,8 @@ class SnakeApp:
         self.apple.draw(self._display_surf)
         pygame.display.flip()
 
-    def on_cleanup(self):
+    @staticmethod
+    def on_cleanup():
         """On cleanup"""
 
         pygame.quit()
