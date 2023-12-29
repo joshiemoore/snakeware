@@ -31,11 +31,16 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
-import pygame
-import pygame_gui
-from pygame_gui.elements.ui_image import UIImage
 
-import struct, time, statistics, glob, os
+import glob
+import os
+import statistics
+import struct
+import time
+
+import pygame
+from pygame_gui.elements import UIWindow
+from pygame_gui.elements.ui_image import UIImage
 
 
 class Note(object):
@@ -240,7 +245,7 @@ def play(s, res, fpsfac, tfac):
         return False
 
 
-class MIDI(pygame_gui.elements.UIWindow):
+class MIDI(UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (RES[0] + 32, RES[1] + 60)),

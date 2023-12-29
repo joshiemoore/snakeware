@@ -2,11 +2,14 @@
 
 # Toy piano and Simon/Atari Touch Me game in PyGame
 
+import os
+import random
+import time
+
 import pygame
-import pygame_gui
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-import os, time, random
 
 BLACK = 0, 0, 0
 WHITE = 200, 200, 200
@@ -44,7 +47,7 @@ SIMONCOL = (
 )  # colors when in Simon mode
 
 
-class Piano(pygame_gui.elements.UIWindow):
+class Piano(UIWindow):
     def __init__(self, pos, manager):
         self.res = 800, H + 150
         super().__init__(

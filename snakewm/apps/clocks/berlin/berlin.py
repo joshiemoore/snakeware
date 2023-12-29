@@ -3,11 +3,13 @@
 # Displays the Berlin clock
 # 2020-06-13
 
+import datetime
+import time
+
 import pygame
-import pygame_gui
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-import sys, time, datetime
 
 ORANGE = 204, 100, 0
 YELLOW = 249, 244, 46
@@ -88,7 +90,7 @@ def mainprog(win, res):
     pygame.draw.circle(win, c, (2 * box4, boxy // 2), boxy // 2 - BORDER)
 
 
-class Berlin(pygame_gui.elements.UIWindow):
+class Berlin(UIWindow):
     res = RES
 
     def __init__(self, pos, manager):

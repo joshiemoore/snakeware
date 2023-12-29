@@ -1,8 +1,12 @@
+"""Calculator"""
+
 import pygame
 import pygame_gui
 
 
 class SnakeCalc(pygame_gui.elements.UIWindow):
+    """Snake calculator"""
+
     # operations to be converted to buttons
     OPS = "789+" "456-" "123*" "p0=/" "C<x%"
 
@@ -52,6 +56,8 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
             )
 
     def process_event(self, event):
+        """Process event"""
+
         super().process_event(event)
 
         if event.type == pygame.USEREVENT:
@@ -60,18 +66,19 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
                 return True
 
     def set_text(self, text):
+        """Set text"""
+
         self.textbox.html_text = text
         self.textbox.rebuild()
 
     def append_text(self, text):
+        """Append text"""
+
         self.textbox.html_text = self.textbox.html_text + text
         self.textbox.rebuild()
 
     def calculate(self, expression):
-        """
-        Perform the actual calculation based on user input.
-        """
-        result = ""
+        """Perform the actual calculation based on user input."""
 
         try:
             result = str(eval(expression))
@@ -81,9 +88,8 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
         self.set_text(result)
 
     def input_op(self, op):
-        """
-        Called to append user input ops to the existing input.
-        """
+        """Called to append user input ops to the existing input."""
+
         if op in self.OPS:
             if op == "=":
                 # perform the calculation

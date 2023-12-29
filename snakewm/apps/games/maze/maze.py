@@ -1,6 +1,7 @@
-import pygame
 import os
-from random import randrange, shuffle, random
+from random import random, randrange, shuffle
+
+import pygame
 
 
 class Maze:

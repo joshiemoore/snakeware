@@ -1,16 +1,13 @@
-import threading
 import re
+import threading
 
 import pygame
 import pygame_gui
-
-from pygame_gui.elements import UITextBox
-from pygame_gui.elements import UITextEntryLine
-
+from pygame_gui.elements import UITextBox, UITextEntryLine, UIWindow
 import pyttsx3
 
 
-class SpeakSpell(pygame_gui.elements.UIWindow):
+class SpeakSpell(UIWindow):
     speakthrd = None
 
     def __init__(self, pos, manager):

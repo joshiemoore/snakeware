@@ -1,8 +1,9 @@
-import pygame
-import os
 from math import cos, sin, tan, pi, floor, ceil, sqrt
-from random import randint
+import os
 import random
+
+import pygame
+
 
 two_pi = pi * 2
 half_pi = pi * 0.5
@@ -194,7 +195,7 @@ class Maze3D:
         self.columnWidth = self.width / (self.numRays - 1)
 
         self.map = RandomMaze(
-            randint(30, 100)
+            random.randint(30, 100)
         ).list()  # Make the maze a random one with random length and height between 30 and 100
 
     # Update player position according to flags set by process_event

@@ -1,6 +1,7 @@
 # CPU usage monitor
 
 import time
+
 import pygame
 import pygame_gui
 from pygame_gui.elements.ui_image import UIImage
@@ -12,6 +13,7 @@ try:
 except ImportError:
     psutil = None
     from .cpuproc import cpuproc, cpuproc2
+
 
 BLUE = 68, 174, 220
 GRAY = 76, 80, 82

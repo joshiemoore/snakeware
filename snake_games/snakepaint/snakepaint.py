@@ -1,4 +1,7 @@
-import pygame, random, os
+import os
+import random
+
+import pygame
 
 
 def roundline(srf, color, start, end, radius=1):

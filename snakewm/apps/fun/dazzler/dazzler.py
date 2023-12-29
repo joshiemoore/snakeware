@@ -1,11 +1,13 @@
 # The Dazzler
 
+from math import pi, sin, cos
+import random
+import time
+
 import pygame
-import pygame_gui
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-from math import sin, cos, pi
-import random, time
 
 RES = 64
 RES2 = RES / 2
@@ -13,7 +15,7 @@ SRES = 640
 FPS = 15
 
 
-class Snazzler(pygame_gui.elements.UIWindow):
+class Snazzler(UIWindow):
     DIMS = SRES, int(0.75 * SRES)
 
     def __init__(self, pos, manager):

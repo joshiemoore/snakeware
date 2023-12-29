@@ -5,9 +5,8 @@ current directory.
 
 import pygame
 import pygame_gui
+from pygame_gui.elements import UIButton, UIPanel
 
-from pygame_gui.elements import UIPanel
-from pygame_gui.elements import UIButton
 
 # panel draw layer
 PANEL_LAYER = 10

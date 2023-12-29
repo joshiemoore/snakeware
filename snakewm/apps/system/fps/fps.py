@@ -1,14 +1,16 @@
 # FPS counter for Snakeware
 
-import pygame
-import pygame_gui
+import statistics
+import time
 
-import time, statistics
+import pygame
+from pygame_gui.elements import UITextBox, UIWindow
+
 
 MAXSAMP = 300
 
 
-class SnakeFPS(pygame_gui.elements.UIWindow):
+class SnakeFPS(UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (370, 100)),
@@ -18,7 +20,7 @@ class SnakeFPS(pygame_gui.elements.UIWindow):
             resizable=False,
         )
 
-        self.textbox = pygame_gui.elements.UITextBox(
+        self.textbox = UITextBox(
             "",
             relative_rect=pygame.Rect(0, 1, 338, 40),
             manager=manager,

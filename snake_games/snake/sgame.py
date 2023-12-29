@@ -1,8 +1,9 @@
-from pygame.locals import *
-from random import randint
-import pygame
-import time
 import os
+from random import randint
+import time
+
+import pygame
+from pygame.locals import QUIT, K_UP, K_DOWN, K_LEFT, K_RIGHT, K_ESCAPE
 
 
 class Apple:

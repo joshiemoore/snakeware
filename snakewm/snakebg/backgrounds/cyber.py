@@ -6,7 +6,9 @@ Joshua Moore 2020
 
 import math
 import random
+
 import pygame
+
 
 # horizontal line offsets for "scrolling effect"
 CYBER_OFFS = 0

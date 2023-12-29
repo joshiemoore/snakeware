@@ -6,11 +6,8 @@ Joshua Moore 2020
 
 import os
 
-import pygame
-import pygame_gui
-
-from pygame_gui.elements import UIWindow
-from pygame_gui.elements import UIButton
+from pygame import Rect
+from pygame_gui.elements import UIButton, UIWindow
 
 
 class SnakeBGMenu(UIWindow):
@@ -29,7 +26,7 @@ class SnakeBGMenu(UIWindow):
 
         # create window
         super().__init__(
-            pygame.Rect(
+            Rect(
                 (100, 100), (self.BSIZE[0] + 32, self.BSIZE[1] * len(self.BGLIST))
             ),
             manager=manager,
@@ -41,7 +38,7 @@ class SnakeBGMenu(UIWindow):
         # add buttons
         for i in range(len(self.BGLIST)):
             UIButton(
-                relative_rect=pygame.Rect((0, self.BSIZE[1] * i), self.BSIZE),
+                relative_rect=Rect((0, self.BSIZE[1] * i), self.BSIZE),
                 text=self.BGLIST[i],
                 manager=manager,
                 container=self,

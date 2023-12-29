@@ -1,17 +1,19 @@
 # RAM usage monitor
 
 import time
+
 import pygame
-import pygame_gui
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
 from .ramproc import ramproc
+
 
 BLUE = 68, 174, 220
 GRAY = 76, 80, 82
 
 
-class SnakeMon(pygame_gui.elements.UIWindow):
+class SnakeMon(UIWindow):
     DIMS = (200, 100)
 
     def __init__(self, pos, manager):

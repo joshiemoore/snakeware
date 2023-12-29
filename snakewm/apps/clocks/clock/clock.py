@@ -1,10 +1,10 @@
-import pygame
-import pygame_gui
-
 import datetime
 
+import pygame
+from pygame_gui.elements import UITextBox, UIWindow
 
-class SnakeClock(pygame_gui.elements.UIWindow):
+
+class SnakeClock(UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (195, 100)),
@@ -14,7 +14,7 @@ class SnakeClock(pygame_gui.elements.UIWindow):
             resizable=False,
         )
 
-        self.textbox = pygame_gui.elements.UITextBox(
+        self.textbox = UITextBox(
             "",
             relative_rect=pygame.Rect(0, 1, 163, 40),
             manager=manager,

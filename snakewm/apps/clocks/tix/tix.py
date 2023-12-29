@@ -5,11 +5,14 @@
 
 # Usage: tix.py [update interval] [--24]
 
+import random
+import sys
+import time
+
 import pygame
-import pygame_gui
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
-import sys, time, random
 
 try:
     inter = int(sys.argv[1])
@@ -56,7 +59,7 @@ def mainprog(win, res):
             )
 
 
-class TIX(pygame_gui.elements.UIWindow):
+class TIX(UIWindow):
     res = 420, 105
 
     def __init__(self, pos, manager):

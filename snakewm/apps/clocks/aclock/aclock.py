@@ -1,11 +1,11 @@
 # Analog PyGame clock
 
-import pygame
-import pygame_gui
-from pygame_gui.elements.ui_image import UIImage
-
-from math import pi, cos, sin
 import datetime
+from math import pi, sin, cos
+
+import pygame
+from pygame_gui.elements import UIWindow
+from pygame_gui.elements.ui_image import UIImage
 
 
 DARK = 33, 41, 46
@@ -14,7 +14,7 @@ GRAY = 76, 80, 82
 RED = 255, 0, 0
 
 
-class SnakeAClock(pygame_gui.elements.UIWindow):
+class SnakeAClock(UIWindow):
     DIMS = (300, 300)
 
     def __init__(self, pos, manager):

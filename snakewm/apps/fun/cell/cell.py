@@ -2,9 +2,12 @@
 
 # Cellular automaton
 
-import pygame, random
-import pygame_gui
+import random
+
+import pygame
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
+
 
 RULES = (
     18,
@@ -35,7 +38,7 @@ def getcol():
     return [85 * random.randint(0, 3) for q in (1, 2, 3)]
 
 
-class Cell(pygame_gui.elements.UIWindow):
+class Cell(UIWindow):
     DIMS = RES
 
     def __init__(self, pos, manager):

@@ -1,5 +1,5 @@
 import pygame
-import pygame_gui
+from pygame_gui.windows import UIColourPickerDialog
 
 
 def load(manager, params):
@@ -13,7 +13,7 @@ def load(manager, params):
     if params is not None and len(params) > 0:
         pos = params[0]
 
-    pygame_gui.windows.UIColourPickerDialog(
+    UIColourPickerDialog(
         rect=pygame.Rect(pos, (600, 400)),
         manager=manager,
         window_title="Set Background Color",

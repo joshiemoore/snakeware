@@ -2,13 +2,13 @@
 Snake Window Manager
 """
 
-TESTMODE = __name__ == "__main__"
-
-import os
-import sys
 import importlib
+import os
 
-import pygame, pygame_gui
+import pygame
+import pygame_gui
+
+TESTMODE = __name__ == "__main__"
 
 if TESTMODE:
     from appmenu.appmenupanel import AppMenuPanel

@@ -1,5 +1,6 @@
-import pygame
-from pygame.locals import *
+from pygame import Surface
+from pygame.font import Font
+from pygame.locals import K_w, K_s, K_UP, K_DOWN
 
 from .wall import Wall
 from .bat import Bat, ControlScheme
@@ -10,11 +11,11 @@ from .score import Score
 class PongGame:
     def __init__(self, size):
         self.size = size
-        self.background = pygame.Surface(size)  # make a background surface
+        self.background = Surface(size)  # make a background surface
         self.background = self.background.convert()
         self.background.fill((0, 0, 0))
 
-        font = pygame.font.Font(None, 24)
+        font = Font(None, 24)
 
         self.score = Score(font)
 

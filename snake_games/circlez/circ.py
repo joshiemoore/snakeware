@@ -4,10 +4,10 @@ A simple little demo app for snakeware, it draws circles.
 Josh Moore 2020
 """
 
-import pygame
-
-import random
 import os
+import random
+
+import pygame
 
 
 class CirclezApp:

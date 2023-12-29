@@ -1,18 +1,14 @@
+from io import StringIO
+import json
+import os
 import sys
 import traceback
 
-from io import StringIO
-
 import pygame
-import pygame_gui
-
-from pygame_gui.elements import UITextBox
-
-import os
-import json
+from pygame_gui.elements import UITextBox, UITextEntryLine, UIWindow
 
 
-class SnakeTerm(pygame_gui.elements.UIWindow):
+class SnakeTerm(UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (400, 300)),
@@ -22,7 +18,7 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             resizable=True,
         )
 
-        self.textbox = pygame_gui.elements.UITextBox(
+        self.textbox = UITextBox(
             "",
             relative_rect=pygame.Rect(0, 0, 368, 200),
             manager=manager,
@@ -35,7 +31,7 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
             },
         )
 
-        self.input = pygame_gui.elements.UITextEntryLine(
+        self.input = UITextEntryLine(
             relative_rect=pygame.Rect(0, -35, 368, 30),
             manager=manager,
             container=self,

@@ -1,6 +1,7 @@
+import os
+
 import pygame
 import pygame_gui
-import os
 
 
 def load(manager, params):

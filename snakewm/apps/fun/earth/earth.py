@@ -11,12 +11,14 @@ which in turn is based on the web page
 by Paul Schlyter
 """
 
-from math import *
-import os, sys, time
+from math import pi, sqrt, sin, cos, asin, atan2
+import os
+import time
 
 import pygame
-import pygame_gui
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
+
 
 path = os.path.dirname(os.path.abspath(__file__))
 
@@ -188,7 +190,7 @@ def calc_image(res=DIMS):
     return result
 
 
-class Earth(pygame_gui.elements.UIWindow):
+class Earth(UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (DIMS[0] + 32, DIMS[1] + 60)),

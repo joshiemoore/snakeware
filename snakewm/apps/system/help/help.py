@@ -1,10 +1,10 @@
 # Help browser for Snakeware
 
-import pygame
-import pygame_gui
-from pygame_gui.elements.ui_drop_down_menu import UIDropDownMenu
+import os
 
-import os, time
+import pygame
+from pygame_gui.elements import UITextBox, UIWindow
+from pygame_gui.elements.ui_drop_down_menu import UIDropDownMenu
 
 
 path = os.path.dirname(os.path.abspath(__file__))
@@ -26,7 +26,7 @@ def gethelp():
     return h
 
 
-class Help(pygame_gui.elements.UIWindow):
+class Help(UIWindow):
     def __init__(self, pos, manager):
         super().__init__(
             pygame.Rect(pos, (630, 490)),
@@ -49,7 +49,7 @@ class Help(pygame_gui.elements.UIWindow):
 
         self.menu.current_state.should_transition = True
 
-        self.textbox = pygame_gui.elements.UITextBox(
+        self.textbox = UITextBox(
             "",
             relative_rect=pygame.Rect(0, 31, 600, 400),
             manager=manager,

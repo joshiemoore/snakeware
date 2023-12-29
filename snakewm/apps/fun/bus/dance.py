@@ -1,12 +1,11 @@
 import os
 
 import pygame
-import pygame_gui
-
+from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
 
-class BusDance(pygame_gui.elements.UIWindow):
+class BusDance(UIWindow):
     DIMS = (320, 240)
 
     FRAMES = []

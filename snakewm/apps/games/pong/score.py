@@ -1,4 +1,4 @@
-import pygame
+from pygame import Color
 
 
 class Score:
@@ -15,7 +15,7 @@ class Score:
     def update_score_text(self):
         self.score_string = str(self.player_1_score) + " - " + str(self.player_2_score)
         self.score_text_render = self.font.render(
-            self.score_string, True, pygame.Color(200, 200, 200)
+            self.score_string, True, Color(200, 200, 200)
         )
 
     def render(self, screen, size):

@@ -1,11 +1,13 @@
 # Zap
 
-import pygame
-import pygame_gui
-from pygame_gui.elements.ui_image import UIImage
-
 from math import sin, cos, pi
-import random, time, os
+import os
+import random
+import time
+
+import pygame
+from pygame_gui.elements import UIWindow
+from pygame_gui.elements.ui_image import UIImage
 
 RES = 160  # horizontal resolution
 RESY = int(0.75 * RES)
@@ -21,7 +23,7 @@ BASES = 3  # initial numbers of bases
 NEWBASE = 75000  # score for a bonus base
 
 
-class Zap(pygame_gui.elements.UIWindow):
+class Zap(UIWindow):
     res = SRES, int(0.75 * SRES)
 
     def __init__(self, pos, manager):
