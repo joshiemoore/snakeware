@@ -1,4 +1,5 @@
 # SnakeClock
+
 SnakeClock displays the current date and time in a small window.
 
 # Authors

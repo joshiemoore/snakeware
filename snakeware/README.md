@@ -1,30 +1,36 @@
 # snakeware build docs
+
 The snakeware build system is based on buildroot and the process is almost entirely automated.
 
-The build will take quite a long time the first time you do it, but it will only take a couple
+The build will take quite a long time the first time you do it, but it will only take a couple of
 minutes each subsequent time (unless you do a `make clean` in the buildroot directory).
 
 Currently supported platforms:
+
 * x86-64
 * rpi4
 
 ## Build Process
 
 ### 1. Run `./build.sh <platform>`
+
 `<platform>` should be one of the supported platforms from the above list.
 
 This script is the longest part of the process, as it makes a clone of buildroot, which then downloads
 and makes all the necessary sources.
 
 ### 2. Done!
+
 If the build is successful, a `snakeware.iso` file will be generated and placed in this directory.
 
 You can run this image in QEMU, or dd it to a flash drive to try running it on real hardware.
 
 ## Other info
+
 TODO
 
 ## Ports
+
 snakeware will always be primarily focused on x86-64, but buildroot makes it possible to build for
 other platforms.
 

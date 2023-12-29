@@ -17,4 +17,3 @@ Based on Clock by Abdur-Rahmaan Janhangeer
 + mail: arj.python@gmail.com
 
 + date: 30 May 2020
-

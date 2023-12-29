@@ -30,16 +30,16 @@ PRs will be approved if they meet the following guidelines:
 * Your game must be written in Python.
 
 * Your game must have an `__init__.py` with a `load()` function which creates
-an instance of your game and launches it. Please see existing games in this
-directory for examples of how this works.
+  an instance of your game and launches it. Please see existing games in this
+  directory for examples of how this works.
 
 * Your game must be fullscreen, and it must draw directly to the framebuffer.
-You can set pygame to fbdev mode by adding `os.putenv('SDL_FBDEV', '/dev/fb0')`
-right before your call to `pygame.display.init()`.
+  You can set pygame to fbdev mode by adding `os.putenv('SDL_FBDEV', '/dev/fb0')`
+  right before your call to `pygame.display.init()`.
 
 * You should not try to set the dimensions of the pygame window, but should
-instead get the dimensions of the full-screen display after calling
-`pygame.display.init()` like so:
+  instead get the dimensions of the full-screen display after calling
+  `pygame.display.init()` like so:
 
 ```
 DIMS = (
@@ -47,15 +47,16 @@ DIMS = (
     pygame.display.Info().current_h
 )
 ```
+
 You should write your game so that it handles these varying screen dimensions
 gracefully.
 
 * Your game must have a way for the user to immediately exit and return to
-snakeware at any time, preferably by pressing the `ESC` key.
+  snakeware at any time, preferably by pressing the `ESC` key.
 
-* Please test your game before submitting a PR. At minimum, you should try
-launching your game as root from a different TTY to verify that your game works
-as expected without X Windows running.
+* Please test your game before submitting a PR.At minimum, you should try
+  launching your game as root from a different TTY to verify that your game works
+  as expected without X Windows running.
 
 Feel free to reach out if you have any questions while you're modifying your
 game to run on snakeware!
