@@ -76,7 +76,8 @@ class Zap(pygame_gui.elements.UIWindow):
         self.manager = manager
 
     def newgame(self):
-        "Set up a new game, reset everthing"
+        """Set up a new game, reset everything"""
+
         self.shipdir = random.randint(0, 3)
         self.shipdist = 100
         self.score = 0

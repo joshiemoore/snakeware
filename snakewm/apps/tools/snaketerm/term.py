@@ -86,6 +86,8 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
         self.set_text(str())
 
     def jump_left(self):
+        """Jump - left"""
+
         command = self.input.get_text()
         ep = self.input.edit_position
         while ep > 0 and command[ep - 1] not in self.jump_chars:
@@ -93,6 +95,8 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
         self.input.edit_position = ep
 
     def jump_right(self):
+        """Jump - right"""
+
         command = self.input.get_text()
         ep = self.input.edit_position
         while ep < len(command) and command[ep] not in self.jump_chars:
@@ -100,6 +104,8 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
         self.input.edit_position = ep
 
     def jump_backspace(self):
+        """Jump - backspace"""
+
         command = self.input.get_text()
         ep = to_pos = self.input.edit_position
         while ep > 0 and command[ep - 1] not in self.jump_chars:
@@ -179,7 +185,7 @@ class SnakeTerm(pygame_gui.elements.UIWindow):
                 if callback and callable(callback):
                     self.hotkeys["ctrl"][name]()
 
-        # other special keys (history, etc)
+        # other special keys (history, etc.)
         elif event.type == pygame.KEYUP:
             if event.key in (pygame.K_UP, pygame.K_DOWN):
                 increment = 1 if event.key == pygame.K_UP else -1

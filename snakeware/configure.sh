@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # This script is used for configuring Buildroot & other components that
-# have configuration in the ./external directory. It is not neccesary to
+# have configuration in the ./external directory. It is not necessary to
 # run, and can safely be disregarded if you're doing a regular build.
 
 # Get script path

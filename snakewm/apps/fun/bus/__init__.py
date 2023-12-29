@@ -2,9 +2,8 @@ from .dance import BusDance
 
 
 def load(manager, params):
-    """
-    Create and launch a new instal of BusDance.
-    """
+    """Create and launch a new instance of BusDance."""
+
     # default position
     pos = (100, 100)
 

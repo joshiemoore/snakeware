@@ -23,7 +23,7 @@ class AppMenuPanel(UIPanel):
 
     # the elements field is a dict object containing the structure of
     # the current directory and all subdirectories. If a value is None,
-    # that means its corresponding key is represents an app.
+    # that means its corresponding key represents an app.
     elements = None
 
     # child panel created when a directory button is hovered

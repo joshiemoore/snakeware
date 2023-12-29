@@ -1,3 +1,5 @@
+"""A clock"""
+
 from .aclock import SnakeAClock
 
 

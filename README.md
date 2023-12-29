@@ -38,7 +38,7 @@ No further setup is required if you just need a live, non-persistent environment
 1. Note the virtual device corresponding to the drive you wrote the snakeware image to. For this example, we will
    assume `/dev/sdc`.
 2. Use `cfdisk` to add another partition to the drive, after the snakeware partition. This partition can be any size,
-   but you'll likely want to fill the rest of the drive. Take note of the number of the new partition. This will be
+   but you'll likely want to fill up the rest of the drive. Take note of the number of the new partition. This will be
    your "snakeuser" partition, where all of your scripts and data will be stored.
 3. Once you have written the partition to the drive, format the partition to ext4. For example, `mkfs.ext4 /dev/sdc2`.
 4. Finally, give the paritition the SNAKEUSER label, ex: `e2label /dev/sdc2 SNAKEUSER`.
@@ -52,7 +52,7 @@ To run snakeware on QEMU:
 
 1. [Download and install QEMU](https://www.qemu.org/download/).
 2. Open your terminal/command prompt.
-3. Navigate to the directory/folder where the snakeware image image was downloaded.
+3. Navigate to the directory/folder where the snakeware image was downloaded.
 4. Launch the snakeware ISO using a script similar to this:
 
 ```
@@ -119,7 +119,7 @@ documentation on how to build your own snakeware distro image.
 
 **NOTE:** If you are only contributing apps or other code to snakewm, you don't need to build a whole snakeware distro
 image to test your changes. Simply make your changes to snakewm then run `sudo python wm.py` in the `snakewm/`
-directory. snakewm will then start drawing itself directly to the framebuffer and you can test out your changes.
+directory. snakewm will then start drawing itself directly to the framebuffer, and you can test out your changes.
 Press `ALT+ESC` to return to your normal desktop. (It would still be good to test your changes in an actual
 snakeware environment though.)
 
@@ -132,7 +132,7 @@ in `snakewm/apps/` for examples of how to get started, and feel free to ask ques
 Those with experience building Linux systems are encouraged to contribute to the underlying aspects of the distro,
 such as the build/package scripts and configuration for the kernel, GRUB, etc.
 
-I would also like to eventually stop using Busybox for intialization and find a way to perform all necessary init from
+I would also like to eventually stop using Busybox for initialization and find a way to perform all necessary init from
 the Python environment, so ideas about that are welcome.
 
 ## TODO

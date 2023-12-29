@@ -3,7 +3,7 @@ from .term import SnakeTerm
 
 def load(manager, params):
     """
-    Create an launch a new instance of SnakeTerm.
+    Create and launch a new instance of SnakeTerm.
     """
     # default position
     pos = (100, 100)

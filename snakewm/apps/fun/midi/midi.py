@@ -39,7 +39,7 @@ import struct, time, statistics, glob, os
 
 
 class Note(object):
-    "Represents a single MIDI note"
+    """Represents a single MIDI note"""
 
     note_names = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
 
