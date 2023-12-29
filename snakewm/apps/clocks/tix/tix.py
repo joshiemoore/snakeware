@@ -51,7 +51,7 @@ def mainprog(win, res):
 
     t = time.strftime(f, time.localtime())
     h1, h2, m1, m2 = [int(x) for x in t]
-    disp = [[2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2] for y in range(3)]
+    disp = [[2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2] for _ in range(3)]
     tog(0, 1, h1, 3)
     tog(2, 5, h2, 4)
     tog(6, 8, m1, 5)

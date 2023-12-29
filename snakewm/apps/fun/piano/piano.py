@@ -143,7 +143,7 @@ class Piano(UIWindow):
                 super().set_display_title("piano")
             if RECT_SIMON.collidepoint(x, y) and not self.simon:
                 self.simon = True
-                self.simonseq = [random.choice([0, 4, 7, 12]) for q in range(100)]
+                self.simonseq = [random.choice([0, 4, 7, 12]) for _ in range(100)]
                 self.simonlen = 1
                 self.simonplay = True
                 self.simonstart = time.time()

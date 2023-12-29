@@ -34,7 +34,7 @@ def drawbg(surface):
     # generate stars if needed
     if CYBER_STARS is None:
         CYBER_STARS = []
-        for x in range(50, 100):
+        for _ in range(50, 100):
             CYBER_STARS.append(
                 (
                     random.randint(0, SURF_WIDTH),

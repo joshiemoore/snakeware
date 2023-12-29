@@ -53,7 +53,7 @@ class Maze:
         self.font_xpos = (self.width + 2) * self.sprite_size[1]
         self.font_width = self.size[0] - self.font_xpos
 
-        self.maze = [[-1 for x in range(self.height)] for x in range(self.width)]
+        self.maze = [[-1 for _ in range(self.height)] for _ in range(self.width)]
 
         self.walls = self.height * self.width - 1
         self.moves = 0

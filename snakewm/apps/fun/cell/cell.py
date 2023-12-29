@@ -36,7 +36,7 @@ NCELL = RES[0]
 def getcol():
     """Get col"""
 
-    return [85 * random.randint(0, 3) for q in (1, 2, 3)]
+    return [85 * random.randint(0, 3) for _ in range(3)]
 
 
 class Cell(UIWindow):
@@ -62,7 +62,7 @@ class Cell(UIWindow):
         )
         self.screen = pygame.Surface(self.DIMS)
         self.manager = manager
-        self.cell = [random.randint(0, 1) for q in range(2 + NCELL)]
+        self.cell = [random.randint(0, 1) for _ in range(2 + NCELL)]
         self.rule = random.choice(RULES)
         self.gen = 1
         self.line = 0
@@ -84,7 +84,7 @@ class Cell(UIWindow):
         """New gen"""
 
         self.gen += 1
-        cell2 = [0 for q in range(2 + NCELL)]
+        cell2 = [0 for _ in range(2 + NCELL)]
         for x in range(NCELL):
             s = 2 ** (4 * self.cell[x] + 2 * self.cell[x + 1] + self.cell[x + 2])
             if s & self.rule:
