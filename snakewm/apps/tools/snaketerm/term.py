@@ -156,7 +156,7 @@ class SnakeTerm(UIWindow):
         """Set histindex"""
 
         try:
-            self.history[self.histindex + increment]
+            _ = self.history[self.histindex + increment]
             self.histindex += increment
         except IndexError:
             pass
