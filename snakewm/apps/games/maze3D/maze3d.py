@@ -232,14 +232,14 @@ class Maze3D:
         if self.toggleMoveBw:
             self.move(-1)
 
-    def move(self, dir):
+    def move(self, direction):
         """Move forward or backward"""
 
         flag = False
         x, y = self.playerX, self.playerY
         # Calculating new coords
-        nx = x + self.playerStep * dir * cos(self.playerDir)
-        ny = y - self.playerStep * dir * sin(self.playerDir)
+        nx = x + self.playerStep * direction * cos(self.playerDir)
+        ny = y - self.playerStep * direction * sin(self.playerDir)
         # Case : no obstacle
         if self.map[floor(ny)][floor(nx)] == 0:
             self.playerX, self.playerY = nx, ny
@@ -342,25 +342,25 @@ class Maze3D:
                 ):  # ray goes to the right
                     x = ceil(self.playerX)
                     y = self.playerY - tanRayAngle * (x - self.playerX)
-                    dir = 1
+                    direction = 1
                 else:  # ray goes to the left
                     x = floor(self.playerX)
                     y = self.playerY - tanRayAngle * (x - self.playerX)
-                    dir = -1
+                    direction = -1
                 while (
                     y > 0
                     and y < len(self.map)
-                    and self.map[floor(y)][floor(x + 0.1 * dir)] == 0
+                    and self.map[floor(y)][floor(x + 0.1 * direction)] == 0
                 ):  # going from column to column
-                    x += dir
-                    y -= dir * tanRayAngle
+                    x += direction
+                    y -= direction * tanRayAngle
                 if y > 0 and y < len(self.map):  # we found a wall
-                    wallTypeH = self.map[floor(y)][floor(x + 0.1 * dir)]
+                    wallTypeH = self.map[floor(y)][floor(x + 0.1 * direction)]
                     distH = sqrt(
                         (self.playerX - x) * (self.playerX - x)
                         + (self.playerY - y) * (self.playerY - y)
                     )
-                    propH = y % 1 if dir == 1 else 1 - (y % 1)
+                    propH = y % 1 if direction == 1 else 1 - (y % 1)
 
             # check distance with horizontal lines
             distV = 100000
@@ -370,25 +370,25 @@ class Maze3D:
                 if rayAngle < pi:  # ray goes up
                     y = floor(self.playerY)
                     x = self.playerX + arctanRayAngle * (self.playerY - y)
-                    dir = -1
+                    direction = -1
                 else:  # ray goes down
                     y = ceil(self.playerY)
                     x = self.playerX + arctanRayAngle * (self.playerY - y)
-                    dir = 1
+                    direction = 1
                 while (
                     x > 0
                     and x < len(self.map[0])
-                    and self.map[floor(y + 0.1 * dir)][floor(x)] == 0
+                    and self.map[floor(y + 0.1 * direction)][floor(x)] == 0
                 ):  # going from row to row
-                    y += dir
-                    x -= dir * arctanRayAngle
+                    y += direction
+                    x -= direction * arctanRayAngle
                 if x > 0 and x < len(self.map[0]):  # we found a wall
-                    wallTypeV = self.map[floor(y + 0.1 * dir)][floor(x)]
+                    wallTypeV = self.map[floor(y + 0.1 * direction)][floor(x)]
                     distV = sqrt(
                         (self.playerX - x) * (self.playerX - x)
                         + (self.playerY - y) * (self.playerY - y)
                     )
-                    propV = x % 1 if dir == -1 else 1 - (x % 1)
+                    propV = x % 1 if direction == -1 else 1 - (x % 1)
             # take min distance and prepare texture to be used
             if distH < distV:
                 dist = distH
