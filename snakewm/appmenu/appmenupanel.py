@@ -42,7 +42,7 @@ class AppMenuPanel(UIPanel):
                 (pos[0] * BUTTON_DIMS[0], pos[1] * BUTTON_DIMS[1]),
                 (BUTTON_DIMS[0] + 5, BUTTON_DIMS[1] * len(elements.keys()) + 5),
             ),
-            starting_layer_height=PANEL_LAYER,
+            starting_height=PANEL_LAYER,
             manager=manager,
         )
         self.pos = pos
