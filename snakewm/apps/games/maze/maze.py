@@ -184,7 +184,7 @@ class Maze:
         """In bounds"""
 
         x, y = coord[0], coord[1]
-        return x >= 0 and x < self.width and y >= 0 and y < self.height
+        return 0 <= x < self.width and 0 <= y < self.height
 
     def block_removeable(self, coord):
         """Block removable"""

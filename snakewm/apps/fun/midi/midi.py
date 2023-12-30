@@ -130,7 +130,7 @@ class MidiFile(object):
                     size -= 1
                     flag = self.read_byte(file)
                     # Sysex messages
-                    if flag == 0xF0 or flag == 0xF7:
+                    if flag in (0xF0, 0xF7):
                         # print "Sysex"
                         while True:
                             size -= 1

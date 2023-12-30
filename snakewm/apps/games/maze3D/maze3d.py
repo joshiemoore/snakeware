@@ -348,13 +348,12 @@ class Maze3D:
                     y = self.playerY - tanRayAngle * (x - self.playerX)
                     direction = -1
                 while (
-                    y > 0
-                    and y < len(self.map)
+                    0 < y < len(self.map)
                     and self.map[floor(y)][floor(x + 0.1 * direction)] == 0
                 ):  # going from column to column
                     x += direction
                     y -= direction * tanRayAngle
-                if y > 0 and y < len(self.map):  # we found a wall
+                if 0 < y < len(self.map):  # we found a wall
                     wallTypeH = self.map[floor(y)][floor(x + 0.1 * direction)]
                     distH = sqrt(
                         (self.playerX - x) * (self.playerX - x)
@@ -376,13 +375,12 @@ class Maze3D:
                     x = self.playerX + arctanRayAngle * (self.playerY - y)
                     direction = 1
                 while (
-                    x > 0
-                    and x < len(self.map[0])
+                    0 < x < len(self.map[0])
                     and self.map[floor(y + 0.1 * direction)][floor(x)] == 0
                 ):  # going from row to row
                     y += direction
                     x -= direction * arctanRayAngle
-                if x > 0 and x < len(self.map[0]):  # we found a wall
+                if 0 < x < len(self.map[0]):  # we found a wall
                     wallTypeV = self.map[floor(y + 0.1 * direction)][floor(x)]
                     distV = sqrt(
                         (self.playerX - x) * (self.playerX - x)
