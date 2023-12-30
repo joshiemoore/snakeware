@@ -221,8 +221,8 @@ def load_song(s, res, fn):
     notes = []
     first, last = 1e9, -1
     m = MidiFile(fn)
-    for tn in range(len(m.tracks)):
-        for n in m.tracks[tn]:
+    for track in m.tracks:
+        for n in track:
             if n.velocity > 0:
                 tt = int(1000 * n.start)
                 first = min(first, tt)

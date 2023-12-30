@@ -38,12 +38,12 @@ class SnakeBGMenu(UIWindow):
         )
 
         # add buttons
-        for i in range(len(self.BGLIST)):
+        for i, bg in enumerate(self.BGLIST):
             UIButton(
                 relative_rect=Rect((0, self.BSIZE[1] * i), self.BSIZE),
-                text=self.BGLIST[i],
+                text=bg,
                 manager=manager,
                 container=self,
                 parent_element=self,
-                object_id=self.BGLIST[i],
+                object_id=bg,
             )

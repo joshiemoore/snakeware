@@ -39,8 +39,8 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
         )
 
         # generate calculator buttons
-        for i in range(len(self.OPS)):
-            op = self.OPS[i]
+        for i, op in enumerate(self.OPS):
+
             if op == "x":
                 # skip placeholder ops
                 continue

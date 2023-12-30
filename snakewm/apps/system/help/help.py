@@ -84,9 +84,9 @@ class Help(UIWindow):
             return
         self.last = n
         s = ""
-        for i in range(len(self.files)):
-            if self.files[i][0] == n:
-                for l in open(self.files[i][1]):
+        for file_info in self.files:
+            if file_info[0] == n:
+                for l in open(file_info[1]):
                     x = l.strip()
                     if len(x) > 1 and x[0] == "#":
                         x = "<b><u>" + x[1:] + " </u></b>"

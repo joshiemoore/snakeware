@@ -54,10 +54,10 @@ class AppMenuPanel(UIPanel):
         self.element_keys = sorted(list(elements.keys()))
 
         # generate buttons
-        for i in range(len(self.element_keys)):
+        for i, element in enumerate(self.element_keys):
             UIButton(
                 pygame.Rect((0, i * BUTTON_DIMS[1]), BUTTON_DIMS),
-                text=self.element_keys[i],
+                text=element,
                 manager=manager,
                 container=self,
                 object_id="menu-" + self.path.replace(".", "-"),
