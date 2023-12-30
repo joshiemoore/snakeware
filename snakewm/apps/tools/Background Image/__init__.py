@@ -19,6 +19,8 @@ def load(manager, params):
         rect=pygame.Rect(pos, (600, 400)),
         manager=manager,
         window_title="Set Background Image",
+        allowed_suffixes={'jpg', 'png', 'bmp'},
         initial_file_path=os.path.dirname(os.path.realpath(__file__)),
         object_id="#background_picker",
+        allow_existing_files_only=True
     )
