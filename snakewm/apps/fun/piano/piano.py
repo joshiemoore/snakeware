@@ -98,10 +98,10 @@ class Piano(UIWindow):
             o = ""
         for n in range(13):
             self.audio[n] = pygame.mixer.Sound(
-                self.path + "/snd/piano%s_%02u.ogg" % (o, n)
+                self.path + f"/snd/piano{o}_{n:0>2}.ogg"
             )
             self.sustain[n] = pygame.mixer.Sound(
-                self.path + "/snd/piano%s_sustain_%02u.ogg" % (o, n)
+                self.path + f"/snd/piano{o}_sustain_{n:0>2}.ogg"
             )
         self.audio["buzz"] = pygame.mixer.Sound(self.path + "/snd/buzz.ogg")
         self.setvol()
@@ -307,7 +307,7 @@ class Piano(UIWindow):
                 self.simonplay = True
                 self.simonstart = time.time()
                 super().set_display_title(
-                    "Simon (%u notes correct)" % (self.simonlen - 1)
+                    f"Simon ({self.simonlen - 1} notes correct)"
                 )
             if (
                     self.userseq

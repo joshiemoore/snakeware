@@ -209,7 +209,7 @@ def ini(s, res):
     audio = {}
     for n in range(2, 89):
         # samples are numbered with middle C == 39 (i.e. off by one)
-        audio[n] = pygame.mixer.Sound(PATH + "/midisnd/midi%02u.ogg" % (n - 1))
+        audio[n] = pygame.mixer.Sound(PATH + f"/midisnd/midi{n - 1:0>2}.ogg")
         audio[n].set_volume(0.2)
 
 
@@ -321,7 +321,7 @@ class MIDI(UIWindow):
             return
         self.tempo = max(0.1, min(3, self.tempo))
         fn = self.mlist[self.mselect].split("/")[-1]
-        super().set_display_title("midi (%s, tempo %.2f)" % (fn, self.tempo))
+        super().set_display_title(f"midi ({fn}, tempo {self.tempo:.2f})")
         if self.paused:
             return
         # play notes

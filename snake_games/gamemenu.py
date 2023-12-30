@@ -41,7 +41,7 @@ class SnakeGameMenu:
         os.system("clear")
 
         print("\n\n~~~~~ SNAKE GAMES ~~~~~\n")
-        print("  Page {0}/{1}:".format(self.cur_page + 1, int(len(self.LIST) / 10 + 1)))
+        print(f"  Page {self.cur_page + 1}/{int(len(self.LIST) / 10 + 1)}:")
 
         self.list_page()
 

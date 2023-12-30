@@ -145,17 +145,17 @@ class Maze:
 
         self.render_stats_text(surface, "Maze", 0)
         self.render_stats_text(surface, "Dimensions", 2)
-        self.render_stats_text(surface, "{} x {}".format(self.width, self.height), 3)
+        self.render_stats_text(surface, f"{self.width} x {self.height}", 3)
         self.render_stats_text(surface, "Walls", 5)
-        self.render_stats_text(surface, "{}".format(self.walls), 6)
+        self.render_stats_text(surface, f"{self.walls}", 6)
         self.render_stats_text(surface, "Unvisited", 8)
-        self.render_stats_text(surface, "{}".format(self.unvisited), 9)
+        self.render_stats_text(surface, f"{self.unvisited}", 9)
         self.render_stats_text(surface, "Visited", 11)
-        self.render_stats_text(surface, "{}".format(self.visited), 12)
+        self.render_stats_text(surface, f"{self.visited}", 12)
         self.render_stats_text(surface, "2nd Vis.", 14)
-        self.render_stats_text(surface, "{}".format(self.visited2), 15)
+        self.render_stats_text(surface, f"{self.visited2}", 15)
         self.render_stats_text(surface, "Bumps", 17)
-        self.render_stats_text(surface, "{}".format(self.bumps), 18)
+        self.render_stats_text(surface, f"{self.bumps}", 18)
 
     def generate(self, deep=True, loop_prob=0.05):
         """Generate"""

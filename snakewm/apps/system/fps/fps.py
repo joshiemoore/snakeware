@@ -51,10 +51,12 @@ class SnakeFPS(UIWindow):
         if len(self.samp) > MAXSAMP:
             self.samp = self.samp[-MAXSAMP:]
         self.last = time.time()
-        self.set_text(
-            "FPS: %3u  AVG: %3u  MIN: %3u  MAX:  %3u"
-            % (fps, statistics.mean(self.samp), min(self.samp), max(self.samp))
-        )
+
+        average = statistics.mean(self.samp)
+        minimum = min(self.samp)
+        maximum = max(self.samp)
+
+        self.set_text(f"FPS: {fps:>3}  AVG: {average:>3}  MIN: {minimum:>3}  MAX:  {maximum:>3}")
 
     def set_text(self, text):
         """Set text"""

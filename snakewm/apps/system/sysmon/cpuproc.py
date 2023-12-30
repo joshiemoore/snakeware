@@ -36,7 +36,7 @@ def cpuproc():
 def cpuproc2():
     """CPU proc 2"""
 
-    return str("CPU Usage: <br>{}/100".format(cpuproc()))
+    return str(f"CPU Usage: <br>{cpuproc()}/100")
 
 
 # Test the module

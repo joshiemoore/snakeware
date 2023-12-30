@@ -119,5 +119,5 @@ class Cell(UIWindow):
                 (x, self.DIMS[1] - 1),
                 1,
             )
-        super().set_display_title("cell (rule %u)" % self.rule)
+        super().set_display_title(f"cell (rule {self.rule})")
         self.dsurf.image.blit(self.screen, (0, 0))

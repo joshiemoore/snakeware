@@ -37,7 +37,7 @@ def ramproc2():
         total = isolate_num(file_items[0])
         used = total - isolate_num(file_items[2])  # uses memavaiable line
 
-    return "Ram Usage: <br>{}/{}".format(used, total)
+    return f"Ram Usage: <br>{used}/{total}"
 
 
 # Test the module

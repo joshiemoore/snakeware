@@ -96,11 +96,11 @@ class SnakeMon(pygame_gui.elements.UIWindow):
         self.surf_cpu.image.blit(self.cpu, (0, 0))
         self.surf_ram.image.blit(self.ram, (0, 0))
 
-        self.set_text("%s" % ramproc2())
+        self.set_text(f"{ramproc2()}")
         if psutil:
-            self.set_text2("%s/100" % str(psutil.cpu_percent(interval=None)))
+            self.set_text2(f"{str(psutil.cpu_percent(interval=None))}/100")
         else:
-            self.set_text2("%s" % cpuproc2())
+            self.set_text2(f"{cpuproc2()}")
 
     def draw_cpu(self):
         """Draw CPU"""
