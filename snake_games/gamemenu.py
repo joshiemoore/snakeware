@@ -2,13 +2,14 @@
 
 import importlib
 import os
+from string import digits
 import sys
 
 
 class SnakeGameMenu:
     """Snake Game Menu"""
 
-    GAMENUMS = "0123456789"
+    GAMENUMS = digits
 
     def __init__(self):
         self.GAMEPATH = os.path.dirname(os.path.abspath(__file__))

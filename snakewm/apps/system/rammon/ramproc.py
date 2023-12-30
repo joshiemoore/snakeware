@@ -3,17 +3,18 @@ Read RAM usage in percent from /proc/meminfo
 (only works on Linux)
 """
 
+from string import digits
 import time
 
 
 def isolate_num(text):
     """Isolate num"""
 
-    digits = ""
+    isolated_digits = ""
     for c in text:
-        if c in "0123456789":
-            digits += c
-    return int(digits)
+        if c in digits:
+            isolated_digits += c
+    return int(isolated_digits)
 
 
 def ramproc():
