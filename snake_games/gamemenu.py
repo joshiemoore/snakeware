@@ -2,6 +2,7 @@
 
 import importlib
 import os
+import sys
 
 
 class SnakeGameMenu:
@@ -53,7 +54,7 @@ class SnakeGameMenu:
 
         if resp == "q":
             # quit
-            exit()
+            sys.exit()
         elif resp == "+":
             # next page
             if self.cur_page < int(len(self.LIST) / 10):
@@ -75,7 +76,7 @@ class SnakeGameMenu:
             _game = importlib.import_module(game)
             _game.load()
 
-            exit()
+            sys.exit()
 
     def menu(self):
         """Menu"""

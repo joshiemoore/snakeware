@@ -1,5 +1,7 @@
 """Exit SnakeWM"""
 
+import sys
+
 import pygame
 
 
@@ -7,4 +9,4 @@ def load(manager, params):
     """Load"""
 
     pygame.quit()
-    exit()
+    sys.exit()

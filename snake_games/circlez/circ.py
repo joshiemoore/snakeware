@@ -6,6 +6,7 @@ Josh Moore 2020
 
 import os
 import random
+import sys
 
 import pygame
 from pygame.locals import FULLSCREEN, KEYDOWN, K_ESCAPE
@@ -42,7 +43,7 @@ class CirclezApp:
         while True:
             for event in pygame.event.get():
                 if event.type == KEYDOWN and event.key == K_ESCAPE:
-                    exit()
+                    sys.exit()
 
             pygame.draw.circle(
                 self.BG,

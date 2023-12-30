@@ -2,6 +2,7 @@
 
 import importlib
 import os
+import sys
 
 import pygame
 import pygame_gui
@@ -195,7 +196,7 @@ class SnakeWM:
                         if event.key == pygame.K_ESCAPE:
                             running = False
                             pygame.quit()
-                            exit()
+                            sys.exit()
                         elif event.key == pygame.K_p:
                             # toggle paint mode
                             self.PAINT = not self.PAINT
