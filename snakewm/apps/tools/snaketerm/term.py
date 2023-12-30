@@ -68,11 +68,11 @@ class SnakeTerm(UIWindow):
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         try:  # first attmept to load user hotkeys
-            with open(current_dir + "/user_hotkeys.json", "r") as f:
-                raw_json = json.load(f)
+            with open(current_dir + "/user_hotkeys.json") as file:
+                raw_json = json.load(file)
         except:  # if that file doesn't exist use default
-            with open(current_dir + "/default_hotkeys.json", "r") as f:
-                raw_json = json.load(f)
+            with open(current_dir + "/default_hotkeys.json") as file:
+                raw_json = json.load(file)
         # run through each value and add "self." then run through eval()
         key_config = {}
         for mod_key in raw_json.keys():

@@ -9,22 +9,27 @@ o = 0
 t = time.time()
 numcpu = 1
 
-for l in open("/proc/stat"):
-    x = l.split()
-    if l[:3] == "cpu" and len(x[0]) > 3:
-        numcpu = 1 + int(x[0][3:])
+with open("/proc/stat", encoding='UTF-8') as file:
+    for l in file:
+        x = l.split()
+        if l[:3] == "cpu" and len(x[0]) > 3:
+            numcpu = 1 + int(x[0][3:])
 
 
 def cpuproc():
     """CPU proc"""
 
     global o, t
-    f = open("/proc/stat").readline().split()
+
+    with open("/proc/stat", encoding='UTF-8') as file:
+        f = file.readline().split()
+
     q = 0.01 * (int(f[4]) - o) / (time.time() - t)
     q = 100 * (1 - q / numcpu)
     q = max(0, min(100, q))
     t = time.time()
     o = int(f[4])
+
     return int(q)
 
 

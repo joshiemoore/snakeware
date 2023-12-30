@@ -86,11 +86,13 @@ class Help(UIWindow):
         s = ""
         for file_info in self.files:
             if file_info[0] == n:
-                for l in open(file_info[1]):
-                    x = l.strip()
-                    if len(x) > 1 and x[0] == "#":
-                        x = "<b><u>" + x[1:] + " </u></b>"
-                    s += x + "<br>"
+
+                with open(file_info[1], encoding='UTF-8') as file:
+                    for l in file:
+                        x = l.strip()
+                        if len(x) > 1 and x[0] == "#":
+                            x = "<b><u>" + x[1:] + " </u></b>"
+                        s += x + "<br>"
 
         self.set_text(s)
 

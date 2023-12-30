@@ -19,11 +19,13 @@ def isolate_num(text):
 def ramproc():
     """RAM proc"""
 
-    file = open("/proc/meminfo").read().split("\n")
+    with open("/proc/meminfo", encoding='UTF-8') as file:
+        file_items = file.read().split("\n")
+        total = isolate_num(file_items[0])
+        used = total - isolate_num(file_items[2])  # uses memavaiable line
 
-    total = isolate_num(file[0])
-    used = total - isolate_num(file[2])  # uses memavaiable line
     perc = round((used / total) * 100)
+
     return perc
 
 
