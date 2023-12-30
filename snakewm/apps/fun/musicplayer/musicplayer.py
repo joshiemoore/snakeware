@@ -4,6 +4,7 @@ import glob
 import os
 
 import pygame
+from pygame.event import Event
 import pygame_gui
 
 from .mixer import Mixer
@@ -62,7 +63,7 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
             item_list=list(self.musics_dict.keys()),
         )
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -100,12 +101,14 @@ class MusicPlayer(pygame_gui.elements.UIWindow):
                     self.mixer.set_volume(value=volume)
                 return True
 
-    def update(self, delta):
+        # TODO: should return bool
+
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        return super().update(time_delta)
 
-    def kill(self):
+    def kill(self) -> None:
         """Kill"""
 
         self.mixer.stop()

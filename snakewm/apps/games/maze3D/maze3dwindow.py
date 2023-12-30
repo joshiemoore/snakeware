@@ -1,6 +1,7 @@
 """Maze 3D window"""
 
 from pygame import Rect, Surface
+from pygame.event import Event
 from pygame_gui.elements.ui_window import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -29,13 +30,13 @@ class Maze3DWindow(UIWindow):
 
         self.maze3d = Maze3D(game_surface_size)
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
         super().process_event(event)
         return self.maze3d.process_event(event)
 
-    def update(self, time_delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
         super().update(time_delta)

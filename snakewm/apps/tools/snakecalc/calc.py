@@ -1,6 +1,7 @@
 """Calculator"""
 
 import pygame
+from pygame.event import Event
 import pygame_gui
 
 
@@ -55,7 +56,7 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
                 object_id="#op-" + op,
             )
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
         super().process_event(event)
@@ -64,6 +65,8 @@ class SnakeCalc(pygame_gui.elements.UIWindow):
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                 self.input_op(event.ui_object_id[-1])
                 return True
+
+        # TODO: should return bool in all cases
 
     def set_text(self, text):
         """Set text"""

@@ -39,6 +39,7 @@ import struct
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -68,7 +69,7 @@ class Note(object):
         return self.start + self.duration
 
 
-class MidiFile(object):
+class MidiFile:
     """Represents the notes in a MIDI file"""
 
     @staticmethod
@@ -185,7 +186,7 @@ class MidiFile(object):
         finally:
             file.close()
 
-    def __str__(self):
+    def __str__(self) -> str:
         s = ""
         for i, track in enumerate(self.tracks):
             s += "Track " + str(i + 1) + "\n"
@@ -287,7 +288,7 @@ class MIDI(UIWindow):
         self.tempo = 1
         self.paused = False
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -306,10 +307,12 @@ class MIDI(UIWindow):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
             self.paused = not self.paused
 
-    def update(self, delta):
+        # TODO: should return bool
+
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         # measure FPS for automatic adjustment
         if self.calib > 0:
             f = 1 / (time.time() - self.last)

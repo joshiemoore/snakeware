@@ -16,6 +16,7 @@ import os
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -231,15 +232,15 @@ class Earth(UIWindow):
         self.last = 0
         self.start = True
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
-        super().process_event(event)
+        return super().process_event(event)
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         if self.start:
             self.start = False
             super().set_display_title("rendering image, please wait")

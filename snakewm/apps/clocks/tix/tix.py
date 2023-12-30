@@ -12,6 +12,7 @@ import sys
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -89,7 +90,7 @@ class TIX(UIWindow):
         self.manager = manager
         self.last = 0
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -101,10 +102,12 @@ class TIX(UIWindow):
             super().kill()
             self.__init__((r.left, r.top), self.manager)
 
-    def update(self, delta):
+        # TODO: should return bool
+
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         if time.time() - self.last < inter:
             return
         self.last = time.time()

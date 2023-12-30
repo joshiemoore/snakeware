@@ -1,6 +1,7 @@
 """Bat"""
 
 import pygame
+from pygame.event import Event
 from pygame.locals import K_UP, K_DOWN, KEYDOWN, KEYUP
 
 
@@ -31,7 +32,7 @@ class Bat:
         self.rect = pygame.Rect((start_pos[0], start_pos[1]), (self.width, self.length))
         self.colour = pygame.Color("#FFFFFF")
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         if event.type == KEYDOWN:
@@ -46,11 +47,13 @@ class Bat:
             if event.key == self.control_scheme.down:
                 self.move_down = False
 
-    def update(self, dt):
+        # TODO: should return bool
+
+    def update(self, time_delta: float) -> None:
         """Update"""
 
         if self.move_up:
-            self.position[1] -= dt * self.move_speed
+            self.position[1] -= time_delta * self.move_speed
 
             if self.position[1] < 10.0:
                 self.position[1] = 10.0
@@ -58,7 +61,7 @@ class Bat:
             self.rect.y = self.position[1]
 
         if self.move_down:
-            self.position[1] += dt * self.move_speed
+            self.position[1] += time_delta * self.move_speed
 
             if self.position[1] > self.court_size[1] - self.length - 10:
                 self.position[1] = self.court_size[1] - self.length - 10

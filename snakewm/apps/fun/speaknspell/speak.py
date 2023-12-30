@@ -4,6 +4,7 @@ import re
 import threading
 
 import pygame
+from pygame.event import Event
 import pygame_gui
 from pygame_gui.elements import UITextBox, UITextEntryLine, UIWindow
 import pyttsx3
@@ -115,7 +116,7 @@ class SpeakSpell(UIWindow):
         if len(self.history) > self.histsize:
             del self.history[-1]
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -132,3 +133,5 @@ class SpeakSpell(UIWindow):
                 self.cache_command()
             self.set_histindex(increment)
             self.set_from_history()
+
+        # TODO: should return bool

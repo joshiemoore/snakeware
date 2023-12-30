@@ -1,6 +1,7 @@
 """Pong"""
 
 from pygame import Surface
+from pygame.event import Event
 from pygame.font import Font
 from pygame.locals import K_w, K_s, K_UP, K_DOWN
 
@@ -45,13 +46,15 @@ class PongGame:
 
         self.ball = Ball((int(size[0] / 2), int(size[1] / 2)))
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         for bat in self.bats:
             bat.process_event(event)
 
-    def update(self, time_delta):
+        # TODO: should return bool
+
+    def update(self, time_delta: float) -> None:
         """Update"""
 
         for bat in self.bats:

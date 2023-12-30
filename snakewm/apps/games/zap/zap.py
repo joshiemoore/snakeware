@@ -6,6 +6,7 @@ import random
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -98,7 +99,7 @@ class Zap(UIWindow):
             x, y = random.randint(0, RES - 1), random.randint(0, RESY - 1)
             pygame.draw.line(self.starfield, (120, 120, 120), (x, y), (x, y))
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -128,6 +129,8 @@ class Zap(UIWindow):
             self.dir = 2
         if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
             self.dir = 3
+
+        # TODO: should return bool
 
     def incscore(self, x):
         """Increase score and highscore"""
@@ -274,10 +277,10 @@ class Zap(UIWindow):
             self.newgame()
             self.attract = True
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
 
         if self.paused and not self.step:
             return

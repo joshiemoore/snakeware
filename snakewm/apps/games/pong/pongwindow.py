@@ -1,8 +1,8 @@
 """Pong window"""
 
 import pygame
+from pygame.event import Event
 import pygame_gui
-
 from pygame_gui.elements.ui_image import UIImage
 from pygame_gui.elements.ui_window import UIWindow
 
@@ -33,20 +33,20 @@ class PongWindow(UIWindow):
 
         self.is_active = False
 
-    def focus(self):
+    def focus(self) -> None:
         """Focus"""
 
         self.is_active = True
 
-    def unfocus(self):
+    def unfocus(self) -> None:
         """Unfocus"""
 
         self.is_active = False
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
-        handled = super().process_event(event)
+        handled: bool = super().process_event(event)
         if (
             event.type == pygame.USEREVENT
             and event.user_type == pygame_gui.UI_BUTTON_PRESSED
@@ -65,7 +65,7 @@ class PongWindow(UIWindow):
             handled = self.pong_game.process_event(event)
         return handled
 
-    def update(self, time_delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
         if self.alive() and self.is_active:

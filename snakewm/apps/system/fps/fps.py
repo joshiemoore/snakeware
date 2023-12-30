@@ -4,6 +4,7 @@ import statistics
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UITextBox, UIWindow
 
 MAXSAMP = 300
@@ -36,12 +37,12 @@ class SnakeFPS(UIWindow):
         self.last = 0
         self.samp = []
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
-        super().process_event(event)
+        return super().process_event(event)
 
-    def update(self, time_delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
         super().update(time_delta)

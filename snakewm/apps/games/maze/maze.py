@@ -4,6 +4,7 @@ import os
 from random import random, randrange, shuffle
 
 import pygame
+from pygame.event import Event
 
 
 class Maze:
@@ -68,7 +69,7 @@ class Maze:
 
         self.generate()
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
         if event.type == pygame.KEYDOWN:

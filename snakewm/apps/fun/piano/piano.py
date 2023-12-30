@@ -7,6 +7,7 @@ import random
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -118,7 +119,7 @@ class Piano(UIWindow):
 
         self.load_inst()
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -279,6 +280,8 @@ class Piano(UIWindow):
             if event.key == pygame.K_i:
                 self.stop(10)
 
+        # TODO: should return bool
+
     def play(self, k, user=True):
         """Play a note"""
 
@@ -350,10 +353,10 @@ class Piano(UIWindow):
             if y < H and 100 * k < x < 100 * (k + 1):
                 return wkeys[k]
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         # Simon plays its melody
         if self.simon and self.simonplay:
             f = ((time.time() - self.simonstart) / NOTELEN) % 1

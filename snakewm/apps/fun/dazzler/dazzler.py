@@ -5,6 +5,7 @@ import random
 import time
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -43,7 +44,7 @@ class Snazzler(UIWindow):
         self.step = False
         self.manager = manager
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -59,6 +60,8 @@ class Snazzler(UIWindow):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_PERIOD:
             self.step = True
 
+        # TODO: should return bool
+
     def draw(self, x, y, c):
         """Draw"""
 
@@ -67,10 +70,10 @@ class Snazzler(UIWindow):
         pygame.draw.line(self.dazz, c, (RES2 + x, RES2 - y), (RES2 + x, RES2 - y))
         pygame.draw.line(self.dazz, c, (RES2 - x, RES2 - y), (RES2 - x, RES2 - y))
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         if (self.paused and not self.step) or (time.time() - self.lastframe < 1 / FPS):
             return
         self.step = False

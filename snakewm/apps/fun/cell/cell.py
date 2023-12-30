@@ -5,6 +5,7 @@
 import random
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UIWindow
 from pygame_gui.elements.ui_image import UIImage
 
@@ -68,7 +69,7 @@ class Cell(UIWindow):
         self.line = 0
         self.COL = getcol(), getcol()
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -79,6 +80,8 @@ class Cell(UIWindow):
             self.DIMS = r.w - 32, r.h - 60
             super().kill()
             self.__init__((r.left, r.top), self.manager)
+
+        # TODO: should return bool
 
     def newgen(self):
         """New gen"""
@@ -94,10 +97,10 @@ class Cell(UIWindow):
         cell2[-1] = cell2[1]
         self.cell = cell2
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         self.line += 1
         self.screen.scroll(dy=-1)
         pygame.draw.line(

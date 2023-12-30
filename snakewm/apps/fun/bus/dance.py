@@ -52,10 +52,10 @@ class BusDance(UIWindow):
         # pygame.mixer.music.load(app_path + "/party.ogg")
         # pygame.mixer.music.play(loops=-1)
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         self.dsurf.image.blit(self.FRAMES[self.FRAME_INDEX], (0, 0))
         self.FRAME_INDEX = (self.FRAME_INDEX + 1) % self.FRAMES_LEN
 

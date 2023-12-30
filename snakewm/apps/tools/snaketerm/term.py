@@ -7,6 +7,7 @@ import sys
 import traceback
 
 import pygame
+from pygame.event import Event
 from pygame_gui.elements import UITextBox, UITextEntryLine, UIWindow
 
 
@@ -175,7 +176,7 @@ class SnakeTerm(UIWindow):
 
         self.cached_command = str()
 
-    def process_event(self, event):
+    def process_event(self, event: Event):
         """Process event"""
 
         super().process_event(event)
@@ -219,3 +220,5 @@ class SnakeTerm(UIWindow):
                     self.cache_command()
                 self.set_histindex(increment)
                 self.set_from_history()
+
+        # TODO: should return bool

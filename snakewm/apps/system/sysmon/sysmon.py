@@ -3,6 +3,7 @@
 import time
 
 import pygame
+from pygame.event import Event
 import pygame_gui
 from pygame_gui.elements.ui_image import UIImage
 
@@ -79,15 +80,15 @@ class SnakeMon(pygame_gui.elements.UIWindow):
         self.ram.fill(GRAY)
         self.last_time = 0
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event"""
 
-        super().process_event(event)
+        return super().process_event(event)
 
-    def update(self, delta):
+    def update(self, time_delta: float) -> None:
         """Update"""
 
-        super().update(delta)
+        super().update(time_delta)
         # limit frame rate to 4 FPS
         if time.time() - self.last_time > 0.25:
             self.draw_cpu()

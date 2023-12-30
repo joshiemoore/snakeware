@@ -5,6 +5,7 @@ import os
 import random
 
 import pygame
+from pygame.event import Event
 
 two_pi = pi * 2
 half_pi = pi * 0.5
@@ -24,10 +25,10 @@ class DisjointSet:
             self.parent = self
             self.rank = 0
 
-        def __eq__(self, other):
+        def __eq__(self, other) -> bool:
             return self.key == other.key
 
-        def __ne__(self, other):
+        def __ne__(self, other) -> bool:
             return self.key != other.key
 
     def __init__(self):
@@ -77,7 +78,7 @@ class RandomMaze:
         self.portals = {}
         self.kruskalize()
 
-    def __str__(self):
+    def __str__(self) -> str:
         s = ""
         for i in range(self.width):
             s += str(random.randint(1, 2)) + str(random.randint(1, 2))
@@ -287,7 +288,7 @@ class Maze3D:
                 self.playerX = ceil(nx) + 0.01
             return
 
-    def process_event(self, event):
+    def process_event(self, event: Event) -> bool:
         """Process event
 
         Key handling set flags for updatePos

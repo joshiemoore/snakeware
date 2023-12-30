@@ -3,7 +3,7 @@
 from pygame import mixer
 
 
-class Mixer(object):
+class Mixer:
     """Mixer"""
 
     # init pygame mixer

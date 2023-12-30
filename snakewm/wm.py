@@ -171,7 +171,7 @@ class SnakeWM:
         running = True
 
         while running:
-            delta = clock.tick(60) / 1000.0
+            time_delta: float = clock.tick(60) / 1000.0
 
             pressed = pygame.key.get_pressed()
 
@@ -268,7 +268,7 @@ class SnakeWM:
 
                 self.MANAGER.process_events(event)
 
-            self.MANAGER.update(delta)
+            self.MANAGER.update(time_delta)
 
             # blit paintbrush/dynbg layer
             if self.DYNBG is not None:
